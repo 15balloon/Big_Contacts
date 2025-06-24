@@ -3,7 +3,7 @@
     <string name="app_name">جهات الاتصال الكبيرة</string>
     
     <!-- Main Screen -->
-    <string name="add_widget">إضافة عنصر واجهة</string>
+    <string name="add_widget">إضافة أداة جهة الاتصال</string>
     <string name="add_widget_2x1">إضافة أداة \u200E2x1</string>
     <string name="add_widget_4x1">إضافة أداة \u200E4x1</string>
     <string name="widget_preview_2x1">معاينة عنصر واجهة \u200E2x1</string>
@@ -13,7 +13,7 @@
     <string name="select_contact">اختر جهة اتصال</string>
     
     <!-- Widget Configuration -->
-    <string name="widget_config_title">إعدادات عنصر الواجهة</string>
+    <string name="widget_config_title">إعدادات أداة جهة الاتصال</string>
     <string name="widget_config_selected_contact">جهة الاتصال المحددة: %1$s</string>
     <string name="widget_config_create">إنشاء عنصر واجهة</string>
     <string name="widget_config_theme_selected">محدد</string>
@@ -66,8 +66,8 @@ http://www.apache.org/licenses/LICENSE-2.0
     <string name="widget_preview_image">صورة معاينة الويدجت</string>
     <string name="contact_photo">صورة جهة الاتصال</string>
     <string name="contact_name">اسم جهة الاتصال</string>
-    <string name="tap_to_configure">انقر للتكوين</string>
-    <string name="select_color">اختر لونًا</string>
+    <string name="tap_to_configure">اضغط لإعداد جهة الاتصال</string>
+    <string name="select_color">اختر لونا</string>
     <string name="permission_needed">الإذن مطلوب لتحديد جهة اتصال.</string>
     <string name="please_select_contact">الرجاء تحديد جهة اتصال.</string>
     <string name="permission_rationale">لعرض جهات الاتصال في الويدجت، يلزم الحصول على إذن قراءة جهات الاتصال. يرجى الانتقال إلى الإعدادات لمنح الإذن.</string>

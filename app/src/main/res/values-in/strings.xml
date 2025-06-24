@@ -3,7 +3,7 @@
     <string name="app_name">Kontak Besar</string>
     
     <!-- Main Screen -->
-    <string name="add_widget">Tambah Widget</string>
+    <string name="add_widget">Tambahkan widget kontak</string>
     <string name="add_widget_2x1">Tambah Widget 2x1</string>
     <string name="add_widget_4x1">Tambah Widget 4x1</string>
     <string name="widget_preview_2x1">Pratinjau Widget 2x1</string>
@@ -13,7 +13,7 @@
     <string name="select_contact">Pilih Kontak</string>
     
     <!-- Widget Configuration -->
-    <string name="widget_config_title">Pengaturan Widget</string>
+    <string name="widget_config_title">Pengaturan widget kontak</string>
     <string name="widget_config_selected_contact">Kontak Terpilih: %1$s</string>
     <string name="widget_config_create">Buat Widget</string>
     <string name="widget_config_theme_selected">Terpilih</string>
@@ -67,8 +67,8 @@ Kecuali jika diwajibkan oleh hukum yang berlaku atau disetujui secara tertulis, 
     <string name="widget_preview_image">Gambar pratinjau widget</string>
     <string name="contact_photo">Foto kontak</string>
     <string name="contact_name">Nama kontak</string>
-    <string name="tap_to_configure">Ketuk untuk mengkonfigurasi</string>
-    <string name="select_color">Pilih warna</string>
+    <string name="tap_to_configure">Ketuk untuk menyiapkan kontak</string>
+    <string name="select_color">Pilih Warna</string>
     <string name="permission_needed">Izin diperlukan untuk memilih kontak.</string>
     <string name="config_complete">Selesai</string>
     <string name="example_label">Contoh: </string>

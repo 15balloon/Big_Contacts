@@ -3,7 +3,7 @@
     <string name="app_name">Danh bạ lớn</string>
     
     <!-- Main Screen -->
-    <string name="add_widget">Thêm Widget</string>
+    <string name="add_widget">Thêm tiện ích liên hệ</string>
     <string name="add_widget_2x1">Thêm tiện ích 2x1</string>
     <string name="add_widget_4x1">Thêm tiện ích 4x1</string>
     <string name="widget_preview_2x1">Xem trước Widget 2x1</string>
@@ -13,7 +13,7 @@
     <string name="select_contact">Chọn Liên Hệ</string>
     
     <!-- Widget Configuration -->
-    <string name="widget_config_title">Cài Đặt Widget</string>
+    <string name="widget_config_title">Cài đặt tiện ích liên hệ</string>
     <string name="widget_config_selected_contact">Liên hệ đã chọn: %1$s</string>
     <string name="widget_config_create">Tạo Widget</string>
     <string name="widget_config_theme_selected">Đã chọn</string>
@@ -66,8 +66,8 @@ Trừ khi được yêu cầu bởi luật pháp hiện hành hoặc được đ
     <string name="widget_preview_image">Hình ảnh xem trước của widget</string>
     <string name="contact_photo">Ảnh liên hệ</string>
     <string name="contact_name">Tên liên hệ</string>
-    <string name="tap_to_configure">Nhấn để định cấu hình</string>
-    <string name="select_color">Chọn một màu</string>
+    <string name="tap_to_configure">Nhấn để thiết lập liên hệ</string>
+    <string name="select_color">Chọn màu</string>
     <string name="permission_needed">Cần có quyền để chọn một liên hệ.</string>
     <string name="permission_rationale">Để hiển thị danh bạ trong tiện ích, cần có quyền Đọc danh bạ. Vui lòng vào Cài đặt để cấp quyền.</string>
     <string name="go_to_settings">Đi tới Cài đặt</string>

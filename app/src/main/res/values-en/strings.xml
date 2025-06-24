@@ -3,7 +3,7 @@
     <string name="app_name">Big Contacts</string>
     
     <!-- Main Screen -->
-    <string name="add_widget">Add Widget</string>
+    <string name="add_widget">Add contact widget</string>
     <string name="add_widget_2x1">Add 2x1 Widget</string>
     <string name="add_widget_4x1">Add 4x1 Widget</string>
     <string name="widget_preview_2x1">2x1 size widget preview</string>
@@ -13,7 +13,7 @@
     <string name="select_contact">Select a contact</string>
     
     <!-- Widget Configuration -->
-    <string name="widget_config_title">Widget Settings</string>
+    <string name="widget_config_title">Contact widget settings</string>
     <string name="widget_config_selected_contact">Selected Contact: %1$s</string>
     <string name="widget_config_create">Create Widget</string>
     <string name="widget_config_theme_selected">Selected</string>
@@ -68,8 +68,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
     <string name="widget_preview_image">Widget preview image</string>
     <string name="contact_photo">Contact photo</string>
     <string name="contact_name">Contact name</string>
-    <string name="tap_to_configure">Tap to configure</string>
-    <string name="select_color">Select a color</string>
+    <string name="tap_to_configure">Tap to set up contact</string>
+    <string name="select_color">Select Color</string>
     <string name="permission_needed">Permission is required to select a contact.</string>
     <string name="example_label">Example:</string>
     <string name="previous">Previous</string>

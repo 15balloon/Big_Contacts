@@ -3,7 +3,7 @@
     <string name="app_name">글자가 큰 연락처</string>
     
     <!-- Main Screen -->
-    <string name="add_widget">위젯 추가</string>
+    <string name="add_widget">연락처 위젯 추가</string>
     <string name="add_widget_2x1">2x1 위젯 추가</string>
     <string name="add_widget_4x1">4x1 위젯 추가</string>
     <string name="widget_preview_2x1">2x1 크기 위젯 미리보기</string>
@@ -13,7 +13,7 @@
     <string name="select_contact">연락처 선택</string>
     
     <!-- Widget Configuration -->
-    <string name="widget_config_title">위젯 설정</string>
+    <string name="widget_config_title">연락처 위젯 설정</string>
     <string name="widget_config_selected_contact">선택된 연락처: %1$s</string>
     <string name="widget_config_create">위젯 생성</string>
     <string name="widget_config_theme_selected">선택됨</string>
@@ -67,7 +67,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <string name="widget_preview_image">위젯 미리보기</string>
     <string name="contact_photo">연락처 사진</string>
     <string name="contact_name">연락처 이름</string>
-    <string name="tap_to_configure">설정하려면 탭하세요</string>
+    <string name="tap_to_configure">연락처를 설정하려면 누르세요</string>
     <string name="select_color">색상 선택</string>
     <string name="permission_needed">연락처를 불러오려면 권한이 필요합니다.</string>
     <string name="permission_rationale">위젯에 연락처를 표시하려면 주소록 읽기 권한이 반드시 필요합니다. 설정 화면으로 이동하여 권한을 허용해주세요.</string>

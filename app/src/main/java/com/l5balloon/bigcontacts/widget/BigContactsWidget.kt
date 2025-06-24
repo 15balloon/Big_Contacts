@@ -3,40 +3,41 @@ package com.l5balloon.bigcontacts.widget
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
+import android.util.TypedValue.COMPLEX_UNIT_DIP
+import android.widget.RemoteViews
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.toArgb
+import androidx.core.net.toUri
+import androidx.datastore.preferences.core.Preferences
+import androidx.glance.GlanceComposable
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
+import androidx.glance.LocalContext
+import androidx.glance.action.Action
 import androidx.glance.action.clickable
+import androidx.glance.appwidget.AndroidRemoteViews
 import androidx.glance.appwidget.GlanceAppWidget
-import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.GlanceAppWidgetManager
+import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.provideContent
-import androidx.glance.state.PreferencesGlanceStateDefinition
 import androidx.glance.appwidget.state.updateAppWidgetState
+import androidx.glance.background
+import androidx.glance.currentState
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Box
 import androidx.glance.layout.fillMaxSize
-import androidx.glance.unit.ColorProvider
-import androidx.glance.GlanceComposable
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import androidx.datastore.preferences.core.Preferences
-import androidx.glance.background
-import androidx.glance.currentState
-import com.l5balloon.bigcontacts.R
-import androidx.glance.action.Action
 import androidx.glance.state.GlanceStateDefinition
+import androidx.glance.state.PreferencesGlanceStateDefinition
+import androidx.glance.unit.ColorProvider
+import com.l5balloon.bigcontacts.R
 import com.l5balloon.bigcontacts.WidgetConfigActivity
 import com.l5balloon.bigcontacts.data.WidgetData
 import com.l5balloon.bigcontacts.data.WidgetKeys
 import com.l5balloon.bigcontacts.data.WidgetTheme
-import androidx.core.net.toUri
-import androidx.glance.LocalContext
-import android.widget.RemoteViews
-import androidx.compose.ui.graphics.toArgb
-import androidx.glance.appwidget.AndroidRemoteViews
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class BigContactsWidget : GlanceAppWidget() {
     override val stateDefinition: GlanceStateDefinition<*> = PreferencesGlanceStateDefinition
@@ -108,6 +109,7 @@ private fun WidgetContent(
     val context = LocalContext.current
     val backgroundColor = ColorProvider(widgetTheme.backgroundColor)
     val textColor = widgetTheme.textColor.toArgb()
+    val textSize = if (contactName != null) 36.0f else 24.0f
 
     Box(
         modifier = GlanceModifier
@@ -122,6 +124,7 @@ private fun WidgetContent(
             remoteViews = RemoteViews(context.packageName, R.layout.widget_text).apply {
                 setTextViewText(R.id.widget_text, textToShow)
                 setTextColor(R.id.widget_text, textColor)
+                setTextViewTextSize(R.id.widget_text, COMPLEX_UNIT_DIP, textSize)
             }
         )
     }

@@ -3,7 +3,7 @@
     <string name="app_name">Grands Contacts</string>
     
     <!-- Main Screen -->
-    <string name="add_widget">Ajouter un widget</string>
+    <string name="add_widget">Ajouter le widget de contact</string>
     <string name="add_widget_2x1">Ajouter le widget 2x1</string>
     <string name="add_widget_4x1">Ajouter le widget 4x1</string>
     <string name="widget_preview_2x1">Aperçu du widget 2x1</string>
@@ -13,7 +13,7 @@
     <string name="select_contact">Sélectionner un Contact</string>
     
     <!-- Widget Configuration -->
-    <string name="widget_config_title">Paramètres du Widget</string>
+    <string name="widget_config_title">Paramètres du widget de contact</string>
     <string name="widget_config_selected_contact">Contact sélectionné : %1$s</string>
     <string name="widget_config_create">Créer le Widget</string>
     <string name="widget_config_theme_selected">Sélectionné</string>
@@ -68,8 +68,8 @@ Sauf si la loi applicable l\'exige ou si vous y consentez par écrit, le logicie
     <string name="widget_preview_image">Image d\'aperçu du widget</string>
     <string name="contact_photo">Photo du contact</string>
     <string name="contact_name">Nom du contact</string>
-    <string name="tap_to_configure">Appuyez pour configurer</string>
-    <string name="select_color">Sélectionnez une couleur</string>
+    <string name="tap_to_configure">Appuyez pour configurer le contact</string>
+    <string name="select_color">Sélectionner la couleur</string>
     <string name="permission_needed">Une autorisation est requise pour sélectionner un contact.</string>
     <string name="example_label">Exemple : </string>
     <string name="previous">Précédent</string>

@@ -3,7 +3,7 @@
     <string name="app_name">बड़े संपर्क</string>
     
     <!-- Main Screen -->
-    <string name="add_widget">विजेट जोड़ें</string>
+    <string name="add_widget">संपर्क विजेट जोड़ें</string>
     <string name="add_widget_2x1">2x1 विजेट जोड़ें</string>
     <string name="add_widget_4x1">4x1 विजेट जोड़ें</string>
     <string name="widget_preview_2x1">2x1 विजेट पूर्वावलोकन</string>
@@ -13,7 +13,7 @@
     <string name="select_contact">संपर्क चुनें</string>
     
     <!-- Widget Configuration -->
-    <string name="widget_config_title">विजेट सेटिंग्स</string>
+    <string name="widget_config_title">संपर्क विजेट सेटिंग्स</string>
     <string name="widget_config_selected_contact">चयनित संपर्क: %1$s</string>
     <string name="widget_config_create">विजेट बनाएं</string>
     <string name="widget_config_theme_selected">चयनित</string>
@@ -67,8 +67,8 @@ http://www.apache.org/licenses/LICENSE-2.0
     <string name="widget_preview_image">विजेट पूर्वावलोकन छवि</string>
     <string name="contact_photo">संपर्क फ़ोटो</string>
     <string name="contact_name">संपर्क नाम</string>
-    <string name="tap_to_configure">कॉन्फ़िगर करने के लिए टैप करें</string>
-    <string name="select_color">एक रंग चुनें</string>
+    <string name="tap_to_configure">संपर्क सेट करने के लिए टैप करें</string>
+    <string name="select_color">रंग चुनें</string>
     <string name="permission_needed">संपर्क चुनने के लिए अनुमति की आवश्यकता है।</string>
     <string name="permission_rationale">विजेट में संपर्क प्रदर्शित करने के लिए, संपर्क पढ़ने की अनुमति आवश्यक है। कृपया अनुमति देने के लिए सेटिंग्स पर जाएं।</string>
     <string name="go_to_settings">सेटिंग्स पर जाएं</string>
