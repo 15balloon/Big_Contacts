@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Contactos Grandes</string>
+    
+    <!-- Main Screen -->
+    <string name="add_widget">Adicionar Widget</string>
+    <string name="add_widget_2x1">Adicionar Widget 2x1</string>
+    <string name="add_widget_4x1">Adicionar Widget 4x1</string>
+    <string name="widget_preview_2x1">Visualização do Widget 2x1</string>
+    <string name="widget_preview_4x1">Visualização do Widget 4x1</string>
+    
+    <!-- Contact Selection Screen -->
+    <string name="select_contact">Selecionar Contato</string>
+    
+    <!-- Widget Configuration -->
+    <string name="widget_config_title">Configurações do Widget</string>
+    <string name="widget_config_selected_contact">Contato selecionado: %1$s</string>
+    <string name="widget_config_create">Criar Widget</string>
+    <string name="widget_config_theme_selected">Selecionado</string>
+    <string name="widget_config_size_title">Tamanho do Widget</string>
+    <string name="widget_size_2x1">Tamanho 2x1</string>
+    <string name="widget_size_4x1">Tamanho 4x1</string>
+    <string name="widget_config_theme_title">Seleção de Tema</string>
+    <string name="config_complete">Feito</string>
+    
+    <!-- Theme Names -->
+    <string name="theme_blue">Azul</string>
+    <string name="theme_green">Verde</string>
+    <string name="theme_red">Vermelho</string>
+    <string name="theme_black">Preto</string>
+    <string name="theme_white">Branco</string>
+    
+    <!-- Error Messages -->
+    <string name="error_contact_info_missing">Não foi possível obter as informações do contato.</string>
+    <string name="error_invalid_contact_id">ID de contato inválido.</string>
+    <string name="error_cannot_add_widget">Não é possível adicionar o widget.</string>
+    <string name="error_invalid_widget_id">ID de widget inválido.</string>
+    <string name="error_contact_info_not_found">Informações do contato não encontradas.</string>
+    <string name="error_widget_update_failed">Falha na atualização do widget.</string>
+    <string name="error_cannot_open_contact">Não é possível abrir a tela de seleção de contato.</string>
+    <string name="error_widget_not_exists">O widget não existe.</string>
+    <string name="please_select_contact">Por favor, selecione um contato.</string>
+    <string name="error_pin_widget_not_supported">Seu launcher atual não suporta a adição de widgets diretamente.</string>
+    <string name="error_pin_widget_not_supported_oreo">Este recurso está disponível apenas no Android 8.0 ou superior.</string>
+    <string name="permission_rationale">Para exibir contatos no widget, a permissão de Leitura de Contatos é necessária. Vá para as Configurações para conceder a permissão.</string>
+    <string name="go_to_settings">Ir para Configurações</string>
+
+    <!-- License Information -->
+    <string name="font_license_title">Licença da fonte</string>
+    <string name="open_source_license_title">Licenças de código aberto</string>
+    <string name="font_license_content">Este aplicativo usa a fonte Noto Sans do Google.
+
+Copyright 2011-2015 Google Inc. All Rights Reserved.
+
+Apache License 2.0
+
+Este software está licenciado sob a Apache License 2.0.
+
+Uma cópia desta licença pode ser obtida em:
+http://www.apache.org/licenses/LICENSE-2.0
+
+A menos que seja exigido pela lei aplicável ou acordado por escrito, o software distribuído sob a Licença é distribuído "COMO ESTÁ", SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, expressas ou implícitas. Consulte a Licença para o idioma específico que rege as permissões e limitações sob a Licença.</string>
+
+    <string name="example_label">Exemplo: </string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">João</string>
+    <string name="widget_preview_name_long">João Silva</string>
+    <string name="widget_select_contact">Por favor, selecione um contato</string>
+    <string name="widget_preview_image">Imagem de visualização do widget</string>
+    <string name="contact_photo">Foto do contato</string>
+    <string name="contact_name">Nome do contato</string>
+    <string name="tap_to_configure">Toque para configurar</string>
+    <string name="select_color">Selecione uma cor</string>
+    <string name="permission_needed">É necessária permissão para selecionar um contato.</string>
+    <string name="previous">Anterior</string>
+    <string name="next">Próximo</string>
+</resources> 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">大きな連絡先</string>
+    
+    <!-- Main Screen -->
+    <string name="add_widget">ウィジェットを追加</string>
+    <string name="add_widget_2x1">2x1ウィジェットを追加</string>
+    <string name="add_widget_4x1">4x1ウィジェットを追加</string>
+    <string name="widget_preview_2x1">2x1サイズのウィジェットプレビュー</string>
+    <string name="widget_preview_4x1">4x1サイズのウィジェットプレビュー</string>
+    
+    <!-- Contact Selection Screen -->
+    <string name="select_contact">連絡先を選択</string>
+    
+    <!-- Widget Configuration -->
+    <string name="widget_config_title">ウィジェット設定</string>
+    <string name="widget_config_selected_contact">選択された連絡先: %1$s</string>
+    <string name="widget_config_create">ウィジェットを作成</string>
+    <string name="widget_config_theme_selected">選択済み</string>
+    <string name="widget_config_size_title">ウィジェットサイズ</string>
+    <string name="widget_size_2x1">2x1サイズ</string>
+    <string name="widget_size_4x1">4x1サイズ</string>
+    <string name="widget_config_theme_title">テーマの選択</string>
+    <string name="config_complete">完了</string>
+    
+    <!-- Theme Names -->
+    <string name="theme_blue">青</string>
+    <string name="theme_green">緑</string>
+    <string name="theme_red">赤</string>
+    <string name="theme_black">黒</string>
+    <string name="theme_white">白</string>
+    
+    <!-- Error Messages -->
+    <string name="error_contact_info_missing">連絡先情報を取得できません。</string>
+    <string name="error_invalid_contact_id">無効な連絡先IDです。</string>
+    <string name="error_cannot_add_widget">ウィジェットを追加できません。</string>
+    <string name="error_invalid_widget_id">無効なウィジェットIDです。</string>
+    <string name="error_contact_info_not_found">連絡先情報が見つかりません。</string>
+    <string name="error_widget_update_failed">ウィジェットの更新に失敗しました。</string>
+    <string name="error_cannot_open_contact">連絡先選択画面を開けません。</string>
+    <string name="error_widget_not_exists">ウィジェットが存在しません。</string>
+    <string name="please_select_contact">連絡先を選択してください。</string>
+    <string name="error_pin_widget_not_supported">現在のランチャーはウィジェットの直接追加をサポートしていません。</string>
+    <string name="error_pin_widget_not_supported_oreo">この機能はAndroid 8.0以降でのみ利用可能です。</string>
+    <string name="permission_rationale">ウィジェットに連絡先を表示するには、連絡先の読み取り権限が必須です。設定画面に移動して権限を許可してください。</string>
+    <string name="go_to_settings">設定に移動</string>
+
+    <!-- License Information -->
+    <string name="font_license_title">フォントライセンス</string>
+    <string name="open_source_license_title">オープンソースライセンス</string>
+    <string name="font_license_content">このアプリはGoogleのNoto Sansフォントを使用しています。
+
+Copyright 2011-2015 Google Inc. All Rights Reserved.
+
+Apache License 2.0
+
+このソフトウェアはApache License 2.0の下でライセンスされています。
+
+このライセンスのコピーは以下のURLで入手できます：
+http://www.apache.org/licenses/LICENSE-2.0
+
+適用される法律で要求されるか、書面で同意されない限り、このライセンスの下で配布されるソフトウェアは「現状のまま」配布され、明示的または黙示的ないかなる保証も条件も提供されません。ライセンスに基づく権限と制限を管理する特定の言語については、ライセンスを参照してください。</string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">太郎</string>
+    <string name="widget_preview_name_long">田中 太郎</string>
+    <string name="widget_select_contact">連絡先を選択してください</string>
+    <string name="widget_preview_image">ウィジェットのプレビュー画像</string>
+    <string name="contact_photo">連絡先の写真</string>
+    <string name="contact_name">連絡先名</string>
+    <string name="tap_to_configure">タップして設定</string>
+    <string name="select_color">色を選択</string>
+    <string name="permission_needed">連絡先を選択するには権限が必要です。</string>
+    <string name="example_label">例）</string>
+    <string name="previous">前へ</string>
+    <string name="next">次へ</string>
+</resources> 

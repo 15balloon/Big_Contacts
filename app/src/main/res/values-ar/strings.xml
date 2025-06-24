@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">جهات الاتصال الكبيرة</string>
+    
+    <!-- Main Screen -->
+    <string name="add_widget">إضافة عنصر واجهة</string>
+    <string name="add_widget_2x1">إضافة أداة \u200E2x1</string>
+    <string name="add_widget_4x1">إضافة أداة \u200E4x1</string>
+    <string name="widget_preview_2x1">معاينة عنصر واجهة \u200E2x1</string>
+    <string name="widget_preview_4x1">معاينة عنصر واجهة \u200E4x1</string>
+    
+    <!-- Contact Selection Screen -->
+    <string name="select_contact">اختر جهة اتصال</string>
+    
+    <!-- Widget Configuration -->
+    <string name="widget_config_title">إعدادات عنصر الواجهة</string>
+    <string name="widget_config_selected_contact">جهة الاتصال المحددة: %1$s</string>
+    <string name="widget_config_create">إنشاء عنصر واجهة</string>
+    <string name="widget_config_theme_selected">محدد</string>
+    <string name="widget_config_size_title">حجم عنصر الواجهة</string>
+    <string name="widget_size_2x1">حجم \u200E2x1</string>
+    <string name="widget_size_4x1">حجم \u200E4x1</string>
+    <string name="widget_config_theme_title">اختيار السمة</string>
+    <string name="config_complete">تم</string>
+    
+    <!-- Theme Names -->
+    <string name="theme_blue">أزرق</string>
+    <string name="theme_green">أخضر</string>
+    <string name="theme_red">أحمر</string>
+    <string name="theme_black">أسود</string>
+    <string name="theme_white">أبيض</string>
+    
+    <!-- Error Messages -->
+    <string name="error_contact_info_missing">تعذر الحصول على معلومات جهة الاتصال.</string>
+    <string name="error_invalid_contact_id">معرف جهة اتصال غير صالح.</string>
+    <string name="error_cannot_add_widget">لا يمكن إضافة عنصر الواجهة.</string>
+    <string name="error_invalid_widget_id">معرف عنصر واجهة غير صالح.</string>
+    <string name="error_contact_info_not_found">لم يتم العثور على معلومات جهة الاتصال.</string>
+    <string name="error_widget_update_failed">فشل تحديث عنصر الواجهة.</string>
+    <string name="error_cannot_open_contact">لا يمكن فتح شاشة اختيار جهة الاتصال.</string>
+    <string name="error_widget_not_exists">عنصر الواجهة غير موجود.</string>
+    <string name="error_pin_widget_not_supported">المشغل الحالي لديك لا يدعم إضافة الويدجت مباشرة.</string>
+    <string name="error_pin_widget_not_supported_oreo">هذه الميزة متاحة فقط على أندرويد 8.0 أو أعلى.</string>
+
+    <!-- License Information -->
+    <string name="font_license_title">ترخيص الخط</string>
+    <string name="open_source_license_title">رخصة المصدر المفتوح</string>
+    <string name="font_license_content">يستخدم هذا التطبيق خط Noto Sans من Google.
+
+Copyright 2011-2015 Google Inc. All Rights Reserved.
+
+Apache License 2.0
+
+هذا البرنامج مرخص بموجب ترخيص Apache License 2.0.
+
+يمكن الحصول على نسخة من هذا الترخيص من:
+http://www.apache.org/licenses/LICENSE-2.0
+
+ما لم يكن ذلك مطلوبًا بموجب القانون المعمول به أو متفقًا عليه كتابيًا، يتم توزيع البرنامج بموجب الترخيص "كما هو"، دون أي ضمانات أو شروط من أي نوع، صريحة أو ضمنية. راجع الترخيص للحصول على اللغة المحددة التي تحكم الأذونات والقيود بموجب الترخيص.</string>
+    <string name="example_label">مثال: </string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">محمد</string>
+    <string name="widget_preview_name_long">محمد علي</string>
+    <string name="widget_select_contact">الرجاء اختيار جهة اتصال</string>
+    <string name="widget_preview_image">صورة معاينة الويدجت</string>
+    <string name="contact_photo">صورة جهة الاتصال</string>
+    <string name="contact_name">اسم جهة الاتصال</string>
+    <string name="tap_to_configure">انقر للتكوين</string>
+    <string name="select_color">اختر لونًا</string>
+    <string name="permission_needed">الإذن مطلوب لتحديد جهة اتصال.</string>
+    <string name="please_select_contact">الرجاء تحديد جهة اتصال.</string>
+    <string name="permission_rationale">لعرض جهات الاتصال في الويدجت، يلزم الحصول على إذن قراءة جهات الاتصال. يرجى الانتقال إلى الإعدادات لمنح الإذن.</string>
+    <string name="go_to_settings">اذهب إلى الإعدادات</string>
+    <string name="previous">السابق</string>
+    <string name="next">التالي</string>
+</resources> 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">बड़े संपर्क</string>
+    
+    <!-- Main Screen -->
+    <string name="add_widget">विजेट जोड़ें</string>
+    <string name="add_widget_2x1">2x1 विजेट जोड़ें</string>
+    <string name="add_widget_4x1">4x1 विजेट जोड़ें</string>
+    <string name="widget_preview_2x1">2x1 विजेट पूर्वावलोकन</string>
+    <string name="widget_preview_4x1">4x1 विजेट पूर्वावलोकन</string>
+    
+    <!-- Contact Selection Screen -->
+    <string name="select_contact">संपर्क चुनें</string>
+    
+    <!-- Widget Configuration -->
+    <string name="widget_config_title">विजेट सेटिंग्स</string>
+    <string name="widget_config_selected_contact">चयनित संपर्क: %1$s</string>
+    <string name="widget_config_create">विजेट बनाएं</string>
+    <string name="widget_config_theme_selected">चयनित</string>
+    <string name="widget_config_size_title">विजेट का आकार</string>
+    <string name="widget_size_2x1">2x1 आकार</string>
+    <string name="widget_size_4x1">4x1 आकार</string>
+    <string name="widget_config_theme_title">थीम चयन</string>
+    <string name="config_complete">हो गया</string>
+    
+    <!-- Theme Names -->
+    <string name="theme_blue">नीला</string>
+    <string name="theme_green">हरा</string>
+    <string name="theme_red">लाल</string>
+    <string name="theme_black">काला</string>
+    <string name="theme_white">सफेद</string>
+    
+    <!-- Error Messages -->
+    <string name="error_contact_info_missing">संपर्क जानकारी प्राप्त नहीं की जा सकी।</string>
+    <string name="error_invalid_contact_id">अमान्य संपर्क आईडी।</string>
+    <string name="error_cannot_add_widget">विजेट नहीं जोड़ा जा सकता।</string>
+    <string name="error_invalid_widget_id">अमान्य विजेट आईडी।</string>
+    <string name="error_contact_info_not_found">संपर्क जानकारी नहीं मिली।</string>
+    <string name="error_widget_update_failed">विजेट अपडेट विफल।</string>
+    <string name="error_cannot_open_contact">संपर्क चयन स्क्रीन नहीं खोली जा सकती।</string>
+    <string name="error_widget_not_exists">विजेट मौजूद नहीं है।</string>
+    <string name="please_select_contact">कृपया कोई संपर्क चुनें।</string>
+    <string name="error_pin_widget_not_supported">आपका वर्तमान लॉन्चर सीधे विजेट जोड़ने का समर्थन नहीं करता है।</string>
+    <string name="error_pin_widget_not_supported_oreo">यह सुविधा केवल एंड्रॉइड 8.0 या उच्चतर पर उपलब्ध है।</string>
+
+    <!-- License Information -->
+    <string name="font_license_title">फ़ॉन्ट लाइसेंस</string>
+    <string name="open_source_license_title">ओपन सोर्स लाइसेंस</string>
+    <string name="font_license_content">यह ऐप Google के Noto Sans फॉन्ट का उपयोग करता है।
+
+Copyright 2011-2015 Google Inc. All Rights Reserved.
+
+Apache License 2.0
+
+यह सॉफ्टवेयर Apache License 2.0 के तहत लाइसेंस प्राप्त है।
+
+इस लाइसेंस की एक प्रति यहां से प्राप्त की जा सकती है:
+http://www.apache.org/licenses/LICENSE-2.0
+
+जब तक कि लागू कानून द्वारा आवश्यक न हो या लिखित रूप में सहमत न हो, लाइसेंस के तहत वितरित सॉफ्टवेयर "जैसा है" वितरित किया जाता है, बिना किसी प्रकार की वारंटी या शर्तों के, चाहे वह व्यक्त या निहित हो। लाइसेंस के तहत अनुमतियों और सीमाओं को नियंत्रित करने वाली विशिष्ट भाषा के लिए लाइसेंस देखें।</string>
+    <string name="example_label">उदाहरण: </string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">राज</string>
+    <string name="widget_preview_name_long">राज कुमार</string>
+    <string name="widget_select_contact">कृपया कोई संपर्क चुनें</string>
+    <string name="widget_preview_image">विजेट पूर्वावलोकन छवि</string>
+    <string name="contact_photo">संपर्क फ़ोटो</string>
+    <string name="contact_name">संपर्क नाम</string>
+    <string name="tap_to_configure">कॉन्फ़िगर करने के लिए टैप करें</string>
+    <string name="select_color">एक रंग चुनें</string>
+    <string name="permission_needed">संपर्क चुनने के लिए अनुमति की आवश्यकता है।</string>
+    <string name="permission_rationale">विजेट में संपर्क प्रदर्शित करने के लिए, संपर्क पढ़ने की अनुमति आवश्यक है। कृपया अनुमति देने के लिए सेटिंग्स पर जाएं।</string>
+    <string name="go_to_settings">सेटिंग्स पर जाएं</string>
+    <string name="previous">पिछला</string>
+    <string name="next">अगला</string>
+</resources> 

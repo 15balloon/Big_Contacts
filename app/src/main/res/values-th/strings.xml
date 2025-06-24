@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">รายชื่อขนาดใหญ่</string>
+    
+    <!-- Main Screen -->
+    <string name="add_widget">เพิ่มวิดเจ็ต</string>
+    <string name="add_widget_2x1">เพิ่มวิดเจ็ต 2x1</string>
+    <string name="add_widget_4x1">เพิ่มวิดเจ็ต 4x1</string>
+    <string name="widget_preview_2x1">ตัวอย่างวิดเจ็ต 2x1</string>
+    <string name="widget_preview_4x1">ตัวอย่างวิดเจ็ต 4x1</string>
+    
+    <!-- Contact Selection Screen -->
+    <string name="select_contact">เลือกผู้ติดต่อ</string>
+    
+    <!-- Widget Configuration -->
+    <string name="widget_config_title">การตั้งค่าวิดเจ็ต</string>
+    <string name="widget_config_selected_contact">ผู้ติดต่อที่เลือก: %1$s</string>
+    <string name="widget_config_create">สร้างวิดเจ็ต</string>
+    <string name="widget_config_theme_selected">เลือกแล้ว</string>
+    <string name="widget_config_size_title">ขนาดวิดเจ็ต</string>
+    <string name="widget_size_2x1">ขนาด 2x1</string>
+    <string name="widget_size_4x1">ขนาด 4x1</string>
+    <string name="widget_config_theme_title">เลือกธีม</string>
+    
+    <!-- Theme Names -->
+    <string name="theme_blue">น้ำเงิน</string>
+    <string name="theme_green">เขียว</string>
+    <string name="theme_red">แดง</string>
+    <string name="theme_black">ดำ</string>
+    <string name="theme_white">ขาว</string>
+    
+    <!-- Error Messages -->
+    <string name="error_contact_info_missing">ไม่สามารถรับข้อมูลผู้ติดต่อได้</string>
+    <string name="error_invalid_contact_id">รหัสผู้ติดต่อไม่ถูกต้อง</string>
+    <string name="error_cannot_add_widget">ไม่สามารถเพิ่มวิดเจ็ตได้</string>
+    <string name="error_invalid_widget_id">รหัสวิดเจ็ตไม่ถูกต้อง</string>
+    <string name="error_contact_info_not_found">ไม่พบข้อมูลผู้ติดต่อ</string>
+    <string name="error_widget_update_failed">การอัปเดตวิดเจ็ตล้มเหลว</string>
+    <string name="error_cannot_open_contact">ไม่สามารถเปิดหน้าจอเลือกผู้ติดต่อได้</string>
+    <string name="error_widget_not_exists">วิดเจ็ตไม่มีอยู่</string>
+    <string name="please_select_contact">กรุณาเลือกรายชื่อ</string>
+    <string name="error_pin_widget_not_supported">ลอนเชอร์ปัจจุบันของคุณไม่รองรับการเพิ่มวิดเจ็ตโดยตรง</string>
+    <string name="error_pin_widget_not_supported_oreo">ฟีเจอร์นี้มีให้ใช้ใน Android 8.0 ขึ้นไปเท่านั้น</string>
+
+    <!-- License Information -->
+    <string name="font_license_title">ใบอนุญาตแบบอักษร</string>
+    <string name="open_source_license_title">สัญญาอนุญาตโอเพนซอร์ส</string>
+    <string name="font_license_content">แอปนี้ใช้ฟอนต์ Noto Sans จาก Google
+
+Copyright 2011-2015 Google Inc. All Rights Reserved.
+
+Apache License 2.0
+
+ซอฟต์แวร์นี้ได้รับอนุญาตภายใต้ Apache License 2.0
+
+สำเนาของใบอนุญาตนี้สามารถหาได้ที่:
+http://www.apache.org/licenses/LICENSE-2.0
+
+เว้นแต่จะต้องปฏิบัติตามกฎหมายที่ใช้บังคับหรือตกลงกันเป็นลายลักษณ์อักษร ซอฟต์แวร์ที่แจกจ่ายภายใต้ใบอนุญาตจะถูกแจกจ่าย "ตามที่เป็นอยู่" โดยไม่มีข้อรับประกันหรือเงื่อนไขใดๆ ทั้งที่แสดงหรือโดยนัย ดูใบอนุญาตสำหรับภาษาที่เฉพาะเจาะจงที่ควบคุมสิทธิ์และข้อจำกัดภายใต้ใบอนุญาต</string>
+    <string name="example_label">ตัวอย่าง: </string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">สมชาย</string>
+    <string name="widget_preview_name_long">สมชาย ใจดี</string>
+    <string name="widget_select_contact">กรุณาเลือกรายชื่อ</string>
+    <string name="widget_preview_image">ภาพตัวอย่างวิดเจ็ต</string>
+    <string name="contact_photo">รูปถ่ายผู้ติดต่อ</string>
+    <string name="contact_name">ชื่อผู้ติดต่อ</string>
+    <string name="tap_to_configure">แตะเพื่อกำหนดค่า</string>
+    <string name="select_color">เลือกสี</string>
+    <string name="permission_needed">ต้องได้รับอนุญาตเพื่อเลือกรายชื่อติดต่อ</string>
+    <string name="config_complete">เสร็จสิ้น</string>
+    <string name="permission_rationale">หากต้องการแสดงรายชื่อในวิดเจ็ต จำเป็นต้องได้รับอนุญาตให้อ่านรายชื่อ โปรดไปที่การตั้งค่าเพื่ออนุญาต</string>
+    <string name="go_to_settings">ไปที่การตั้งค่า</string>
+    <string name="previous">ก่อนหน้า</string>
+    <string name="next">ถัดไป</string>
+</resources> 

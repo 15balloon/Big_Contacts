@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kontak Besar</string>
+    
+    <!-- Main Screen -->
+    <string name="add_widget">Tambah Widget</string>
+    <string name="add_widget_2x1">Tambah Widget 2x1</string>
+    <string name="add_widget_4x1">Tambah Widget 4x1</string>
+    <string name="widget_preview_2x1">Pratinjau Widget 2x1</string>
+    <string name="widget_preview_4x1">Pratinjau Widget 4x1</string>
+    
+    <!-- Contact Selection Screen -->
+    <string name="select_contact">Pilih Kontak</string>
+    
+    <!-- Widget Configuration -->
+    <string name="widget_config_title">Pengaturan Widget</string>
+    <string name="widget_config_selected_contact">Kontak Terpilih: %1$s</string>
+    <string name="widget_config_create">Buat Widget</string>
+    <string name="widget_config_theme_selected">Terpilih</string>
+    <string name="widget_config_size_title">Ukuran Widget</string>
+    <string name="widget_size_2x1">Ukuran 2x1</string>
+    <string name="widget_size_4x1">Ukuran 4x1</string>
+    <string name="widget_config_theme_title">Pemilihan Tema</string>
+    
+    <!-- Theme Names -->
+    <string name="theme_blue">Biru</string>
+    <string name="theme_green">Hijau</string>
+    <string name="theme_red">Merah</string>
+    <string name="theme_black">Hitam</string>
+    <string name="theme_white">Putih</string>
+    
+    <!-- Error Messages -->
+    <string name="error_contact_info_missing">Tidak dapat memperoleh informasi kontak.</string>
+    <string name="error_invalid_contact_id">ID kontak tidak valid.</string>
+    <string name="error_cannot_add_widget">Tidak dapat menambahkan widget.</string>
+    <string name="error_invalid_widget_id">ID widget tidak valid.</string>
+    <string name="error_contact_info_not_found">Informasi kontak tidak ditemukan.</string>
+    <string name="error_widget_update_failed">Pembaruan widget gagal.</string>
+    <string name="error_cannot_open_contact">Tidak dapat membuka layar pemilihan kontak.</string>
+    <string name="error_widget_not_exists">Widget tidak ada.</string>
+    <string name="please_select_contact">Silakan pilih kontak.</string>
+    <string name="error_pin_widget_not_supported">Peluncur Anda saat ini tidak mendukung penambahan widget secara langsung.</string>
+    <string name="error_pin_widget_not_supported_oreo">Fitur ini hanya tersedia di Android 8.0 atau lebih tinggi.</string>
+    <string name="permission_rationale">Untuk menampilkan kontak di widget, izin Baca Kontak diperlukan. Silakan buka Pengaturan untuk memberikan izin.</string>
+    <string name="go_to_settings">Buka Pengaturan</string>
+
+    <!-- License Information -->
+    <string name="font_license_title">Lisensi Font</string>
+    <string name="open_source_license_title">Lisensi Sumber Terbuka</string>
+    <string name="font_license_content">Aplikasi ini menggunakan font Noto Sans dari Google.
+
+Copyright 2011-2015 Google Inc. All Rights Reserved.
+
+Apache License 2.0
+
+Perangkat lunak ini dilisensikan di bawah Apache License 2.0.
+
+Salinan lisensi ini dapat diperoleh di:
+http://www.apache.org/licenses/LICENSE-2.0
+
+Kecuali jika diwajibkan oleh hukum yang berlaku atau disetujui secara tertulis, perangkat lunak yang didistribusikan di bawah Lisensi didistribusikan "SEBAGAIMANA ADANYA", TANPA JAMINAN ATAU KONDISI APAPUN, baik tersurat maupun tersirat. Lihat Lisensi untuk bahasa spesifik yang mengatur izin dan batasan di bawah Lisensi.</string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">Budi</string>
+    <string name="widget_preview_name_long">Budi Santoso</string>
+    <string name="widget_select_contact">Silakan pilih kontak</string>
+    <string name="widget_preview_image">Gambar pratinjau widget</string>
+    <string name="contact_photo">Foto kontak</string>
+    <string name="contact_name">Nama kontak</string>
+    <string name="tap_to_configure">Ketuk untuk mengkonfigurasi</string>
+    <string name="select_color">Pilih warna</string>
+    <string name="permission_needed">Izin diperlukan untuk memilih kontak.</string>
+    <string name="config_complete">Selesai</string>
+    <string name="example_label">Contoh: </string>
+    <string name="previous">Sebelumnya</string>
+    <string name="next">Berikutnya</string>
+</resources> 

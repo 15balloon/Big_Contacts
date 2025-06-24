@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">글자가 큰 연락처</string>
+    
+    <!-- Main Screen -->
+    <string name="add_widget">위젯 추가</string>
+    <string name="add_widget_2x1">2x1 위젯 추가</string>
+    <string name="add_widget_4x1">4x1 위젯 추가</string>
+    <string name="widget_preview_2x1">2x1 크기 위젯 미리보기</string>
+    <string name="widget_preview_4x1">4x1 크기 위젯 미리보기</string>
+    
+    <!-- Contact Selection Screen -->
+    <string name="select_contact">연락처 선택</string>
+    
+    <!-- Widget Configuration -->
+    <string name="widget_config_title">위젯 설정</string>
+    <string name="widget_config_selected_contact">선택된 연락처: %1$s</string>
+    <string name="widget_config_create">위젯 생성</string>
+    <string name="widget_config_theme_selected">선택됨</string>
+    <string name="widget_config_size_title">위젯 크기</string>
+    <string name="widget_size_2x1">2x1 크기</string>
+    <string name="widget_size_4x1">4x1 크기</string>
+    <string name="widget_config_theme_title">테마 선택</string>
+    <string name="config_complete">설정 완료</string>
+    
+    <!-- Theme Names -->
+    <string name="theme_blue">파란색</string>
+    <string name="theme_green">초록색</string>
+    <string name="theme_red">빨간색</string>
+    <string name="theme_black">검은색</string>
+    <string name="theme_white">흰색</string>
+    
+    <!-- Error Messages -->
+    <string name="error_contact_info_missing">연락처 정보를 가져올 수 없습니다.</string>
+    <string name="error_invalid_contact_id">유효하지 않은 연락처 ID입니다.</string>
+    <string name="error_cannot_add_widget">위젯을 추가할 수 없습니다.</string>
+    <string name="error_invalid_widget_id">유효하지 않은 위젯 ID입니다.</string>
+    <string name="error_contact_info_not_found">연락처 정보를 찾을 수 없습니다.</string>
+    <string name="error_widget_update_failed">위젯 업데이트에 실패했습니다.</string>
+    <string name="error_cannot_open_contact">연락처 선택 화면을 열 수 없습니다.</string>
+    <string name="error_widget_not_exists">위젯이 존재하지 않습니다.</string>
+    <string name="please_select_contact">연락처를 선택해주세요.</string>
+    <string name="error_pin_widget_not_supported">현재 사용 중인 런처(홈 화면)에서는 위젯 바로 추가 기능을 지원하지 않습니다.</string>
+    <string name="error_pin_widget_not_supported_oreo">이 기능은 안드로이드 8.0 이상에서만 사용할 수 있습니다.</string>
+
+    <!-- License Information -->
+    <string name="font_license_title">폰트 라이선스</string>
+    <string name="open_source_license_title">오픈소스 라이선스</string>
+    <string name="font_license_content">이 앱은 Google의 Noto Sans 폰트를 사용합니다.
+
+Copyright 2011-2015 Google Inc. All Rights Reserved.
+
+Apache License 2.0
+
+이 소프트웨어는 Apache License 2.0에 따라 라이선스가 부여됩니다.
+
+이 라이선스의 사본은 다음 URL에서 얻을 수 있습니다:
+http://www.apache.org/licenses/LICENSE-2.0
+
+관련 법률이 요구하거나 서면으로 동의하지 않는 한, 이 라이선스에 따라 배포되는 소프트웨어는 "있는 그대로" 배포되며, 명시적이든 묵시적이든 어떠한 종류의 보증이나 조건도 제공하지 않습니다. 라이선스에 따른 권한 및 제한 사항을 관리하는 특정 언어는 라이선스를 참조하세요.</string>
+    <string name="example_label">예시)</string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">홍길동</string>
+    <string name="widget_preview_name_long">동에번쩍 홍길동</string>
+    <string name="widget_select_contact">연락처를 선택해주세요</string>
+    <string name="widget_preview_image">위젯 미리보기</string>
+    <string name="contact_photo">연락처 사진</string>
+    <string name="contact_name">연락처 이름</string>
+    <string name="tap_to_configure">설정하려면 탭하세요</string>
+    <string name="select_color">색상 선택</string>
+    <string name="permission_needed">연락처를 불러오려면 권한이 필요합니다.</string>
+    <string name="permission_rationale">위젯에 연락처를 표시하려면 주소록 읽기 권한이 반드시 필요합니다. 설정 화면으로 이동하여 권한을 허용해주세요.</string>
+    <string name="go_to_settings">설정으로 이동</string>
+    <string name="previous">이전</string>
+    <string name="next">다음</string>
+</resources>
