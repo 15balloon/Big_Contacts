@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.l5balloon.bigcontacts.ui.theme.BigContactsTheme
 import android.widget.Toast
 import android.content.Context.RECEIVER_EXPORTED
@@ -162,14 +161,17 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                         Text(
                             text = stringResource(R.string.add_widget_2x1),
                             modifier = Modifier.align(Alignment.CenterHorizontally),
-                            fontSize = 32.sp,
-                            lineHeight = 36.sp,
+                            style = TextStyle(
+                                fontSize = dpToSp(32.dp)
+                            ),
                         )
 
                         Text(
                             text = stringResource(R.string.example_label),
                             modifier = Modifier.align(Alignment.Start),
-                            fontSize = 24.sp,
+                            style = TextStyle(
+                                fontSize = dpToSp(24.dp)
+                            ),
                         )
 
                         Box(
@@ -222,14 +224,17 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                         Text(
                             text = stringResource(R.string.add_widget_4x1),
                             modifier = Modifier.align(Alignment.CenterHorizontally),
-                            fontSize = 32.sp,
-                            lineHeight = 36.sp,
+                            style = TextStyle(
+                                fontSize = dpToSp(32.dp)
+                            ),
                         )
 
                         Text(
                             text = stringResource(R.string.example_label),
                             modifier = Modifier.align(Alignment.Start),
-                            fontSize = 24.sp,
+                            style = TextStyle(
+                                fontSize = dpToSp(24.dp)
+                            ),
                         )
 
                         Box(

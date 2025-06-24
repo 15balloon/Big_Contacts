@@ -4,7 +4,6 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.action.clickable
@@ -17,11 +16,7 @@ import androidx.glance.state.PreferencesGlanceStateDefinition
 import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Box
-import androidx.glance.layout.Column
 import androidx.glance.layout.fillMaxSize
-import androidx.glance.text.FontWeight
-import androidx.glance.text.Text
-import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import androidx.glance.GlanceComposable
 import kotlinx.coroutines.CoroutineScope
@@ -38,6 +33,10 @@ import com.l5balloon.bigcontacts.data.WidgetData
 import com.l5balloon.bigcontacts.data.WidgetKeys
 import com.l5balloon.bigcontacts.data.WidgetTheme
 import androidx.core.net.toUri
+import androidx.glance.LocalContext
+import android.widget.RemoteViews
+import androidx.compose.ui.graphics.toArgb
+import androidx.glance.appwidget.AndroidRemoteViews
 
 class BigContactsWidget : GlanceAppWidget() {
     override val stateDefinition: GlanceStateDefinition<*> = PreferencesGlanceStateDefinition
@@ -70,7 +69,6 @@ class BigContactsWidget : GlanceAppWidget() {
 
             WidgetContent(
                 contactName = contactName,
-                contactLookupUri = contactLookupUri,
                 widgetTheme = widgetTheme,
                 tapToConfigureText = tapToConfigureText,
                 action = action
@@ -103,13 +101,13 @@ class BigContactsWidget : GlanceAppWidget() {
 @GlanceComposable
 private fun WidgetContent(
     contactName: String?,
-    contactLookupUri: String?,
     widgetTheme: WidgetTheme,
     tapToConfigureText: String,
     action: Action
 ) {
+    val context = LocalContext.current
     val backgroundColor = ColorProvider(widgetTheme.backgroundColor)
-    val textColor = ColorProvider(widgetTheme.textColor)
+    val textColor = widgetTheme.textColor.toArgb()
 
     Box(
         modifier = GlanceModifier
@@ -118,29 +116,14 @@ private fun WidgetContent(
             .clickable(action),
         contentAlignment = Alignment.Center
     ) {
-        if (contactName == null) {
-            Text(
-                text = tapToConfigureText,
-                style = TextStyle(
-                    color = textColor,
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            )
-        } else {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(
-                    text = contactName,
-                    style = TextStyle(
-                        color = textColor,
-                        fontSize = 36.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                )
+        val textToShow = contactName ?: tapToConfigureText
+
+        AndroidRemoteViews(
+            remoteViews = RemoteViews(context.packageName, R.layout.widget_text).apply {
+                setTextViewText(R.id.widget_text, textToShow)
+                setTextColor(R.id.widget_text, textColor)
             }
-        }
+        )
     }
 }
 
