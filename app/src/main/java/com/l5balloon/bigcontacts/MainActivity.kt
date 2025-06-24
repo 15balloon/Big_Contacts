@@ -35,8 +35,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 
 class MainActivity : ComponentActivity() {
@@ -124,13 +122,10 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        val scrollState = rememberScrollState()
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(16.dp)
-                .padding(bottom = 16.dp),
+                .fillMaxWidth()
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -140,128 +135,118 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalAlignment = Alignment.CenterVertically
+            Button(
+                onClick = {
+                    onAddWidget(ComponentName(context, BigContactsWidgetReceiver2x1::class.java))
+                },
+                modifier = Modifier
+                    .wrapContentHeight(),
+                shape = RoundedCornerShape(16.dp)
             ) {
-                Button(
-                    onClick = {
-                        onAddWidget(ComponentName(context, BigContactsWidgetReceiver2x1::class.java))
-                    },
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                     modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight(),
-                    shape = RoundedCornerShape(8.dp)
+                        .fillMaxWidth()
+                        .padding(16.dp)
                 ) {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier.fillMaxWidth()
+                    Text(
+                        text = stringResource(R.string.add_widget_2x1),
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        style = TextStyle(
+                            fontSize = dpToSp(32.dp),
+                        ),
+                    )
+
+                    Text(
+                        text = stringResource(R.string.example_label),
+                        modifier = Modifier.align(Alignment.Start),
+                        style = TextStyle(
+                            fontSize = dpToSp(24.dp),
+                        ),
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .width(widget2x1Width)
+                            .height(widget2x1Height)
+                            .background(
+                                color = MaterialTheme.colorScheme.surface,
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                            .border(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.outline,
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                            .align(Alignment.CenterHorizontally),
+                        contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = stringResource(R.string.add_widget_2x1),
-                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            text = stringResource(R.string.widget_preview_name_short),
                             style = TextStyle(
-                                fontSize = dpToSp(32.dp)
+                                fontSize = dpToSp(36.dp),
+                                fontWeight = Bold
                             ),
+                            color = MaterialTheme.colorScheme.onSurface
                         )
-
-                        Text(
-                            text = stringResource(R.string.example_label),
-                            modifier = Modifier.align(Alignment.Start),
-                            style = TextStyle(
-                                fontSize = dpToSp(24.dp)
-                            ),
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .width(widget2x1Width)
-                                .height(widget2x1Height)
-                                .background(
-                                    color = MaterialTheme.colorScheme.surface,
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .border(
-                                    width = 1.dp,
-                                    color = MaterialTheme.colorScheme.outline,
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .align(Alignment.CenterHorizontally),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = stringResource(R.string.widget_preview_name_short),
-                                style = TextStyle(
-                                    fontSize = dpToSp(36.dp),
-                                    fontWeight = Bold
-                                ),
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
-                        }
                     }
                 }
             }
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalAlignment = Alignment.CenterVertically
+            Button(
+                onClick = {
+                    onAddWidget(ComponentName(context, BigContactsWidgetReceiver4x1::class.java))
+                },
+                modifier = Modifier
+                    .wrapContentHeight(),
+                shape = RoundedCornerShape(16.dp)
             ) {
-                Button(
-                    onClick = {
-                        onAddWidget(ComponentName(context, BigContactsWidgetReceiver4x1::class.java))
-                    },
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                     modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight(),
-                    shape = RoundedCornerShape(8.dp)
+                        .fillMaxWidth()
+                        .padding(16.dp)
                 ) {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier.fillMaxWidth()
+                    Text(
+                        text = stringResource(R.string.add_widget_4x1),
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        style = TextStyle(
+                            fontSize = dpToSp(32.dp),
+                        ),
+                    )
+
+                    Text(
+                        text = stringResource(R.string.example_label),
+                        modifier = Modifier.align(Alignment.Start),
+                        style = TextStyle(
+                            fontSize = dpToSp(24.dp),
+                        ),
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .width(widget4x1Width)
+                            .height(widget4x1Height)
+                            .background(
+                                color = MaterialTheme.colorScheme.surface,
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                            .border(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.outline,
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                            .align(Alignment.CenterHorizontally),
+                        contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = stringResource(R.string.add_widget_4x1),
-                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            text = stringResource(R.string.widget_preview_name_long),
                             style = TextStyle(
-                                fontSize = dpToSp(32.dp)
+                                fontSize = dpToSp(36.dp),
+                                fontWeight = Bold
                             ),
+                            color = MaterialTheme.colorScheme.onSurface
                         )
-
-                        Text(
-                            text = stringResource(R.string.example_label),
-                            modifier = Modifier.align(Alignment.Start),
-                            style = TextStyle(
-                                fontSize = dpToSp(24.dp)
-                            ),
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .width(widget4x1Width)
-                                .height(widget4x1Height)
-                                .background(
-                                    color = MaterialTheme.colorScheme.surface,
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .border(
-                                    width = 1.dp,
-                                    color = MaterialTheme.colorScheme.outline,
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .align(Alignment.CenterHorizontally),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = stringResource(R.string.widget_preview_name_long),
-                                style = TextStyle(
-                                    fontSize = dpToSp(36.dp),
-                                    fontWeight = Bold
-                                ),
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
-                        }
                     }
                 }
             }
@@ -270,9 +255,7 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
 
             Row(
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(bottom = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(24.dp)
+                    .align(Alignment.CenterHorizontally),
             ) {
                 TextButton(
                     onClick = {
