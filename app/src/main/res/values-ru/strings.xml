@@ -1,77 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Большие контакты</string>
     
     <!-- Main Screen -->
     <string name="add_widget">Добавить виджет контакта</string>
     <string name="add_widget_2x1">Добавить виджет 2x1</string>
     <string name="add_widget_4x1">Добавить виджет 4x1</string>
-    <string name="widget_preview_2x1">Предпросмотр виджета 2x1</string>
-    <string name="widget_preview_4x1">Предпросмотр виджета 4x1</string>
-    
-    <!-- Contact Selection Screen -->
-    <string name="select_contact">Выберите контакт</string>
+    <string name="example_label">Пример:</string>
     
     <!-- Widget Configuration -->
     <string name="widget_config_title">Настройки виджета контакта</string>
-    <string name="widget_config_selected_contact">Выбранный контакт: %1$s</string>
-    <string name="widget_config_create">Создать Виджет</string>
-    <string name="widget_config_theme_selected">Выбрано</string>
-    <string name="widget_config_size_title">Размер Виджета</string>
-    <string name="widget_size_2x1">Размер 2x1</string>
-    <string name="widget_size_4x1">Размер 4x1</string>
+    <string name="permission_rationale">Для отображения контактов в виджете требуется разрешение на чтение контактов. Перейдите к настройкам, чтобы предоставить разрешение.</string>
+    <string name="go_to_settings">Перейти к настройкам</string>
+    <string name="select_contact">Выбрать контакт</string>
     <string name="widget_config_theme_title">Выбор темы</string>
     <string name="config_complete">Готово</string>
+    <string name="previous">Назад</string>
+    <string name="next">Далее</string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">Иван</string>
+    <string name="widget_preview_name_long">Иван Иванов</string>
+
+    <!-- Widget -->
+    <string name="tap_to_configure">Нажмите, чтобы настроить контакт</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">Синий</string>
-    <string name="theme_green">Зеленый</string>
+    <string name="theme_green">Зелёный</string>
     <string name="theme_red">Красный</string>
-    <string name="theme_black">Черный</string>
+    <string name="theme_black">Чёрный</string>
     <string name="theme_white">Белый</string>
     
     <!-- Error Messages -->
-    <string name="error_contact_info_missing">Не удалось получить информацию о контакте.</string>
-    <string name="error_invalid_contact_id">Недействительный ID контакта.</string>
-    <string name="error_cannot_add_widget">Не удается добавить виджет.</string>
-    <string name="error_invalid_widget_id">Недействительный ID виджета.</string>
-    <string name="error_contact_info_not_found">Информация о контакте не найдена.</string>
-    <string name="error_widget_update_failed">Не удалось обновить виджет.</string>
-    <string name="error_cannot_open_contact">Не удается открыть экран выбора контакта.</string>
-    <string name="error_widget_not_exists">Виджет не существует.</string>
     <string name="please_select_contact">Пожалуйста, выберите контакт.</string>
     <string name="error_pin_widget_not_supported">Ваш текущий лаунчер не поддерживает прямое добавление виджетов.</string>
-    <string name="error_pin_widget_not_supported_oreo">Эта функция доступна только на Android 8.0 или выше.</string>
-    <string name="permission_rationale">Для отображения контактов в виджете требуется разрешение на чтение контактов. Перейдите в «Настройки», чтобы предоставить разрешение.</string>
-    <string name="go_to_settings">Перейти в настройки</string>
 
     <!-- License Information -->
     <string name="font_license_title">Лицензия на шрифт</string>
     <string name="open_source_license_title">Лицензии с открытым исходным кодом</string>
     <string name="font_license_content">Это приложение использует шрифт Noto Sans от Google.
 
-Copyright 2011-2015 Google Inc. All Rights Reserved.
+Copyright 2011-2015 Google Inc. Все права защищены.
 
-Apache License 2.0
+Лицензия Apache 2.0
 
-Это программное обеспечение распространяется под лицензией Apache License 2.0.
+Это программное обеспечение лицензировано по лицензии Apache 2.0.
 
 Копию этой лицензии можно получить по адресу:
 http://www.apache.org/licenses/LICENSE-2.0
 
-Если это не требуется применимым законодательством или не согласовано в письменной форме, программное обеспечение, распространяемое по Лицензии, распространяется "КАК ЕСТЬ", БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ ИЛИ УСЛОВИЙ, явных или подразумеваемых. См. Лицензию для получения информации о конкретном языке, регулирующем разрешения и ограничения по Лицензии.</string>
-
-    <!-- Widget Preview -->
-    <string name="widget_preview_name_short">Иван</string>
-    <string name="widget_preview_name_long">Иван Петров</string>
-    <string name="widget_select_contact">Пожалуйста, выберите контакт</string>
-    <string name="widget_preview_image">Изображение предварительного просмотра виджета</string>
-    <string name="contact_photo">Фотография контакта</string>
-    <string name="contact_name">Имя контакта</string>
-    <string name="tap_to_configure">Нажмите, чтобы настроить контакт</string>
-    <string name="select_color">Выберите цвет</string>
-    <string name="permission_needed">Для выбора контакта требуется разрешение.</string>
-    <string name="example_label">Пример: </string>
-    <string name="previous">Предыдущий</string>
-    <string name="next">Следующий</string>
+Если иное не требуется применимым законодательством или не согласовано в письменной форме, программное обеспечение, распространяемое по лицензии, распространяется на условиях "КАК ЕСТЬ", БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ ИЛИ УСЛОВИЙ, явных или подразумеваемых. См. Лицензию для конкретного языка, регулирующего разрешения и ограничения по лицензии.</string>
 </resources> 

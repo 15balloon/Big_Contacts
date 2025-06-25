@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Danh bạ lớn</string>
     
     <!-- Main Screen -->
     <string name="add_widget">Thêm tiện ích liên hệ</string>
     <string name="add_widget_2x1">Thêm tiện ích 2x1</string>
     <string name="add_widget_4x1">Thêm tiện ích 4x1</string>
-    <string name="widget_preview_2x1">Xem trước Widget 2x1</string>
-    <string name="widget_preview_4x1">Xem trước Widget 4x1</string>
-    
-    <!-- Contact Selection Screen -->
-    <string name="select_contact">Chọn Liên Hệ</string>
+    <string name="example_label">Ví dụ:</string>
     
     <!-- Widget Configuration -->
     <string name="widget_config_title">Cài đặt tiện ích liên hệ</string>
-    <string name="widget_config_selected_contact">Liên hệ đã chọn: %1$s</string>
-    <string name="widget_config_create">Tạo Widget</string>
-    <string name="widget_config_theme_selected">Đã chọn</string>
-    <string name="widget_config_size_title">Kích Thước Widget</string>
-    <string name="widget_size_2x1">Kích thước 2x1</string>
-    <string name="widget_size_4x1">Kích thước 4x1</string>
-    <string name="widget_config_theme_title">Lựa chọn chủ đề</string>
-    <string name="config_complete">Xong</string>
+    <string name="permission_rationale">Để hiển thị danh bạ trong tiện ích, cần có quyền Đọc danh bạ. Vui lòng vào Cài đặt để cấp quyền.</string>
+    <string name="go_to_settings">Đi tới Cài đặt</string>
+    <string name="select_contact">Chọn liên hệ</string>
+    <string name="widget_config_theme_title">Chọn chủ đề</string>
+    <string name="config_complete">Hoàn tất</string>
+    <string name="previous">Trước</string>
+    <string name="next">Tiếp</string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">Nam</string>
+    <string name="widget_preview_name_long">Nguyễn Văn Nam</string>
+
+    <!-- Widget -->
+    <string name="tap_to_configure">Nhấn để thiết lập liên hệ</string>
     
     <!-- Theme Names -->
-    <string name="theme_blue">Màu xanh da trời</string>
+    <string name="theme_blue">Xanh dương</string>
     <string name="theme_green">Xanh lá</string>
     <string name="theme_red">Đỏ</string>
     <string name="theme_black">Đen</string>
     <string name="theme_white">Trắng</string>
     
     <!-- Error Messages -->
-    <string name="error_contact_info_missing">Không thể lấy thông tin liên hệ.</string>
-    <string name="error_invalid_contact_id">ID liên hệ không hợp lệ.</string>
-    <string name="error_cannot_add_widget">Không thể thêm widget.</string>
-    <string name="error_invalid_widget_id">ID widget không hợp lệ.</string>
-    <string name="error_contact_info_not_found">Không tìm thấy thông tin liên hệ.</string>
-    <string name="error_widget_update_failed">Cập nhật widget thất bại.</string>
-    <string name="error_cannot_open_contact">Không thể mở màn hình chọn liên hệ.</string>
-    <string name="error_widget_not_exists">Tiện ích không tồn tại.</string>
-    <string name="please_select_contact">Vui lòng chọn một số liên lạc.</string>
-    <string name="error_pin_widget_not_supported">Trình khởi chạy hiện tại của bạn không hỗ trợ thêm widget trực tiếp.</string>
-    <string name="error_pin_widget_not_supported_oreo">Tính năng này chỉ khả dụng trên Android 8.0 trở lên.</string>
+    <string name="please_select_contact">Vui lòng chọn liên hệ.</string>
+    <string name="error_pin_widget_not_supported">Trình khởi chạy hiện tại của bạn không hỗ trợ thêm tiện ích trực tiếp.</string>
 
     <!-- License Information -->
     <string name="font_license_title">Giấy phép phông chữ</string>
-    <string name="open_source_license_title">Giấy phép nguồn mở</string>
-    <string name="font_license_content">Ứng dụng này sử dụng font Noto Sans từ Google.
+    <string name="open_source_license_title">Giấy phép mã nguồn mở</string>
+    <string name="font_license_content">Ứng dụng này sử dụng phông chữ Noto Sans của Google.
 
 Copyright 2011-2015 Google Inc. All Rights Reserved.
 
@@ -54,24 +48,8 @@ Apache License 2.0
 
 Phần mềm này được cấp phép theo Apache License 2.0.
 
-Bạn có thể tìm thấy bản sao của giấy phép này tại:
+Bạn có thể lấy bản sao của giấy phép này tại:
 http://www.apache.org/licenses/LICENSE-2.0
 
-Trừ khi được yêu cầu bởi luật pháp hiện hành hoặc được đồng ý bằng văn bản, phần mềm được phân phối theo Giấy phép được phân phối "NGUYÊN TRẠNG", KHÔNG CÓ BẢO ĐẢM HOẶC ĐIỀU KIỆN NÀO, dù rõ ràng hay ngụ ý. Xem Giấy phép để biết ngôn ngữ cụ thể điều chỉnh quyền và giới hạn theo Giấy phép.</string>
-
-    <!-- Widget Preview -->
-    <string name="widget_preview_name_short">An</string>
-    <string name="widget_preview_name_long">Nguyễn Văn An</string>
-    <string name="widget_select_contact">Vui lòng chọn một liên hệ</string>
-    <string name="widget_preview_image">Hình ảnh xem trước của widget</string>
-    <string name="contact_photo">Ảnh liên hệ</string>
-    <string name="contact_name">Tên liên hệ</string>
-    <string name="tap_to_configure">Nhấn để thiết lập liên hệ</string>
-    <string name="select_color">Chọn màu</string>
-    <string name="permission_needed">Cần có quyền để chọn một liên hệ.</string>
-    <string name="permission_rationale">Để hiển thị danh bạ trong tiện ích, cần có quyền Đọc danh bạ. Vui lòng vào Cài đặt để cấp quyền.</string>
-    <string name="go_to_settings">Đi tới Cài đặt</string>
-    <string name="example_label">Ví dụ: </string>
-    <string name="previous">Trước</string>
-    <string name="next">Tiếp theo</string>
+Trừ khi pháp luật hiện hành yêu cầu hoặc được đồng ý bằng văn bản, phần mềm được phân phối theo giấy phép này được phân phối "NGUYÊN TRẠNG", KHÔNG CÓ BẤT KỲ BẢO ĐẢM HOẶC ĐIỀU KIỆN NÀO, dù rõ ràng hay ngụ ý. Xem giấy phép để biết ngôn ngữ cụ thể điều chỉnh quyền và giới hạn theo giấy phép này.</string>
 </resources> 

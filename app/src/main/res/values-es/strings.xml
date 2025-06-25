@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Contactos Grandes</string>
     
     <!-- Main Screen -->
     <string name="add_widget">Agregar widget de contacto</string>
     <string name="add_widget_2x1">Agregar widget 2x1</string>
     <string name="add_widget_4x1">Agregar widget 4x1</string>
-    <string name="widget_preview_2x1">Vista previa de widget 2x1</string>
-    <string name="widget_preview_4x1">Vista previa de widget 4x1</string>
-    
-    <!-- Contact Selection Screen -->
-    <string name="select_contact">Seleccionar Contacto</string>
+    <string name="example_label">Ejemplo:</string>
     
     <!-- Widget Configuration -->
     <string name="widget_config_title">Configuración del widget de contacto</string>
-    <string name="widget_config_selected_contact">Contacto seleccionado: %1$s</string>
-    <string name="widget_config_create">Crear Widget</string>
-    <string name="widget_config_theme_selected">Seleccionado</string>
-    <string name="widget_config_size_title">Tamaño del Widget</string>
-    <string name="widget_size_2x1">Tamaño 2x1</string>
-    <string name="widget_size_4x1">Tamaño 4x1</string>
+    <string name="permission_rationale">Para mostrar contactos en el widget, se requiere el permiso de Leer contactos. Por favor, vaya a Configuración para otorgar el permiso.</string>
+    <string name="go_to_settings">Ir a Configuración</string>
+    <string name="select_contact">Seleccionar contacto</string>
     <string name="widget_config_theme_title">Selección de tema</string>
-    <string name="config_complete">Hecho</string>
+    <string name="config_complete">Listo</string>
+    <string name="previous">Anterior</string>
+    <string name="next">Siguiente</string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">Juan</string>
+    <string name="widget_preview_name_long">Juan Pérez</string>
+
+    <!-- Widget -->
+    <string name="tap_to_configure">Toca para configurar el contacto</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">Azul</string>
@@ -31,48 +34,22 @@
     <string name="theme_white">Blanco</string>
     
     <!-- Error Messages -->
-    <string name="error_contact_info_missing">No se pudo obtener la información del contacto.</string>
-    <string name="error_invalid_contact_id">ID de contacto inválido.</string>
-    <string name="error_cannot_add_widget">No se puede añadir el widget.</string>
-    <string name="error_invalid_widget_id">ID de widget inválido.</string>
-    <string name="error_contact_info_not_found">No se encontró la información del contacto.</string>
-    <string name="error_widget_update_failed">Error al actualizar el widget.</string>
-    <string name="error_cannot_open_contact">No se puede abrir la pantalla de selección de contacto.</string>
-    <string name="error_widget_not_exists">El widget no existe.</string>
     <string name="please_select_contact">Por favor, seleccione un contacto.</string>
-    <string name="error_pin_widget_not_supported">Su lanzador actual no admite la adición de widgets directamente.</string>
-    <string name="error_pin_widget_not_supported_oreo">Esta función solo está disponible en Android 8.0 o superior.</string>
-    <string name="permission_rationale">Para mostrar los contactos en el widget, se requiere el permiso de lectura de contactos. Vaya a Configuración para otorgar el permiso.</string>
-    <string name="go_to_settings">Ir a Configuración</string>
+    <string name="error_pin_widget_not_supported">Su lanzador actual no admite agregar widgets directamente.</string>
 
     <!-- License Information -->
     <string name="font_license_title">Licencia de fuente</string>
     <string name="open_source_license_title">Licencias de código abierto</string>
     <string name="font_license_content">Esta aplicación utiliza la fuente Noto Sans de Google.
 
-Copyright 2011-2015 Google Inc. All Rights Reserved.
+Copyright 2011-2015 Google Inc. Todos los derechos reservados.
 
-Apache License 2.0
+Licencia Apache 2.0
 
-Este software está licenciado bajo Apache License 2.0.
+Este software está licenciado bajo la Licencia Apache 2.0.
 
-Una copia de esta licencia se puede obtener en:
+Puede obtener una copia de esta licencia en:
 http://www.apache.org/licenses/LICENSE-2.0
 
-A menos que lo exija la ley aplicable o se acuerde por escrito, el software distribuido bajo la Licencia se distribuye "TAL CUAL", SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas. Consulte la Licencia para conocer el idioma específico que rige los permisos y las limitaciones bajo la Licencia.</string>
-
-    <string name="example_label">Ejemplo: </string>
-
-    <!-- Widget Preview -->
-    <string name="widget_preview_name_short">Juan</string>
-    <string name="widget_preview_name_long">Juan Pérez</string>
-    <string name="widget_select_contact">Por favor, seleccione un contacto</string>
-    <string name="widget_preview_image">Imagen de vista previa del widget</string>
-    <string name="contact_photo">Foto de contacto</string>
-    <string name="contact_name">Nombre de contacto</string>
-    <string name="tap_to_configure">Toca para configurar el contacto</string>
-    <string name="select_color">Seleccionar color</string>
-    <string name="permission_needed">Se necesita permiso para seleccionar un contacto.</string>
-    <string name="previous">Anterior</string>
-    <string name="next">Siguiente</string>
+A menos que lo exija la ley aplicable o se acuerde por escrito, el software distribuido bajo la Licencia se distribuye "TAL CUAL", SIN GARANTÍAS NI CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas. Consulte la Licencia para conocer el lenguaje específico que rige los permisos y limitaciones bajo la Licencia.</string>
 </resources> 

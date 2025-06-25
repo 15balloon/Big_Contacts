@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">大联系人</string>
     
     <!-- Main Screen -->
     <string name="add_widget">添加联系人小部件</string>
-    <string name="add_widget_2x1">添加 2x1 小部件</string>
-    <string name="add_widget_4x1">添加 4x1 小部件</string>
-    <string name="widget_preview_2x1">2x1尺寸小部件预览</string>
-    <string name="widget_preview_4x1">4x1尺寸小部件预览</string>
-    
-    <!-- Contact Selection Screen -->
-    <string name="select_contact">选择联系人</string>
+    <string name="add_widget_2x1">添加2x1小部件</string>
+    <string name="add_widget_4x1">添加4x1小部件</string>
+    <string name="example_label">示例：</string>
     
     <!-- Widget Configuration -->
     <string name="widget_config_title">联系人小部件设置</string>
-    <string name="widget_config_selected_contact">已选联系人：%1$s</string>
-    <string name="widget_config_create">创建小部件</string>
-    <string name="widget_config_theme_selected">已选择</string>
-    <string name="widget_config_size_title">小部件尺寸</string>
-    <string name="widget_size_2x1">2x1尺寸</string>
-    <string name="widget_size_4x1">4x1 大小</string>
+    <string name="permission_rationale">要在小部件中显示联系人，需要读取联系人权限。请前往设置授予权限。</string>
+    <string name="go_to_settings">前往设置</string>
+    <string name="select_contact">选择联系人</string>
     <string name="widget_config_theme_title">主题选择</string>
     <string name="config_complete">完成</string>
+    <string name="previous">上一步</string>
+    <string name="next">下一步</string>
+
+    <!-- Widget Preview -->
+    <string name="widget_preview_name_short">小明</string>
+    <string name="widget_preview_name_long">张小明</string>
+
+    <!-- Widget -->
+    <string name="tap_to_configure">点击设置联系人</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">蓝色</string>
@@ -31,47 +34,22 @@
     <string name="theme_white">白色</string>
     
     <!-- Error Messages -->
-    <string name="error_contact_info_missing">无法获取联系人信息。</string>
-    <string name="error_invalid_contact_id">无效的联系人ID。</string>
-    <string name="error_cannot_add_widget">无法添加小部件。</string>
-    <string name="error_invalid_widget_id">无效的小部件ID。</string>
-    <string name="error_contact_info_not_found">未找到联系人信息。</string>
-    <string name="error_widget_update_failed">小部件更新失败。</string>
-    <string name="error_cannot_open_contact">无法打开联系人选择界面。</string>
-    <string name="error_widget_not_exists">小部件不存在。</string>
-    <string name="please_select_contact">请选择一个联系人。</string>
+    <string name="please_select_contact">请选择联系人。</string>
     <string name="error_pin_widget_not_supported">您当前的启动器不支持直接添加小部件。</string>
-    <string name="error_pin_widget_not_supported_oreo">此功能仅适用于 Android 8.0 或更高版本。</string>
-    <string name="permission_rationale">要在小部件中显示联系人，必须授予读取联系人的权限。请前往"设置"授予权限。</string>
-    <string name="go_to_settings">前往设置</string>
 
     <!-- License Information -->
     <string name="font_license_title">字体许可</string>
-    <string name="open_source_license_title">开源许可证</string>
-    <string name="font_license_content">本应用使用Google的Noto Sans字体。
+    <string name="open_source_license_title">开源许可</string>
+    <string name="font_license_content">本应用使用了 Google 的 Noto Sans 字体。
 
 Copyright 2011-2015 Google Inc. All Rights Reserved.
 
 Apache License 2.0
 
-本软件根据Apache License 2.0进行许可。
+本软件根据 Apache License 2.0 授权。
 
-您可以通过以下URL获取此许可证的副本：
+您可以在以下网址获得该许可的副本：
 http://www.apache.org/licenses/LICENSE-2.0
 
-除非适用法律要求或书面同意，否则根据本许可证分发的软件将按"原样"分发，不提供任何明示或暗示的保证或条件。有关许可证下权限和限制的具体语言，请参阅许可证。</string>
-
-    <!-- Widget Preview -->
-    <string name="widget_preview_name_short">小明</string>
-    <string name="widget_preview_name_long">李华</string>
-    <string name="widget_select_contact">请选择一个联系人</string>
-    <string name="widget_preview_image">小部件预览图像</string>
-    <string name="contact_photo">联系人照片</string>
-    <string name="contact_name">联系人姓名</string>
-    <string name="tap_to_configure">点击以设置联系人</string>
-    <string name="select_color">选择颜色</string>
-    <string name="permission_needed">需要权限才能选择联系人。</string>
-    <string name="example_label">示例：</string>
-    <string name="previous">上一页</string>
-    <string name="next">下一页</string>
+除非适用法律要求或书面同意，否则根据许可分发的软件按"原样"分发，不附带任何明示或暗示的担保或条件。有关许可下特定语言的详细信息，请参阅许可协议。</string>
 </resources> 
