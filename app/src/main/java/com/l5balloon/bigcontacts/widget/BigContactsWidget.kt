@@ -24,7 +24,6 @@ import androidx.glance.appwidget.provideContent
 import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.background
 import androidx.glance.currentState
-import androidx.glance.layout.Alignment
 import androidx.glance.layout.Box
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.state.GlanceStateDefinition
@@ -115,13 +114,11 @@ private fun WidgetContent(
         modifier = GlanceModifier
             .fillMaxSize()
             .background(backgroundColor)
-            .clickable(action),
-        contentAlignment = Alignment.Center
+            .clickable(action)
     ) {
-        val textToShow = contactName ?: tapToConfigureText
-
         AndroidRemoteViews(
-            remoteViews = RemoteViews(context.packageName, R.layout.widget_text).apply {
+            remoteViews = RemoteViews(context.packageName, R.layout.widget_layout_main).apply {
+                val textToShow = contactName ?: tapToConfigureText
                 setTextViewText(R.id.widget_text, textToShow)
                 setTextColor(R.id.widget_text, textColor)
                 setTextViewTextSize(R.id.widget_text, COMPLEX_UNIT_DIP, textSize)
