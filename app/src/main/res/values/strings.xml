@@ -19,6 +19,7 @@
     <string name="config_complete">설정 완료</string>
     <string name="previous">이전</string>
     <string name="next">다음</string>
+    <string name="theme_custom">사용자 테마</string>
 
     <!-- Widget Preview -->
     <string name="widget_preview_name_short">홍길동</string>

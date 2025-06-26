@@ -39,15 +39,25 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.ui.text.style.TextOverflow
 import kotlinx.coroutines.launch
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.TextFieldValue
+import com.github.skydoves.colorpicker.compose.HsvColorPicker
+import com.github.skydoves.colorpicker.compose.rememberColorPickerController
+import androidx.core.graphics.toColorInt
 
 data class Contact(val id: Long, val lookupKey: String, val name: String)
 
@@ -124,6 +134,134 @@ class WidgetConfigActivity : ComponentActivity() {
 }
 
 @Composable
+fun HexColorPicker(
+    initialColor: Color,
+    onColorChanged: (Color) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var pickedColor by remember { mutableStateOf(initialColor) }
+    var hexInput by remember { mutableStateOf(colorToHexNoAlpha(initialColor)) }
+    val controller = rememberColorPickerController()
+
+    // HEX 입력이 바뀌면 색상도 바꾼다 (alpha는 항상 FF)
+    fun updateColorFromHex(hex: String) {
+        val color = runCatching { Color(("#FF$hex").toColorInt()) }.getOrNull()
+        if (color != null) {
+            pickedColor = color
+            onColorChanged(color)
+        }
+    }
+
+    Column(modifier = modifier) {
+        HsvColorPicker(
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxWidth(),
+            controller = controller,
+            onColorChanged = { envelope ->
+                // alpha는 무시하고 항상 FF로 변환
+                val hexNoAlpha = colorToHexNoAlpha(envelope.color)
+                pickedColor = Color("#$hexNoAlpha".toColorInt())
+                hexInput = hexNoAlpha
+                onColorChanged(pickedColor)
+            }
+        )
+        Spacer(Modifier.height(16.dp))
+        // Hex 코드
+        Text(
+            "HEX 코드",
+            style = TextStyle(
+                fontSize = dpToSp(36.dp)
+            )
+        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                "#FF",
+                style = TextStyle(
+                    fontSize = dpToSp(36.dp)
+                )
+            )
+            OutlinedTextField(
+                value = hexInput,
+                onValueChange = {
+                    // 6 글자만(RRGGBB) 허용
+                    val filtered = it.filter { c -> c.isLetterOrDigit() }.take(6).uppercase()
+                    hexInput = filtered
+                    if (filtered.length == 6 && isValidHexNoAlpha(filtered)) updateColorFromHex(filtered)
+                },
+                singleLine = true,
+                modifier = Modifier.weight(1f),
+                textStyle = TextStyle(
+                    fontSize = dpToSp(36.dp)
+                )
+            )
+        }
+        Spacer(Modifier.height(8.dp))
+        // 미리보기
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            Text("미리보기: ")
+            Box(
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(pickedColor, shape = CircleShape)
+                    .border(1.dp, Color.Gray, shape = CircleShape)
+            )
+        }
+    }
+}
+
+// RRGGBB만 허용
+fun isValidHexNoAlpha(hex: String): Boolean {
+    val regex = Regex("([A-Fa-f0-9]{6})$")
+    return regex.matches(hex)
+}
+
+// Color → RRGGBB 변환
+fun colorToHexNoAlpha(color: Color): String {
+    val intColor = color.toArgb()
+    val rgb = intColor and 0x00FFFFFF
+    return String.format("%06X", rgb)
+}
+
+@Composable
+fun ColorPickerDialog(
+    initialColor: Color,
+    onColorSelected: (Color) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var pickedColor by remember { mutableStateOf(initialColor) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("색상 선택") },
+        text = {
+            Column {
+                HexColorPicker(
+                    initialColor = initialColor,
+                    onColorChanged = { pickedColor = it }
+                )
+            }
+        },
+        confirmButton = {
+            Button(onClick = { onColorSelected(pickedColor) }) {
+                Text("선택")
+            }
+        },
+        dismissButton = {
+            Button(onClick = onDismiss) {
+                Text("취소")
+            }
+        }
+    )
+}
+
+@Composable
 fun WidgetConfigScreen(
     appWidgetId: Int,
     is4x1: Boolean,
@@ -170,6 +308,17 @@ fun WidgetConfigScreen(
             contacts.addAll(loadedContacts)
         }
     }
+
+    // 사용자 정의 테마 목록
+    var customThemes by remember { mutableStateOf(listOf<WidgetTheme>()) }
+
+    // 테마 추가 다이얼로그 상태
+    var showAddThemeDialog by remember { mutableStateOf(false) }
+    var newThemeName by remember { mutableStateOf(TextFieldValue("")) }
+    var newThemeBackgroundColor by remember { mutableStateOf(Color.Black) }
+    var newThemeTextColor by remember { mutableStateOf(Color.White) }
+    var showBackgroundColorPicker by remember { mutableStateOf(false) }
+    var showTextColorPicker by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -267,9 +416,12 @@ fun WidgetConfigScreen(
             lineHeight = 26.sp
         )
 
+        // 테마 목록 + 테마 추가 버튼
+        val allThemes = WidgetTheme.THEMES + customThemes
         val themeListState = rememberLazyListState()
         val themeScope = rememberCoroutineScope()
         val rowHeight = 80.dp
+
         Box(modifier = Modifier.fillMaxWidth()) {
             LazyRow(
                 state = themeListState,
@@ -280,7 +432,7 @@ fun WidgetConfigScreen(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                items(WidgetTheme.THEMES) { theme ->
+                items(allThemes) { theme ->
                     Button(
                         onClick = { selectedTheme = theme },
                         modifier = if (selectedTheme == theme) {
@@ -299,6 +451,20 @@ fun WidgetConfigScreen(
                             fontSize = 24.sp,
                             lineHeight = 26.sp
                         )
+                    }
+                }
+                // 사용자 테마 추가 버튼
+                item {
+                    Button(
+                        onClick = { showAddThemeDialog = true },
+                        shape = CircleShape,
+                        modifier = Modifier.size(rowHeight),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                            contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    ) {
+                        Text("+", fontSize = 32.sp)
                     }
                 }
             }
@@ -390,5 +556,132 @@ fun WidgetConfigScreen(
                 lineHeight = 26.sp
             )
         }
+    }
+
+    // 테마 추가 다이얼로그
+    if (showAddThemeDialog) {
+        AlertDialog(
+            onDismissRequest = { showAddThemeDialog = false },
+            title = { Text("테마 추가") },
+            text = {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    // 테마명 입력
+                    Text("테마명")
+                    OutlinedTextField(
+                        value = newThemeName,
+                        onValueChange = { newThemeName = it },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    // 배경색 선택
+                    Text("배경색 선택")
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        // 미리보기 라운드 사각형
+                        Box(
+                            modifier = Modifier
+                                .size(width = 120.dp, height = 56.dp)
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(newThemeBackgroundColor)
+                                .border(1.dp, Color.Gray, RoundedCornerShape(16.dp))
+                        )
+                        Spacer(Modifier.width(12.dp))
+                        // 컬러휠 아이콘 (클릭 시 picker)
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_color_wheel),
+                            contentDescription = "색상 선택",
+                            modifier = Modifier
+                                .size(56.dp)
+                                .clickable { showBackgroundColorPicker = true },
+                            tint = Color.Unspecified
+                        )
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    // 글자색 선택
+                    Text("글자색 선택")
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Box(
+                            modifier = Modifier
+                                .size(width = 120.dp, height = 56.dp)
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(newThemeTextColor)
+                                .border(1.dp, Color.Gray, RoundedCornerShape(16.dp))
+                        )
+                        Spacer(Modifier.width(12.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_color_wheel),
+                            contentDescription = "색상 선택",
+                            modifier = Modifier
+                                .size(56.dp)
+                                .clickable { showTextColorPicker = true },
+                            tint = Color.Unspecified
+                        )
+                    }
+                    Spacer(Modifier.height(16.dp))
+                    // 예시 미리보기
+                    Box(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(80.dp)
+                            .background(newThemeBackgroundColor, RoundedCornerShape(16.dp)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "미리보기",
+                            color = newThemeTextColor,
+                            fontSize = dpToSp(36.dp)
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        if (newThemeName.text.isNotBlank()) {
+                            val customTheme = WidgetTheme(
+                                key = "custom_${System.currentTimeMillis()}",
+                                nameResId = R.string.theme_custom,
+                                backgroundColor = newThemeBackgroundColor,
+                                textColor = newThemeTextColor
+                            )
+                            customThemes = customThemes + customTheme
+                            selectedTheme = customTheme
+                            showAddThemeDialog = false
+                            newThemeName = TextFieldValue("")
+                        } else {
+                            // TODO : show toast
+                        }
+                    }
+                ) { Text("추가") }
+            },
+            dismissButton = {
+                Button(onClick = { showAddThemeDialog = false }) { Text("취소") }
+            }
+        )
+    }
+
+    // 배경색 컬러 피커 다이얼로그
+    if (showBackgroundColorPicker) {
+        ColorPickerDialog(
+            initialColor = newThemeBackgroundColor,
+            onColorSelected = {
+                newThemeBackgroundColor = it
+                showBackgroundColorPicker = false
+                              },
+            onDismiss = { showBackgroundColorPicker = false }
+        )
+    }
+    // 글자색 컬러 피커 다이얼로그
+    if (showTextColorPicker) {
+        ColorPickerDialog(
+            initialColor = newThemeTextColor,
+            onColorSelected = {
+                newThemeTextColor = it
+                showTextColorPicker = false
+            },
+            onDismiss = { showTextColorPicker = false }
+        )
     }
 } 
