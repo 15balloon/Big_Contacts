@@ -359,7 +359,11 @@ fun WidgetConfigScreen(
                             )
                             .clickable { selectedContact = contact }
                             .then(
-                                if (isSelected) Modifier.border(2.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
+                                if (isSelected) Modifier.border(
+                                    2.dp,
+                                    MaterialTheme.colorScheme.primary,
+                                    RoundedCornerShape(16.dp)
+                                )
                                 else Modifier
                             )
                     ) {
@@ -447,7 +451,11 @@ fun WidgetConfigScreen(
                         )
                     ) {
                         Text(
-                            stringResource(id = theme.nameResId),
+                            if (theme.nameResId != null) {
+                                stringResource(id = theme.nameResId)
+                            } else {
+                                theme.name
+                            } ?: "",
                             fontSize = 24.sp,
                             lineHeight = 26.sp
                         )
@@ -642,7 +650,8 @@ fun WidgetConfigScreen(
                         if (newThemeName.text.isNotBlank()) {
                             val customTheme = WidgetTheme(
                                 key = "custom_${System.currentTimeMillis()}",
-                                nameResId = R.string.theme_custom,
+                                nameResId = null,
+                                name = newThemeName.text,
                                 backgroundColor = newThemeBackgroundColor,
                                 textColor = newThemeTextColor
                             )
