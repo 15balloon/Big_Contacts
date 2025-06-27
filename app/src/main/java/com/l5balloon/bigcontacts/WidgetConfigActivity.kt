@@ -3,6 +3,7 @@ package com.l5balloon.bigcontacts
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -51,13 +52,26 @@ import kotlinx.coroutines.launch
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
-import com.github.skydoves.colorpicker.compose.HsvColorPicker
-import com.github.skydoves.colorpicker.compose.rememberColorPickerController
 import androidx.core.graphics.toColorInt
+
+import androidx.compose.foundation.Canvas
+import androidx.compose.material3.Text
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.pointer.changedToDown
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.unit.Dp
+import kotlin.math.*
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.set
 
 data class Contact(val id: Long, val lookupKey: String, val name: String)
 
@@ -133,87 +147,30 @@ class WidgetConfigActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun HexColorPicker(
-    initialColor: Color,
-    onColorChanged: (Color) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    var pickedColor by remember { mutableStateOf(initialColor) }
-    var hexInput by remember { mutableStateOf(colorToHexNoAlpha(initialColor)) }
-    val controller = rememberColorPickerController()
+fun Float.toRadians() = (this / 180f) * Math.PI.toFloat()
+fun Float.toDegrees() = (this * 180f) / Math.PI.toFloat()
 
-    // HEX 입력이 바뀌면 색상도 바꾼다 (alpha는 항상 FF)
-    fun updateColorFromHex(hex: String) {
-        val color = runCatching { Color(("#FF$hex").toColorInt()) }.getOrNull()
-        if (color != null) {
-            pickedColor = color
-            onColorChanged(color)
-        }
-    }
-
-    Column(modifier = modifier) {
-        HsvColorPicker(
-            modifier = Modifier
-                .height(200.dp)
-                .fillMaxWidth(),
-            controller = controller,
-            onColorChanged = { envelope ->
-                // alpha는 무시하고 항상 FF로 변환
-                val hexNoAlpha = colorToHexNoAlpha(envelope.color)
-                pickedColor = Color("#$hexNoAlpha".toColorInt())
-                hexInput = hexNoAlpha
-                onColorChanged(pickedColor)
+fun makeColorWheelBitmap(width: Int, height: Int, value: Float): Bitmap {
+    val bitmap = createBitmap(width, height)
+    val centerX = width / 2f
+    val centerY = height / 2f
+    val radius = min(centerX, centerY)
+    for (y in 0 until height) {
+        for (x in 0 until width) {
+            val dx = x - centerX
+            val dy = y - centerY
+            val r = sqrt(dx * dx + dy * dy)
+            if (r <= radius) {
+                val hue = (atan2(dy, dx).toDegrees() + 360) % 360
+                val sat = (r / radius).coerceIn(0f, 1f)
+                val color = android.graphics.Color.HSVToColor(floatArrayOf(hue, sat, value))
+                bitmap[x, y] = color
+            } else {
+                bitmap[x, y] = android.graphics.Color.TRANSPARENT
             }
-        )
-        Spacer(Modifier.height(16.dp))
-        // Hex 코드
-        Text(
-            "HEX 코드",
-            style = TextStyle(
-                fontSize = dpToSp(36.dp)
-            )
-        )
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(
-                "#FF",
-                style = TextStyle(
-                    fontSize = dpToSp(36.dp)
-                )
-            )
-            OutlinedTextField(
-                value = hexInput,
-                onValueChange = {
-                    // 6 글자만(RRGGBB) 허용
-                    val filtered = it.filter { c -> c.isLetterOrDigit() }.take(6).uppercase()
-                    hexInput = filtered
-                    if (filtered.length == 6 && isValidHexNoAlpha(filtered)) updateColorFromHex(filtered)
-                },
-                singleLine = true,
-                modifier = Modifier.weight(1f),
-                textStyle = TextStyle(
-                    fontSize = dpToSp(36.dp)
-                )
-            )
-        }
-        Spacer(Modifier.height(8.dp))
-        // 미리보기
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(top = 8.dp)
-        ) {
-            Text("미리보기: ")
-            Box(
-                modifier = Modifier
-                    .size(32.dp)
-                    .background(pickedColor, shape = CircleShape)
-                    .border(1.dp, Color.Gray, shape = CircleShape)
-            )
         }
     }
+    return bitmap
 }
 
 // RRGGBB만 허용
@@ -230,10 +187,201 @@ fun colorToHexNoAlpha(color: Color): String {
 }
 
 @Composable
+fun BrightnessSlider(
+    hue: Float,
+    saturation: Float,
+    value: Float,
+    onValueChange: (Float) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    // 그라데이션용 색상 샘플링 (10개)
+    val colors = remember(hue, saturation) {
+        List(11) { i ->
+            val v = i / 10f
+            Color(android.graphics.Color.HSVToColor(floatArrayOf(hue, saturation, v)))
+        }
+    }
+
+    Box(
+        modifier = modifier
+            .height(32.dp)
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        // 트랙 그리기
+        Canvas(modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp)
+        ) {
+            drawRoundRect(
+                brush = Brush.horizontalGradient(colors),
+                cornerRadius = CornerRadius(8.dp.toPx(), 8.dp.toPx()),
+            )
+            // 검정색 border
+            drawRoundRect(
+                color = Color.Black,
+                size = size,
+                cornerRadius = CornerRadius(8.dp.toPx(), 8.dp.toPx()),
+                style = Stroke(width = 1.dp.toPx())
+            )
+        }
+        Slider(
+            value = value,
+            onValueChange = onValueChange,
+            valueRange = 0f..1f,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            colors = SliderDefaults.colors(
+                thumbColor = Color.White,
+                activeTrackColor = Color.Transparent,
+                inactiveTrackColor = Color.Transparent
+            )
+        )
+    }
+}
+
+@Composable
+fun BitmapColorWheelPicker(
+    initialColor: Color,
+    onColorChanged: (Color) -> Unit,
+    modifier: Modifier = Modifier,
+    size: Dp = 220.dp
+) {
+    // HSV 상태
+    val hsv by remember(initialColor) {
+        mutableStateOf(FloatArray(3).apply { android.graphics.Color.colorToHSV(initialColor.toArgb(), this) })
+    }
+    var pickedColor by remember(initialColor) { mutableStateOf(initialColor) }
+    var hexInput by remember(initialColor) { mutableStateOf(colorToHexNoAlpha(initialColor)) }
+
+    // Bitmap 캐싱 (밝기(V) 바뀔 때마다 새로 생성)
+    val density = LocalDensity.current
+    val sizePx = with(density) { size.roundToPx() }
+    val bitmap = remember(hsv[2], sizePx) { makeColorWheelBitmap(sizePx, sizePx, hsv[2]) }
+
+    // HSV → Color 변환
+    fun updateColorFromHSV() {
+        val colorInt = android.graphics.Color.HSVToColor(0xFF, hsv)
+        val color = Color(colorInt)
+        pickedColor = color
+        hexInput = colorToHexNoAlpha(color)
+        onColorChanged(color)
+    }
+
+    // HEX 입력 → HSV/Color 변환
+    fun updateColorFromHex(hex: String) {
+        val color = runCatching { Color(("#FF$hex").toColorInt()) }.getOrNull()
+        if (color != null) {
+            pickedColor = color
+            android.graphics.Color.colorToHSV(color.toArgb(), hsv)
+            onColorChanged(color)
+        }
+    }
+
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        // 컬러휠
+        Box(
+            modifier = Modifier
+                .size(size)
+                .pointerInput(hsv[2]) {
+                    awaitPointerEventScope {
+                        while (true) {
+                            val event = awaitPointerEvent()
+                            val change = event.changes.firstOrNull() ?: continue
+                            if (change.changedToDown()) {
+                                // 터치(탭) 처리
+                                if (hsv[2] == 0f) continue // 밝기 0일 땐 움직이지 않게
+                                val center = Offset(sizePx / 2f, sizePx / 2f)
+                                val dx = change.position.x - center.x
+                                val dy = change.position.y - center.y
+                                val r = sqrt(dx * dx + dy * dy)
+                                val radius = sizePx / 2f
+                                if (r <= radius) {
+                                    val hue = (atan2(dy, dx).toDegrees() + 360) % 360
+                                    val sat = (r / radius).coerceIn(0f, 1f)
+                                    hsv[0] = hue
+                                    hsv[1] = sat
+                                    updateColorFromHSV()
+                                }
+                            }
+                            if (change.pressed) {
+                                // 드래그 처리
+                                if (hsv[2] == 0f) continue // 밝기 0일 땐 움직이지 않게
+                                val center = Offset(sizePx / 2f, sizePx / 2f)
+                                val dx = change.position.x - center.x
+                                val dy = change.position.y - center.y
+                                val r = sqrt(dx * dx + dy * dy)
+                                val radius = sizePx / 2f
+                                if (r <= radius) {
+                                    val hue = (atan2(dy, dx).toDegrees() + 360) % 360
+                                    val sat = (r / radius).coerceIn(0f, 1f)
+                                    hsv[0] = hue
+                                    hsv[1] = sat
+                                    updateColorFromHSV()
+                                }
+                            }
+                        }
+                    }
+                }
+        ) {
+            Canvas(modifier = Modifier.matchParentSize()) {
+                drawImage(bitmap.asImageBitmap())
+                // 현재 선택 위치 표시
+                val radius = sizePx / 2f
+                val selR = radius * hsv[1]
+                val selX = center.x + cos(hsv[0].toRadians()) * selR
+                val selY = center.y + sin(hsv[0].toRadians()) * selR
+                drawCircle(
+                    color = Color.White,
+                    radius = 16f,
+                    center = Offset(selX, selY),
+                    style = Stroke(width = 3f)
+                )
+            }
+        }
+        Spacer(Modifier.height(16.dp))
+        // 밝기 슬라이더
+        BrightnessSlider(
+            hue = hsv[0],
+            saturation = hsv[1],
+            value = hsv[2],
+            onValueChange = {
+                hsv[2] = it
+                updateColorFromHSV()
+            },
+            modifier = Modifier.width(200.dp)
+        )
+        Spacer(Modifier.height(16.dp))
+        // HEX 코드 입력
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.width(200.dp)
+        ) {
+            Text("#FF")
+            OutlinedTextField(
+                value = hexInput,
+                onValueChange = {
+                    val filtered = it.filter { c -> c.isLetterOrDigit() }.take(6).uppercase()
+                    hexInput = filtered
+                    if (filtered.length == 6 && isValidHexNoAlpha(filtered)) updateColorFromHex(filtered)
+                },
+                singleLine = true,
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+@Composable
 fun ColorPickerDialog(
     initialColor: Color,
+    previewBackgroundColor: Color,
+    previewTextColor: Color,
     onColorSelected: (Color) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    isBackground: Boolean
 ) {
     var pickedColor by remember { mutableStateOf(initialColor) }
 
@@ -241,10 +389,18 @@ fun ColorPickerDialog(
         onDismissRequest = onDismiss,
         title = { Text("색상 선택") },
         text = {
-            Column {
-                HexColorPicker(
+            Column(
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                BitmapColorWheelPicker(
                     initialColor = initialColor,
                     onColorChanged = { pickedColor = it }
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                ThemePreview(
+                    backgroundColor = if (isBackground) pickedColor else previewBackgroundColor,
+                    textColor = if (isBackground) previewTextColor else pickedColor,
+                    modifier = Modifier
                 )
             }
         },
@@ -259,6 +415,173 @@ fun ColorPickerDialog(
             }
         }
     )
+}
+
+@Composable
+fun ThemePreview(
+    backgroundColor: Color,
+    textColor: Color,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            modifier = Modifier
+                .width(200.dp)
+                .height(80.dp)
+                .background(backgroundColor, RoundedCornerShape(16.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "미리보기",
+                style = TextStyle(
+                    fontSize = dpToSp(36.dp),
+                    fontWeight = Bold
+                ),
+                color = textColor,
+            )
+        }
+    }
+}
+
+@Composable
+fun AddThemeDialog(
+    onAdd: (WidgetTheme) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var themeName by remember { mutableStateOf(TextFieldValue("")) }
+    var backgroundColor by remember { mutableStateOf(Color.Black) }
+    var textColor by remember { mutableStateOf(Color.White) }
+    var showBackgroundColorPicker by remember { mutableStateOf(false) }
+    var showTextColorPicker by remember { mutableStateOf(false) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("테마 추가") },
+        text = {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                // 테마명 입력
+                OutlinedTextField(
+                    value = themeName,
+                    onValueChange = { themeName = it },
+                    label = { Text("테마명") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(Modifier.height(8.dp))
+                // 배경색 선택
+                Text("배경색 선택")
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    // 색상 미리보기
+                    Box(
+                        modifier = Modifier
+                            .size(width = 120.dp, height = 56.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(backgroundColor)
+                            .border(1.dp, Color.Gray, RoundedCornerShape(16.dp))
+                    )
+                    Spacer(Modifier.width(12.dp))
+                    // 컬러휠 아이콘 (클릭 시 picker)
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_color_wheel),
+                        contentDescription = "색상 선택",
+                        modifier = Modifier
+                            .size(56.dp)
+                            .clickable { showBackgroundColorPicker = true },
+                        tint = Color.Unspecified
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                // 글자색 선택
+                Text("글자색 선택")
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    // 색상 미리보기
+                    Box(
+                        modifier = Modifier
+                            .size(width = 120.dp, height = 56.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(textColor)
+                            .border(1.dp, Color.Gray, RoundedCornerShape(16.dp))
+                    )
+                    Spacer(Modifier.width(12.dp))
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_color_wheel),
+                        contentDescription = "색상 선택",
+                        modifier = Modifier
+                            .size(56.dp)
+                            .clickable { showTextColorPicker = true },
+                        tint = Color.Unspecified
+                    )
+                }
+                Spacer(Modifier.height(16.dp))
+                // 예시 미리보기
+                ThemePreview(
+                    backgroundColor = backgroundColor,
+                    textColor = textColor,
+                    modifier = Modifier
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    if (themeName.text.isNotBlank()) {
+                        onAdd(
+                            WidgetTheme(
+                                key = "custom_${System.currentTimeMillis()}",
+                                nameResId = null,
+                                name = themeName.text,
+                                backgroundColor = backgroundColor,
+                                textColor = textColor
+                            )
+                        )
+                    } else {
+                        // TODO : show toast
+                    }
+                }
+            ) { Text("추가") }
+        },
+        dismissButton = {
+            Button(onClick = onDismiss) { Text("취소") }
+        }
+    )
+
+    // 배경색 컬러 피커 다이얼로그
+    if (showBackgroundColorPicker) {
+        key(backgroundColor) {
+            ColorPickerDialog(
+                initialColor = backgroundColor,
+                previewBackgroundColor = backgroundColor,
+                previewTextColor = textColor,
+                onColorSelected = {
+                    backgroundColor = it
+                    showBackgroundColorPicker = false
+                },
+                onDismiss = { showBackgroundColorPicker = false },
+                isBackground = true
+            )
+        }
+    }
+    // 글자색 컬러 피커 다이얼로그
+    if (showTextColorPicker) {
+        key(textColor) {
+            ColorPickerDialog(
+                initialColor = textColor,
+                previewBackgroundColor = backgroundColor,
+                previewTextColor = textColor,
+                onColorSelected = {
+                    textColor = it
+                    showTextColorPicker = false
+                },
+                onDismiss = { showTextColorPicker = false },
+                isBackground = false
+            )
+        }
+    }
 }
 
 @Composable
@@ -314,11 +637,6 @@ fun WidgetConfigScreen(
 
     // 테마 추가 다이얼로그 상태
     var showAddThemeDialog by remember { mutableStateOf(false) }
-    var newThemeName by remember { mutableStateOf(TextFieldValue("")) }
-    var newThemeBackgroundColor by remember { mutableStateOf(Color.Black) }
-    var newThemeTextColor by remember { mutableStateOf(Color.White) }
-    var showBackgroundColorPicker by remember { mutableStateOf(false) }
-    var showTextColorPicker by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -568,129 +886,13 @@ fun WidgetConfigScreen(
 
     // 테마 추가 다이얼로그
     if (showAddThemeDialog) {
-        AlertDialog(
-            onDismissRequest = { showAddThemeDialog = false },
-            title = { Text("테마 추가") },
-            text = {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    // 테마명 입력
-                    Text("테마명")
-                    OutlinedTextField(
-                        value = newThemeName,
-                        onValueChange = { newThemeName = it },
-                        singleLine = true,
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                    Spacer(Modifier.height(8.dp))
-                    // 배경색 선택
-                    Text("배경색 선택")
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        // 미리보기 라운드 사각형
-                        Box(
-                            modifier = Modifier
-                                .size(width = 120.dp, height = 56.dp)
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(newThemeBackgroundColor)
-                                .border(1.dp, Color.Gray, RoundedCornerShape(16.dp))
-                        )
-                        Spacer(Modifier.width(12.dp))
-                        // 컬러휠 아이콘 (클릭 시 picker)
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_color_wheel),
-                            contentDescription = "색상 선택",
-                            modifier = Modifier
-                                .size(56.dp)
-                                .clickable { showBackgroundColorPicker = true },
-                            tint = Color.Unspecified
-                        )
-                    }
-                    Spacer(Modifier.height(8.dp))
-                    // 글자색 선택
-                    Text("글자색 선택")
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Box(
-                            modifier = Modifier
-                                .size(width = 120.dp, height = 56.dp)
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(newThemeTextColor)
-                                .border(1.dp, Color.Gray, RoundedCornerShape(16.dp))
-                        )
-                        Spacer(Modifier.width(12.dp))
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_color_wheel),
-                            contentDescription = "색상 선택",
-                            modifier = Modifier
-                                .size(56.dp)
-                                .clickable { showTextColorPicker = true },
-                            tint = Color.Unspecified
-                        )
-                    }
-                    Spacer(Modifier.height(16.dp))
-                    // 예시 미리보기
-                    Box(
-                        modifier = Modifier
-                            .width(200.dp)
-                            .height(80.dp)
-                            .background(newThemeBackgroundColor, RoundedCornerShape(16.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "미리보기",
-                            color = newThemeTextColor,
-                            fontSize = dpToSp(36.dp)
-                        )
-                    }
-                }
+        AddThemeDialog(
+            onAdd = { theme ->
+                customThemes = customThemes + theme
+                selectedTheme = theme
+                showAddThemeDialog = false
             },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        if (newThemeName.text.isNotBlank()) {
-                            val customTheme = WidgetTheme(
-                                key = "custom_${System.currentTimeMillis()}",
-                                nameResId = null,
-                                name = newThemeName.text,
-                                backgroundColor = newThemeBackgroundColor,
-                                textColor = newThemeTextColor
-                            )
-                            customThemes = customThemes + customTheme
-                            selectedTheme = customTheme
-                            showAddThemeDialog = false
-                            newThemeName = TextFieldValue("")
-                        } else {
-                            // TODO : show toast
-                        }
-                    }
-                ) { Text("추가") }
-            },
-            dismissButton = {
-                Button(onClick = { showAddThemeDialog = false }) { Text("취소") }
-            }
-        )
-    }
-
-    // 배경색 컬러 피커 다이얼로그
-    if (showBackgroundColorPicker) {
-        ColorPickerDialog(
-            initialColor = newThemeBackgroundColor,
-            onColorSelected = {
-                newThemeBackgroundColor = it
-                showBackgroundColorPicker = false
-                              },
-            onDismiss = { showBackgroundColorPicker = false }
-        )
-    }
-    // 글자색 컬러 피커 다이얼로그
-    if (showTextColorPicker) {
-        ColorPickerDialog(
-            initialColor = newThemeTextColor,
-            onColorSelected = {
-                newThemeTextColor = it
-                showTextColorPicker = false
-            },
-            onDismiss = { showTextColorPicker = false }
+            onDismiss = { showAddThemeDialog = false }
         )
     }
 } 
