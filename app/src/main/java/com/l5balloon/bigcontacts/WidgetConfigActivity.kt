@@ -49,7 +49,6 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.ui.text.style.TextOverflow
 import kotlinx.coroutines.launch
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -69,6 +68,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import kotlin.math.*
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
@@ -385,13 +386,30 @@ fun ColorPickerDialog(
 ) {
     var pickedColor by remember { mutableStateOf(initialColor) }
 
-    AlertDialog(
+    Dialog(
         onDismissRequest = onDismiss,
-        title = { Text("색상 선택") },
-        text = {
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Surface(
+            shape = RoundedCornerShape(16.dp),
+            tonalElevation = 6.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .widthIn(max = 480.dp),
+        ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Text(
+                    "색상 선택",
+                    modifier = Modifier.align(Alignment.Start),
+                    style = MaterialTheme.typography.titleLarge
+                )
                 BitmapColorWheelPicker(
                     initialColor = initialColor,
                     onColorChanged = { pickedColor = it }
@@ -402,19 +420,21 @@ fun ColorPickerDialog(
                     textColor = if (isBackground) previewTextColor else pickedColor,
                     modifier = Modifier
                 )
-            }
-        },
-        confirmButton = {
-            Button(onClick = { onColorSelected(pickedColor) }) {
-                Text("선택")
-            }
-        },
-        dismissButton = {
-            Button(onClick = onDismiss) {
-                Text("취소")
+                Row(
+                    horizontalArrangement = Arrangement.End,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    TextButton(onClick = onDismiss) {
+                        Text("취소")
+                    }
+                    Spacer(Modifier.width(8.dp))
+                    Button(onClick = { onColorSelected(pickedColor) }) {
+                        Text("선택")
+                    }
+                }
             }
         }
-    )
+    }
 }
 
 @Composable
@@ -457,13 +477,32 @@ fun AddThemeDialog(
     var showBackgroundColorPicker by remember { mutableStateOf(false) }
     var showTextColorPicker by remember { mutableStateOf(false) }
 
-    AlertDialog(
+    Dialog(
         onDismissRequest = onDismiss,
-        title = { Text("테마 추가") },
-        text = {
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Surface(
+            shape = RoundedCornerShape(16.dp),
+            tonalElevation = 6.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .widthIn(max = 480.dp),
+        ) {
+
             Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Text(
+                    "테마 추가",
+                    modifier = Modifier.align(Alignment.Start),
+                    style = MaterialTheme.typography.titleLarge
+                )
+
                 // 테마명 입력
                 OutlinedTextField(
                     value = themeName,
@@ -473,8 +512,12 @@ fun AddThemeDialog(
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(Modifier.height(8.dp))
+
                 // 배경색 선택
-                Text("배경색 선택")
+                Text(
+                    "배경색 선택",
+                    modifier = Modifier.align(Alignment.Start)
+                )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     // 색상 미리보기
                     Box(
@@ -496,8 +539,12 @@ fun AddThemeDialog(
                     )
                 }
                 Spacer(Modifier.height(8.dp))
+
                 // 글자색 선택
-                Text("글자색 선택")
+                Text(
+                    "글자색 선택",
+                    modifier = Modifier.align(Alignment.Start)
+                )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     // 색상 미리보기
                     Box(
@@ -518,37 +565,41 @@ fun AddThemeDialog(
                     )
                 }
                 Spacer(Modifier.height(16.dp))
+
                 // 예시 미리보기
                 ThemePreview(
                     backgroundColor = backgroundColor,
                     textColor = textColor,
-                    modifier = Modifier
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
-            }
-        },
-        confirmButton = {
-            Button(
-                onClick = {
-                    if (themeName.text.isNotBlank()) {
-                        onAdd(
-                            WidgetTheme(
-                                key = "custom_${System.currentTimeMillis()}",
-                                nameResId = null,
-                                name = themeName.text,
-                                backgroundColor = backgroundColor,
-                                textColor = textColor
-                            )
-                        )
-                    } else {
-                        // TODO : show toast
+
+                Row(
+                    horizontalArrangement = Arrangement.End,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    TextButton(onClick = onDismiss) {
+                        Text("취소")
                     }
+                    Spacer(Modifier.width(8.dp))
+                    Button(onClick = {
+                        if (themeName.text.isNotBlank()) {
+                            onAdd(
+                                WidgetTheme(
+                                    key = "custom_${System.currentTimeMillis()}",
+                                    nameResId = null,
+                                    name = themeName.text,
+                                    backgroundColor = backgroundColor,
+                                    textColor = textColor
+                                )
+                            )
+                        } else {
+                            // TODO : show toast
+                        }
+                    }) { Text("추가") }
                 }
-            ) { Text("추가") }
-        },
-        dismissButton = {
-            Button(onClick = onDismiss) { Text("취소") }
+            }
         }
-    )
+    }
 
     // 배경색 컬러 피커 다이얼로그
     if (showBackgroundColorPicker) {
