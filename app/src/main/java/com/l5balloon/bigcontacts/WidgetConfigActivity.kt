@@ -59,10 +59,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.core.graphics.toColorInt
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.changedToDown
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
@@ -588,6 +591,9 @@ fun ColorPickerDialog(
     onDismiss: () -> Unit,
     isBackground: Boolean
 ) {
+    val configuration = LocalConfiguration.current
+    val screenHeight = configuration.screenHeightDp.dp
+    val dialogHeight = screenHeight * 0.8f
     var pickedColor by remember { mutableStateOf(initialColor) }
 
     Dialog(
@@ -605,6 +611,7 @@ fun ColorPickerDialog(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .heightIn(max = dialogHeight)
                     .padding(vertical = 16.dp, horizontal = 32.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -614,11 +621,21 @@ fun ColorPickerDialog(
                     modifier = Modifier.align(Alignment.Start),
                     style = MaterialTheme.typography.titleLarge
                 )
-                BitmapColorWheelPicker(
-                    initialColor = initialColor,
-                    onColorChanged = { pickedColor = it }
-                )
-                Spacer(modifier = Modifier.height(8.dp))
+
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    BitmapColorWheelPicker(
+                        initialColor = initialColor,
+                        onColorChanged = { pickedColor = it }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+
                 ThemePreview(
                     backgroundColor = if (isBackground) pickedColor else previewBackgroundColor,
                     textColor = if (isBackground) previewTextColor else pickedColor,
@@ -693,7 +710,6 @@ fun AddThemeDialog(
                 .padding(horizontal = 16.dp)
                 .widthIn(max = 480.dp),
         ) {
-
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
