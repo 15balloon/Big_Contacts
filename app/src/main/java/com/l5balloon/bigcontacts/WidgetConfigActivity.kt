@@ -60,7 +60,6 @@ import androidx.core.graphics.toColorInt
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.material3.Text
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.changedToDown
@@ -230,7 +229,9 @@ fun BrightnessSlider(
 @Composable
 fun RGBSlider(
     value: Int,
+    inputValue: String,
     onValueChange: (Int) -> Unit,
+    onInputChange: (String) -> Unit,
     channel: String, // "R", "G", "B"
     fixedR: Int,
     fixedG: Int,
@@ -257,7 +258,24 @@ fun RGBSlider(
     }
 
     Column(modifier = modifier) {
-        Text(channel, modifier = Modifier.padding(bottom = 4.dp))
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier.padding(bottom = 4.dp)
+        ) {
+            Text(channel, modifier = Modifier.padding(bottom = 8.dp, end = 8.dp))
+            OutlinedTextField(
+                value = inputValue,
+                onValueChange = { str ->
+                    val filtered = str.filter { it.isDigit() }.take(3)
+                    onInputChange(filtered)
+                    val intVal = filtered.toIntOrNull()?.coerceIn(0, 255)
+                    if (intVal != null) onValueChange(intVal)
+                },
+                singleLine = true,
+                modifier = Modifier.width(96.dp),
+                textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center)
+            )
+        }
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -287,28 +305,40 @@ fun RGBSlider(
 @Composable
 fun RGBSliders(
     r: Int, g: Int, b: Int,
+    rInput: String,
+    gInput: String,
+    bInput: String,
     onRChange: (Int) -> Unit,
     onGChange: (Int) -> Unit,
-    onBChange: (Int) -> Unit
+    onBChange: (Int) -> Unit,
+    onRInputChange: (String) -> Unit,
+    onGInputChange: (String) -> Unit,
+    onBInputChange: (String) -> Unit
 ) {
     Column {
         RGBSlider(
             value = r,
+            inputValue = rInput,
             onValueChange = onRChange,
+            onInputChange = onRInputChange,
             channel = "R",
             fixedR = r, fixedG = g, fixedB = b
         )
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(16.dp))
         RGBSlider(
             value = g,
+            inputValue = gInput,
             onValueChange = onGChange,
+            onInputChange = onGInputChange,
             channel = "G",
             fixedR = r, fixedG = g, fixedB = b
         )
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(16.dp))
         RGBSlider(
             value = b,
+            inputValue = bInput,
             onValueChange = onBChange,
+            onInputChange = onBInputChange,
             channel = "B",
             fixedR = r, fixedG = g, fixedB = b
         )
@@ -337,6 +367,15 @@ fun BitmapColorWheelPicker(
             )
         )
     }
+    var rgbInput by remember {
+        mutableStateOf(
+            Triple(
+                (initialColor.red * 255).roundToInt().toString(),
+                (initialColor.green * 255).roundToInt().toString(),
+                (initialColor.blue * 255).roundToInt().toString()
+            )
+        )
+    }
 
     // Bitmap 캐싱 (밝기(V) 바뀔 때마다 새로 생성)
     val density = LocalDensity.current
@@ -354,6 +393,11 @@ fun BitmapColorWheelPicker(
             (color.green * 255).roundToInt(),
             (color.blue * 255).roundToInt()
         )
+        rgbInput = Triple(
+            (color.red * 255).roundToInt().toString(),
+            (color.green * 255).roundToInt().toString(),
+            (color.blue * 255).roundToInt().toString()
+        )
         onColorChanged(color)
     }
 
@@ -368,6 +412,11 @@ fun BitmapColorWheelPicker(
                 (color.green * 255).roundToInt(),
                 (color.blue * 255).roundToInt()
             )
+            rgbInput = Triple(
+                (color.red * 255).roundToInt().toString(),
+                (color.green * 255).roundToInt().toString(),
+                (color.blue * 255).roundToInt().toString()
+            )
             onColorChanged(color)
         }
     }
@@ -378,6 +427,11 @@ fun BitmapColorWheelPicker(
         pickedColor = color
         android.graphics.Color.colorToHSV(color.toArgb(), hsv)
         hexInput = colorToHexNoAlpha(color)
+        rgbInput = Triple(
+            (color.red * 255).roundToInt().toString(),
+            (color.green * 255).roundToInt().toString(),
+            (color.blue * 255).roundToInt().toString()
+        )
         onColorChanged(color)
     }
 
@@ -464,6 +518,9 @@ fun BitmapColorWheelPicker(
             r = rgb.first,
             g = rgb.second,
             b = rgb.third,
+            rInput = rgbInput.first,
+            gInput = rgbInput.second,
+            bInput = rgbInput.third,
             onRChange = { r ->
                 rgb = Triple(r, rgb.second, rgb.third)
                 updateColorFromRGB(r, rgb.second, rgb.third)
@@ -475,6 +532,27 @@ fun BitmapColorWheelPicker(
             onBChange = { b ->
                 rgb = Triple(rgb.first, rgb.second, b)
                 updateColorFromRGB(rgb.first, rgb.second, b)
+            },
+            onRInputChange = { str ->
+                val intVal = str.toIntOrNull()?.coerceIn(0, 255)
+                if (intVal != null) {
+                    rgb = Triple(intVal, rgb.second, rgb.third)
+                    updateColorFromRGB(intVal, rgb.second, rgb.third)
+                }
+            },
+            onGInputChange = { str ->
+                val intVal = str.toIntOrNull()?.coerceIn(0, 255)
+                if (intVal != null) {
+                    rgb = Triple(rgb.first, intVal, rgb.third)
+                    updateColorFromRGB(rgb.first, intVal, rgb.third)
+                }
+            },
+            onBInputChange = { str ->
+                val intVal = str.toIntOrNull()?.coerceIn(0, 255)
+                if (intVal != null) {
+                    rgb = Triple(rgb.first, rgb.second, intVal)
+                    updateColorFromRGB(rgb.first, rgb.second, intVal)
+                }
             }
         )
         Spacer(Modifier.height(16.dp))
