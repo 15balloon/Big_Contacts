@@ -323,7 +323,9 @@ fun BitmapColorWheelPicker(
     size: Dp = 220.dp
 ) {
     // HSV 상태
-    val hsv = remember { FloatArray(3) }
+    val hsv = remember(initialColor) {
+        FloatArray(3).also { android.graphics.Color.colorToHSV(initialColor.toArgb(), it) }
+    }
     var pickedColor by remember(initialColor) { mutableStateOf(initialColor) }
     var hexInput by remember(initialColor) { mutableStateOf(colorToHexNoAlpha(initialColor)) }
     var rgb by remember(initialColor) {
