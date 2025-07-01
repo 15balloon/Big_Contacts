@@ -62,8 +62,20 @@ class BigContactsWidget : GlanceAppWidget() {
             }
 
             val widgetThemeKey = prefs[WidgetKeys.Theme] ?: WidgetKeys.DEFAULT_THEME_KEY
+            val backgroundColor = prefs[WidgetKeys.BackgroundColor]
+            val textColor = prefs[WidgetKeys.TextColor]
             val widgetTheme = WidgetTheme.THEMES.find { it.key == widgetThemeKey }
-                ?: WidgetTheme.THEMES.first()
+                ?: if (backgroundColor != null && textColor != null) {
+                    WidgetTheme(
+                        key = widgetThemeKey,
+                        nameResId = null,
+                        name = null,
+                        backgroundColor = androidx.compose.ui.graphics.Color(backgroundColor),
+                        textColor = androidx.compose.ui.graphics.Color(textColor)
+                    )
+                } else {
+                    WidgetTheme.THEMES.first()
+                }
 
             val tapToConfigureText = context.getString(R.string.tap_to_configure)
 
@@ -88,6 +100,8 @@ class BigContactsWidget : GlanceAppWidget() {
                         mutablePrefs[WidgetKeys.ContactLookupUri] = widgetData.contactLookupUri
                         mutablePrefs[WidgetKeys.Is4x1] = widgetData.is4x1
                         mutablePrefs[WidgetKeys.Theme] = widgetData.theme
+                        mutablePrefs[WidgetKeys.BackgroundColor] = widgetData.backgroundColor
+                        mutablePrefs[WidgetKeys.TextColor] = widgetData.textColor
                         mutablePrefs
                     }
                     BigContactsWidget().update(context, glanceId)

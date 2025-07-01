@@ -75,8 +75,47 @@ import androidx.compose.ui.window.DialogProperties
 import kotlin.math.*
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.first
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 data class Contact(val id: Long, val lookupKey: String, val name: String)
+
+// WidgetTheme 안전 직렬화용 DTO 및 변환 함수
+data class WidgetThemeDto(
+    val key: String,
+    val nameResId: Int?,
+    val name: String?,
+    val backgroundColor: Int,
+    val textColor: Int
+)
+
+fun WidgetTheme.toDto() = WidgetThemeDto(key, nameResId, name, backgroundColor.toArgb(), textColor.toArgb())
+fun WidgetThemeDto.toTheme() = WidgetTheme(key, nameResId, name, Color(backgroundColor), Color(textColor))
+
+fun List<WidgetTheme>.toJson(): String = Gson().toJson(this.map { it.toDto() })
+fun String.toThemeList(): List<WidgetTheme> =
+    runCatching {
+        Gson().fromJson<List<WidgetThemeDto>>(this, object : TypeToken<List<WidgetThemeDto>>(){}.type)
+            .map { it.toTheme() }
+    }.getOrDefault(emptyList())
+
+private val Context.dataStore by preferencesDataStore(name = "settings")
+private val CUSTOM_THEMES_KEY = stringPreferencesKey("custom_themes")
+
+suspend fun saveCustomThemes(context: Context, themes: List<WidgetTheme>) {
+    context.applicationContext.dataStore.edit { prefs ->
+        prefs[CUSTOM_THEMES_KEY] = themes.toJson()
+    }
+}
+
+suspend fun loadCustomThemes(context: Context): List<WidgetTheme> {
+    val prefs = context.applicationContext.dataStore.data.first()
+    return prefs[CUSTOM_THEMES_KEY]?.toThemeList() ?: emptyList()
+}
 
 class WidgetConfigActivity : ComponentActivity() {
 
@@ -861,9 +900,15 @@ fun WidgetConfigScreen(
     is4x1: Boolean,
     onConfigComplete: () -> Unit
 ) {
+    val context = LocalContext.current
+    var customThemes by remember { mutableStateOf(listOf<WidgetTheme>()) }
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        customThemes = loadCustomThemes(context)
+    }
     var selectedTheme by remember { mutableStateOf(WidgetTheme.THEMES.first()) }
     var selectedContact by remember { mutableStateOf<Contact?>(null) }
-    val context = LocalContext.current
 
     var hasPermission by remember { mutableStateOf(false) }
     val contacts = remember { mutableStateListOf<Contact>() }
@@ -902,9 +947,6 @@ fun WidgetConfigScreen(
             contacts.addAll(loadedContacts)
         }
     }
-
-    // 사용자 정의 테마 목록
-    var customThemes by remember { mutableStateOf(listOf<WidgetTheme>()) }
 
     // 테마 추가 다이얼로그 상태
     var showAddThemeDialog by remember { mutableStateOf(false) }
@@ -1134,7 +1176,9 @@ fun WidgetConfigScreen(
                     contactName = finalContact.name,
                     contactLookupUri = lookupUri.toString(),
                     theme = selectedTheme.key,
-                    is4x1 = is4x1
+                    is4x1 = is4x1,
+                    backgroundColor = selectedTheme.backgroundColor.toArgb(),
+                    textColor = selectedTheme.textColor.toArgb()
                 )
                 
                 BigContactsWidget.updateWidget(
@@ -1159,8 +1203,11 @@ fun WidgetConfigScreen(
     if (showAddThemeDialog) {
         AddThemeDialog(
             onAdd = { theme ->
-                customThemes = customThemes + theme
-                selectedTheme = theme
+                val updated = customThemes + theme
+                customThemes = updated
+                coroutineScope.launch {
+                    saveCustomThemes(context, updated)
+                }
                 showAddThemeDialog = false
             },
             onDismiss = { showAddThemeDialog = false }
