@@ -192,8 +192,7 @@ fun BrightnessSlider(
     hue: Float,
     saturation: Float,
     value: Float,
-    onValueChange: (Float) -> Unit,
-    modifier: Modifier = Modifier
+    onValueChange: (Float) -> Unit
 ) {
     // 그라데이션용 색상 샘플링 (10개)
     val colors = remember(hue, saturation) {
@@ -204,41 +203,114 @@ fun BrightnessSlider(
     }
 
     Box(
-        modifier = modifier
-            .height(32.dp)
+        modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp),
+            .height(24.dp)
+            .background(
+                brush = Brush.horizontalGradient(colors),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .border(1.dp, Color.Black, RoundedCornerShape(8.dp)),
         contentAlignment = Alignment.Center
     ) {
-        // 트랙 그리기
-        Canvas(modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp)
-        ) {
-            drawRoundRect(
-                brush = Brush.horizontalGradient(colors),
-                cornerRadius = CornerRadius(8.dp.toPx(), 8.dp.toPx()),
-            )
-            // 검정색 border
-            drawRoundRect(
-                color = Color.Black,
-                size = size,
-                cornerRadius = CornerRadius(8.dp.toPx(), 8.dp.toPx()),
-                style = Stroke(width = 1.dp.toPx())
-            )
-        }
         Slider(
             value = value,
             onValueChange = onValueChange,
             valueRange = 0f..1f,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
+            modifier = Modifier.fillMaxWidth(),
             colors = SliderDefaults.colors(
                 thumbColor = Color.White,
                 activeTrackColor = Color.Transparent,
                 inactiveTrackColor = Color.Transparent
+            ),
+        )
+    }
+}
+
+@Composable
+fun RGBSlider(
+    value: Int,
+    onValueChange: (Int) -> Unit,
+    channel: String, // "R", "G", "B"
+    fixedR: Int,
+    fixedG: Int,
+    fixedB: Int,
+    modifier: Modifier = Modifier
+) {
+    // 트랙용 그라데이션 색상 계산
+    val gradientColors = remember(fixedR, fixedG, fixedB, channel) {
+        when (channel) {
+            "R" -> listOf(
+                Color(0, fixedG, fixedB),
+                Color(255, fixedG, fixedB)
             )
+            "G" -> listOf(
+                Color(fixedR, 0, fixedB),
+                Color(fixedR, 255, fixedB)
+            )
+            "B" -> listOf(
+                Color(fixedR, fixedG, 0),
+                Color(fixedR, fixedG, 255)
+            )
+            else -> listOf(Color.Black, Color.White)
+        }
+    }
+
+    Column(modifier = modifier) {
+        Text(channel, modifier = Modifier.padding(bottom = 4.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(24.dp)
+                .background(
+                    brush = Brush.horizontalGradient(gradientColors),
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .border(1.dp, Color.Black, RoundedCornerShape(8.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            Slider(
+                value = value.toFloat(),
+                onValueChange = { onValueChange(it.toInt()) },
+                valueRange = 0f..255f,
+                modifier = Modifier.fillMaxWidth(),
+                colors = SliderDefaults.colors(
+                    thumbColor = Color.White,
+                    activeTrackColor = Color.Transparent,
+                    inactiveTrackColor = Color.Transparent
+                )
+            )
+        }
+    }
+}
+
+@Composable
+fun RGBSliders(
+    r: Int, g: Int, b: Int,
+    onRChange: (Int) -> Unit,
+    onGChange: (Int) -> Unit,
+    onBChange: (Int) -> Unit
+) {
+    Column {
+        RGBSlider(
+            value = r,
+            onValueChange = onRChange,
+            channel = "R",
+            fixedR = r, fixedG = g, fixedB = b
+        )
+        Spacer(Modifier.height(8.dp))
+        RGBSlider(
+            value = g,
+            onValueChange = onGChange,
+            channel = "G",
+            fixedR = r, fixedG = g, fixedB = b
+        )
+        Spacer(Modifier.height(8.dp))
+        RGBSlider(
+            value = b,
+            onValueChange = onBChange,
+            channel = "B",
+            fixedR = r, fixedG = g, fixedB = b
         )
     }
 }
@@ -251,11 +323,18 @@ fun BitmapColorWheelPicker(
     size: Dp = 220.dp
 ) {
     // HSV 상태
-    val hsv by remember(initialColor) {
-        mutableStateOf(FloatArray(3).apply { android.graphics.Color.colorToHSV(initialColor.toArgb(), this) })
-    }
+    val hsv = remember { FloatArray(3) }
     var pickedColor by remember(initialColor) { mutableStateOf(initialColor) }
     var hexInput by remember(initialColor) { mutableStateOf(colorToHexNoAlpha(initialColor)) }
+    var rgb by remember(initialColor) {
+        mutableStateOf(
+            Triple(
+                (initialColor.red * 255).roundToInt(),
+                (initialColor.green * 255).roundToInt(),
+                (initialColor.blue * 255).roundToInt()
+            )
+        )
+    }
 
     // Bitmap 캐싱 (밝기(V) 바뀔 때마다 새로 생성)
     val density = LocalDensity.current
@@ -268,6 +347,11 @@ fun BitmapColorWheelPicker(
         val color = Color(colorInt)
         pickedColor = color
         hexInput = colorToHexNoAlpha(color)
+        rgb = Triple(
+            (color.red * 255).roundToInt(),
+            (color.green * 255).roundToInt(),
+            (color.blue * 255).roundToInt()
+        )
         onColorChanged(color)
     }
 
@@ -277,11 +361,28 @@ fun BitmapColorWheelPicker(
         if (color != null) {
             pickedColor = color
             android.graphics.Color.colorToHSV(color.toArgb(), hsv)
+            rgb = Triple(
+                (color.red * 255).roundToInt(),
+                (color.green * 255).roundToInt(),
+                (color.blue * 255).roundToInt()
+            )
             onColorChanged(color)
         }
     }
 
-    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+    // Color 동기화 from RGB
+    fun updateColorFromRGB(r: Int, g: Int, b: Int) {
+        val color = Color(r, g, b)
+        pickedColor = color
+        android.graphics.Color.colorToHSV(color.toArgb(), hsv)
+        hexInput = colorToHexNoAlpha(color)
+        onColorChanged(color)
+    }
+
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         // 컬러휠
         Box(
             modifier = Modifier
@@ -343,6 +444,7 @@ fun BitmapColorWheelPicker(
             }
         }
         Spacer(Modifier.height(16.dp))
+
         // 밝기 슬라이더
         BrightnessSlider(
             hue = hsv[0],
@@ -351,10 +453,30 @@ fun BitmapColorWheelPicker(
             onValueChange = {
                 hsv[2] = it
                 updateColorFromHSV()
-            },
-            modifier = Modifier.width(200.dp)
+            }
         )
         Spacer(Modifier.height(16.dp))
+
+        // RGB 슬라이더
+        RGBSliders(
+            r = rgb.first,
+            g = rgb.second,
+            b = rgb.third,
+            onRChange = { r ->
+                rgb = Triple(r, rgb.second, rgb.third)
+                updateColorFromRGB(r, rgb.second, rgb.third)
+            },
+            onGChange = { g ->
+                rgb = Triple(rgb.first, g, rgb.third)
+                updateColorFromRGB(rgb.first, g, rgb.third)
+            },
+            onBChange = { b ->
+                rgb = Triple(rgb.first, rgb.second, b)
+                updateColorFromRGB(rgb.first, rgb.second, b)
+            }
+        )
+        Spacer(Modifier.height(16.dp))
+
         // HEX 코드 입력
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -366,7 +488,9 @@ fun BitmapColorWheelPicker(
                 onValueChange = {
                     val filtered = it.filter { c -> c.isLetterOrDigit() }.take(6).uppercase()
                     hexInput = filtered
-                    if (filtered.length == 6 && isValidHexNoAlpha(filtered)) updateColorFromHex(filtered)
+                    if (filtered.length == 6 && isValidHexNoAlpha(filtered)) {
+                        updateColorFromHex(filtered)
+                    }
                 },
                 singleLine = true,
                 modifier = Modifier.weight(1f)
@@ -401,7 +525,7 @@ fun ColorPickerDialog(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(vertical = 16.dp, horizontal = 32.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -493,7 +617,7 @@ fun AddThemeDialog(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(vertical = 16.dp, horizontal = 32.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
