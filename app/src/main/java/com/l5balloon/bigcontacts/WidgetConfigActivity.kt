@@ -81,6 +81,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import androidx.compose.material.icons.filled.Delete
 
 data class Contact(val id: Long, val lookupKey: String, val name: String)
 
@@ -115,6 +116,12 @@ suspend fun saveCustomThemes(context: Context, themes: List<WidgetTheme>) {
 suspend fun loadCustomThemes(context: Context): List<WidgetTheme> {
     val prefs = context.applicationContext.dataStore.data.first()
     return prefs[CUSTOM_THEMES_KEY]?.toThemeList() ?: emptyList()
+}
+
+suspend fun deleteCustomTheme(context: Context, themeKey: String) {
+    val currentThemes = loadCustomThemes(context)
+    val updatedThemes = currentThemes.filterNot { it.key == themeKey }
+    saveCustomThemes(context, updatedThemes)
 }
 
 class WidgetConfigActivity : ComponentActivity() {
@@ -903,6 +910,7 @@ fun WidgetConfigScreen(
     val context = LocalContext.current
     var customThemes by remember { mutableStateOf(listOf<WidgetTheme>()) }
     val coroutineScope = rememberCoroutineScope()
+    var showDeleteDialog by remember { mutableStateOf<WidgetTheme?>(null) }
 
     LaunchedEffect(Unit) {
         customThemes = loadCustomThemes(context)
@@ -1068,28 +1076,46 @@ fun WidgetConfigScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 items(allThemes) { theme ->
-                    Button(
-                        onClick = { selectedTheme = theme },
-                        modifier = if (selectedTheme == theme) {
-                            Modifier.border(4.dp, MaterialTheme.colorScheme.primary, CircleShape)
-                        } else {
-                            Modifier
-                        },
-                        shape = CircleShape,
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = theme.backgroundColor,
-                            contentColor = theme.textColor
-                        )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            if (theme.nameResId != null) {
-                                stringResource(id = theme.nameResId)
+
+                        Button(
+                            onClick = { selectedTheme = theme },
+                            modifier = if (selectedTheme == theme) {
+                                Modifier.border(4.dp, MaterialTheme.colorScheme.primary, CircleShape)
                             } else {
-                                theme.name
-                            } ?: "",
-                            fontSize = 24.sp,
-                            lineHeight = 26.sp
-                        )
+                                Modifier
+                            },
+                            shape = CircleShape,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = theme.backgroundColor,
+                                contentColor = theme.textColor
+                            )
+                        ) {
+                            Text(
+                                if (theme.nameResId != null) {
+                                    stringResource(id = theme.nameResId)
+                                } else {
+                                    theme.name
+                                } ?: "",
+                                fontSize = 24.sp,
+                                lineHeight = 26.sp
+                            )
+                        }
+
+                        // 삭제 아이콘: 커스텀 테마에만 노출
+                        if (theme.nameResId == null) {
+                            IconButton(onClick = {
+                                showDeleteDialog = theme
+                            }) {
+                                Icon(
+                                    imageVector = Icons.Filled.Delete,
+                                    contentDescription = "삭제",
+                                    tint = Color.Red
+                                )
+                            }
+                        }
                     }
                 }
                 // 사용자 테마 추가 버튼
@@ -1213,4 +1239,33 @@ fun WidgetConfigScreen(
             onDismiss = { showAddThemeDialog = false }
         )
     }
-} 
+
+    // 삭제 확인 다이얼로그
+    if (showDeleteDialog != null) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = null },
+            title = { Text("테마 삭제") },
+            text = { Text("정말 이 테마를 삭제하시겠습니까?") },
+            confirmButton = {
+                TextButton(onClick = {
+                    val themeToDelete = showDeleteDialog
+                    if (themeToDelete != null) {
+                        coroutineScope.launch {
+                            deleteCustomTheme(context, themeToDelete.key)
+                            // 상태 갱신
+                            customThemes = loadCustomThemes(context)
+                            // 선택된 테마가 삭제된 경우 기본 테마로 변경
+                            if (selectedTheme.key == themeToDelete.key) {
+                                selectedTheme = WidgetTheme.THEMES.first()
+                            }
+                        }
+                    }
+                    showDeleteDialog = null
+                }) { Text("삭제", color = Color.Red) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteDialog = null }) { Text("취소") }
+            }
+        )
+    }
+}
