@@ -28,6 +28,7 @@
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
+    <string name="please_enter_theme_name">Please enter a theme name</string>
     <string name="delete_theme_confirm">Are you sure you want to delete this theme?</string>
 
     <!-- Widget Preview -->

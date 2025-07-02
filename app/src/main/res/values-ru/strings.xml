@@ -28,6 +28,7 @@
     <string name="cancel">Отмена</string>
     <string name="add">Добавить</string>
     <string name="delete">Удалить</string>
+    <string name="please_enter_theme_name">Пожалуйста, введите название темы</string>
     <string name="delete_theme_confirm">Вы действительно хотите удалить эту тему?</string>
 
     <!-- Widget Preview -->

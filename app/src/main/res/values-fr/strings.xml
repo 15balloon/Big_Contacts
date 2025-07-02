@@ -28,6 +28,7 @@
     <string name="cancel">Annuler</string>
     <string name="add">Ajouter</string>
     <string name="delete">Supprimer</string>
+    <string name="please_enter_theme_name">Veuillez saisir un nom de thème</string>
     <string name="delete_theme_confirm">Voulez-vous vraiment supprimer ce thème ?</string>
 
     <!-- Widget Preview -->

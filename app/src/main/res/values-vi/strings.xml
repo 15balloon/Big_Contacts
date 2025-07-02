@@ -28,6 +28,7 @@
     <string name="cancel">Hủy</string>
     <string name="add">Thêm</string>
     <string name="delete">Xóa</string>
+    <string name="please_enter_theme_name">Vui lòng nhập tên chủ đề</string>
     <string name="delete_theme_confirm">Bạn có chắc chắn muốn xóa chủ đề này không?</string>
 
     <!-- Widget Preview -->

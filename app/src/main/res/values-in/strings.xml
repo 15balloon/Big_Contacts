@@ -28,6 +28,7 @@
     <string name="cancel">Batal</string>
     <string name="add">Tambah</string>
     <string name="delete">Hapus</string>
+    <string name="please_enter_theme_name">Silakan masukkan nama tema</string>
     <string name="delete_theme_confirm">Apakah Anda yakin ingin menghapus tema ini?</string>
 
     <!-- Widget Preview -->

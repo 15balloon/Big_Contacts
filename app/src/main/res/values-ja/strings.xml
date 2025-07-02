@@ -28,6 +28,7 @@
     <string name="cancel">キャンセル</string>
     <string name="add">追加</string>
     <string name="delete">削除</string>
+    <string name="please_enter_theme_name">テーマ名を入力してください</string>
     <string name="delete_theme_confirm">本当にこのテーマを削除しますか？</string>
 
     <!-- Widget Preview -->

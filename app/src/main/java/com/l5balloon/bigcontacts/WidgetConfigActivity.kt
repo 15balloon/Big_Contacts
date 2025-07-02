@@ -738,6 +738,7 @@ fun AddThemeDialog(
     onAdd: (WidgetTheme) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val context = LocalContext.current
     var themeName by remember { mutableStateOf(TextFieldValue("")) }
     var backgroundColor by remember { mutableStateOf(Color.Black) }
     var textColor by remember { mutableStateOf(Color.White) }
@@ -859,7 +860,7 @@ fun AddThemeDialog(
                                 )
                             )
                         } else {
-                            // TODO : show toast
+                            Toast.makeText(context, context.getString(R.string.please_enter_theme_name), Toast.LENGTH_SHORT).show()
                         }
                     }) { Text("추가") }
                 }

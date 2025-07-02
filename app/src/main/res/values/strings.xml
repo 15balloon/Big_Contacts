@@ -29,6 +29,7 @@
     <string name="cancel">취소</string>
     <string name="add">추가</string>
     <string name="delete">삭제</string>
+    <string name="please_enter_theme_name">테마명을 입력하세요</string>
     <string name="delete_theme_confirm">정말 이 테마를 삭제하시겠습니까?</string>
 
     <!-- Widget Preview -->

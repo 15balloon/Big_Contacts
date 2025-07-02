@@ -28,6 +28,7 @@
     <string name="cancel">रद्द करें</string>
     <string name="add">जोड़ें</string>
     <string name="delete">हटाएं</string>
+    <string name="please_enter_theme_name">कृपया थीम का नाम दर्ज करें</string>
     <string name="delete_theme_confirm">क्या आप वाकई इस थीम को हटाना चाहते हैं?</string>
 
     <!-- Widget Preview -->
