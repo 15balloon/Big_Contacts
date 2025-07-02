@@ -18,6 +18,17 @@
     <string name="config_complete">Done</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
+    <string name="theme_custom">Custom Theme</string>
+    <string name="add_theme">Add Theme</string>
+    <string name="theme_name">Theme Name</string>
+    <string name="select_background_color">Select Background Color</string>
+    <string name="select_text_color">Select Text Color</string>
+    <string name="color_picker">Color Picker</string>
+    <string name="preview">Preview</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="delete_theme_confirm">Are you sure you want to delete this theme?</string>
 
     <!-- Widget Preview -->
     <string name="widget_preview_name_short">John</string>
@@ -25,6 +36,7 @@
 
     <!-- Widget -->
     <string name="tap_to_configure">Tap to set up contact</string>
+    <string name="call">Call</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">Blue</string>

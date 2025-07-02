@@ -18,6 +18,17 @@
     <string name="config_complete">完了</string>
     <string name="previous">前へ</string>
     <string name="next">次へ</string>
+    <string name="theme_custom">カスタムテーマ</string>
+    <string name="add_theme">テーマを追加</string>
+    <string name="theme_name">テーマ名</string>
+    <string name="select_background_color">背景色を選択</string>
+    <string name="select_text_color">テキスト色を選択</string>
+    <string name="color_picker">カラーピッカー</string>
+    <string name="preview">プレビュー</string>
+    <string name="cancel">キャンセル</string>
+    <string name="add">追加</string>
+    <string name="delete">削除</string>
+    <string name="delete_theme_confirm">本当にこのテーマを削除しますか？</string>
 
     <!-- Widget Preview -->
     <string name="widget_preview_name_short">太郎</string>
@@ -25,6 +36,7 @@
 
     <!-- Widget -->
     <string name="tap_to_configure">タップして連絡先を設定</string>
+    <string name="call">通話</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">青</string>

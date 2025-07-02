@@ -18,6 +18,17 @@
     <string name="config_complete">تم</string>
     <string name="previous">السابق</string>
     <string name="next">التالي</string>
+    <string name="theme_custom">سمة المستخدم</string>
+    <string name="add_theme">إضافة سمة</string>
+    <string name="theme_name">اسم السمة</string>
+    <string name="select_background_color">اختر لون الخلفية</string>
+    <string name="select_text_color">اختر لون النص</string>
+    <string name="color_picker">منتقي الألوان</string>
+    <string name="preview">معاينة</string>
+    <string name="cancel">إلغاء</string>
+    <string name="add">إضافة</string>
+    <string name="delete">حذف</string>
+    <string name="delete_theme_confirm">هل تريد حقًا حذف هذه السمة؟</string>
 
     <!-- Widget Preview -->
     <string name="widget_preview_name_short">محمد</string>
@@ -25,6 +36,7 @@
 
     <!-- Widget -->
     <string name="tap_to_configure">اضغط لإعداد جهة الاتصال</string>
+    <string name="call">اتصال</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">أزرق</string>

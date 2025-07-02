@@ -18,6 +18,17 @@
     <string name="config_complete">Готово</string>
     <string name="previous">Назад</string>
     <string name="next">Далее</string>
+    <string name="theme_custom">Пользовательская тема</string>
+    <string name="add_theme">Добавить тему</string>
+    <string name="theme_name">Название темы</string>
+    <string name="select_background_color">Выбрать цвет фона</string>
+    <string name="select_text_color">Выбрать цвет текста</string>
+    <string name="color_picker">Палитра цветов</string>
+    <string name="preview">Предпросмотр</string>
+    <string name="cancel">Отмена</string>
+    <string name="add">Добавить</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_theme_confirm">Вы действительно хотите удалить эту тему?</string>
 
     <!-- Widget Preview -->
     <string name="widget_preview_name_short">Иван</string>
@@ -25,6 +36,7 @@
 
     <!-- Widget -->
     <string name="tap_to_configure">Нажмите, чтобы настроить контакт</string>
+    <string name="call">Вызов</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">Синий</string>

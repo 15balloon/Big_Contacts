@@ -18,6 +18,17 @@
     <string name="config_complete">Selesai</string>
     <string name="previous">Sebelumnya</string>
     <string name="next">Berikutnya</string>
+    <string name="theme_custom">Tema Kustom</string>
+    <string name="add_theme">Tambah Tema</string>
+    <string name="theme_name">Nama Tema</string>
+    <string name="select_background_color">Pilih Warna Latar</string>
+    <string name="select_text_color">Pilih Warna Teks</string>
+    <string name="color_picker">Pemilih Warna</string>
+    <string name="preview">Pratinjau</string>
+    <string name="cancel">Batal</string>
+    <string name="add">Tambah</string>
+    <string name="delete">Hapus</string>
+    <string name="delete_theme_confirm">Apakah Anda yakin ingin menghapus tema ini?</string>
 
     <!-- Widget Preview -->
     <string name="widget_preview_name_short">Budi</string>
@@ -25,6 +36,7 @@
 
     <!-- Widget -->
     <string name="tap_to_configure">Ketuk untuk mengatur kontak</string>
+    <string name="call">Panggil</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">Biru</string>

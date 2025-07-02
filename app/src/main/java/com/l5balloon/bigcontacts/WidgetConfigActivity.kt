@@ -797,7 +797,7 @@ fun AddThemeDialog(
                     // 컬러휠 아이콘 (클릭 시 picker)
                     Icon(
                         painter = painterResource(id = R.drawable.ic_color_wheel),
-                        contentDescription = "색상 선택",
+                        contentDescription = stringResource(R.string.color_picker),
                         modifier = Modifier
                             .size(56.dp)
                             .clickable { showBackgroundColorPicker = true },
@@ -823,7 +823,7 @@ fun AddThemeDialog(
                     Spacer(Modifier.width(12.dp))
                     Icon(
                         painter = painterResource(id = R.drawable.ic_color_wheel),
-                        contentDescription = "색상 선택",
+                        contentDescription = stringResource(R.string.color_picker),
                         modifier = Modifier
                             .size(56.dp)
                             .clickable { showTextColorPicker = true },
@@ -1111,7 +1111,7 @@ fun WidgetConfigScreen(
                             }) {
                                 Icon(
                                     imageVector = Icons.Filled.Delete,
-                                    contentDescription = "삭제",
+                                    contentDescription = stringResource(R.string.delete),
                                     tint = Color.Red
                                 )
                             }

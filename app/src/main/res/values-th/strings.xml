@@ -18,6 +18,17 @@
     <string name="config_complete">เสร็จสิ้น</string>
     <string name="previous">ก่อนหน้า</string>
     <string name="next">ถัดไป</string>
+    <string name="theme_custom">ธีมที่กำหนดเอง</string>
+    <string name="add_theme">เพิ่มธีม</string>
+    <string name="theme_name">ชื่อธีม</string>
+    <string name="select_background_color">เลือกสีพื้นหลัง</string>
+    <string name="select_text_color">เลือกสีข้อความ</string>
+    <string name="color_picker">ตัวเลือกสี</string>
+    <string name="preview">ดูตัวอย่าง</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="add">เพิ่ม</string>
+    <string name="delete">ลบ</string>
+    <string name="delete_theme_confirm">คุณแน่ใจหรือไม่ว่าต้องการลบธีมนี้?</string>
 
     <!-- Widget Preview -->
     <string name="widget_preview_name_short">สมชาย</string>
@@ -25,6 +36,7 @@
 
     <!-- Widget -->
     <string name="tap_to_configure">แตะเพื่อตั้งค่าผู้ติดต่อ</string>
+    <string name="call">โทร</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">น้ำเงิน</string>

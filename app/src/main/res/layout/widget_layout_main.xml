@@ -20,6 +20,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_call"
-        android:contentDescription="@null" />
+        android:contentDescription="@string/call" />
 
 </RelativeLayout> 
