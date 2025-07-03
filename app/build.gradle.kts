@@ -60,10 +60,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
     }
-
-    kotlinOptions {
-        jvmTarget = "19"
-    }
 }
 
 dependencies {
@@ -90,4 +86,6 @@ dependencies {
     implementation(libs.play.services.oss.licenses)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.gson)
+
+    implementation(libs.composecolorpicker)
 }
