@@ -42,6 +42,7 @@ fun LicenseScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(WindowInsets.systemBars.asPaddingValues())
                 .padding(padding)
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState())

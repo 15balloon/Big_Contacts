@@ -519,6 +519,7 @@ fun WidgetConfigScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(WindowInsets.systemBars.asPaddingValues())
             .padding(16.dp),
     ) {
         Text(

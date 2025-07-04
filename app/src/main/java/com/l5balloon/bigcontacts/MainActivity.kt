@@ -120,7 +120,10 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
     val widget4x1Height = widget4x1Width * (40f / 220f)
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(WindowInsets.systemBars.asPaddingValues())
+
     ) {
         Column(
             modifier = Modifier
