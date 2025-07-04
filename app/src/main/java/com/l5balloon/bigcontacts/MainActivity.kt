@@ -111,13 +111,13 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
 
-    val availableWidth = screenWidth - 32.dp
+    val availableWidth = screenWidth - 16.dp
 
     val widget2x1Width = (availableWidth / 2) - 8.dp
-    val widget2x1Height = widget2x1Width * (40f / 110f)
+    val widget2x1Height = widget2x1Width * (50f / 110f)
 
-    val widget4x1Width = availableWidth
-    val widget4x1Height = widget4x1Width * (40f / 220f)
+    val widget4x1Width = availableWidth - 8.dp
+    val widget4x1Height = widget4x1Width * (50f / 220f)
 
     Box(
         modifier = Modifier
@@ -150,7 +150,7 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(8.dp)
                 ) {
                     Text(
                         text = stringResource(R.string.add_widget_2x1),
@@ -208,7 +208,7 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(8.dp)
                 ) {
                     Text(
                         text = stringResource(R.string.add_widget_4x1),
