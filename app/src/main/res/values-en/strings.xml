@@ -36,7 +36,7 @@
     <string name="widget_preview_name_long">John Doe</string>
 
     <!-- Widget -->
-    <string name="tap_to_configure">Tap to set up contact</string>
+    <string name="tap_to_configure">Set contact</string>
     <string name="call">Call</string>
     
     <!-- Theme Names -->

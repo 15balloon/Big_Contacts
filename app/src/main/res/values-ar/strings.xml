@@ -36,7 +36,7 @@
     <string name="widget_preview_name_long">محمد أحمد</string>
 
     <!-- Widget -->
-    <string name="tap_to_configure">اضغط لإعداد جهة الاتصال</string>
+    <string name="tap_to_configure">تعيين جهة اتصال</string>
     <string name="call">اتصال</string>
     
     <!-- Theme Names -->

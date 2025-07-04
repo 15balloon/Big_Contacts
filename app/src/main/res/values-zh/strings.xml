@@ -36,7 +36,7 @@
     <string name="widget_preview_name_long">张小明</string>
 
     <!-- Widget -->
-    <string name="tap_to_configure">点击设置联系人</string>
+    <string name="tap_to_configure">设置联系人</string>
     <string name="call">通话</string>
     
     <!-- Theme Names -->
