@@ -122,7 +122,6 @@ private fun WidgetContent(
     val context = LocalContext.current
     val backgroundColor = ColorProvider(widgetTheme.backgroundColor)
     val textColor = widgetTheme.textColor.toArgb()
-    val textSize = if (contactName != null) 36.0f else 24.0f
 
     Box(
         modifier = GlanceModifier
@@ -135,7 +134,6 @@ private fun WidgetContent(
                 val textToShow = contactName ?: tapToConfigureText
                 setTextViewText(R.id.widget_text, textToShow)
                 setTextColor(R.id.widget_text, textColor)
-                setTextViewTextSize(R.id.widget_text, COMPLEX_UNIT_DIP, textSize)
             }
         )
     }
