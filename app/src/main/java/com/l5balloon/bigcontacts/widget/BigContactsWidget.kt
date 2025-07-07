@@ -3,7 +3,8 @@ package com.l5balloon.bigcontacts.widget
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
-import android.util.TypedValue.COMPLEX_UNIT_DIP
+import android.net.Uri
+import android.provider.ContactsContract
 import android.widget.RemoteViews
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.toArgb
@@ -46,8 +47,11 @@ class BigContactsWidget : GlanceAppWidget() {
 
         provideContent {
             val prefs = currentState<Preferences>()
-            val contactName = prefs[WidgetKeys.ContactName]
             val contactLookupUri = prefs[WidgetKeys.ContactLookupUri]
+            val contactName = contactLookupUri?.let { lookupUri ->
+                val name = queryContactName(context, lookupUri)
+                name
+            }
 
             val action: Action = if (contactLookupUri != null) {
                 actionStartActivity(
@@ -86,6 +90,17 @@ class BigContactsWidget : GlanceAppWidget() {
                 action = action
             )
         }
+    }
+
+    private fun queryContactName(context: Context, lookupUriString: String): String? {
+        val uri: Uri = lookupUriString.toUri()
+        val projection = arrayOf(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
+        context.contentResolver.query(uri, projection, null, null, null)?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                return cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME))
+            }
+        }
+        return null
     }
 
     companion object {
@@ -145,4 +160,4 @@ class BigContactsWidgetReceiver2x1 : GlanceAppWidgetReceiver() {
 
 class BigContactsWidgetReceiver4x1 : GlanceAppWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = BigContactsWidget()
-} 
+}
