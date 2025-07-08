@@ -15,11 +15,15 @@ import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.LocalContext
 import androidx.glance.action.Action
+import androidx.glance.action.ActionParameters
+import androidx.glance.action.actionParametersOf
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.AndroidRemoteViews
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
+import androidx.glance.appwidget.action.ActionCallback
+import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.provideContent
 import androidx.glance.appwidget.state.updateAppWidgetState
@@ -39,6 +43,33 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+class RefreshAndOpenContactAction : ActionCallback {
+    companion object {
+        val PARAM_LOOKUP_URI = ActionParameters.Key<String>("lookupUri")
+    }
+    override suspend fun onAction(
+        context: Context,
+        glanceId: GlanceId,
+        parameters: ActionParameters
+    ) {
+        // Refresh all widget
+        val glanceManager = GlanceAppWidgetManager(context)
+        val glanceIds = glanceManager.getGlanceIds(BigContactsWidget::class.java)
+        for (id in glanceIds) {
+            BigContactsWidget().update(context, id)
+        }
+
+        // open contacts
+        val lookupUri = parameters[PARAM_LOOKUP_URI]
+        if (lookupUri != null) {
+            val intent = Intent(Intent.ACTION_VIEW, lookupUri.toUri()).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            context.startActivity(intent)
+        }
+    }
+}
+
 class BigContactsWidget : GlanceAppWidget() {
     override val stateDefinition: GlanceStateDefinition<*> = PreferencesGlanceStateDefinition
 
@@ -49,13 +80,12 @@ class BigContactsWidget : GlanceAppWidget() {
             val prefs = currentState<Preferences>()
             val contactLookupUri = prefs[WidgetKeys.ContactLookupUri]
             val contactName = contactLookupUri?.let { lookupUri ->
-                val name = queryContactName(context, lookupUri)
-                name
+                queryContactName(context, lookupUri)
             }
 
             val action: Action = if (contactLookupUri != null) {
-                actionStartActivity(
-                    Intent(Intent.ACTION_VIEW, contactLookupUri.toUri())
+                actionRunCallback<RefreshAndOpenContactAction>(
+                    actionParametersOf(RefreshAndOpenContactAction.PARAM_LOOKUP_URI to contactLookupUri)
                 )
             } else {
                 val intent = Intent(context, WidgetConfigActivity::class.java).apply {
@@ -97,7 +127,7 @@ class BigContactsWidget : GlanceAppWidget() {
         val projection = arrayOf(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
         context.contentResolver.query(uri, projection, null, null, null)?.use { cursor ->
             if (cursor.moveToFirst()) {
-                return cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME))
+                return cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY))
             }
         }
         return null
