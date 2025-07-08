@@ -26,8 +26,10 @@
     <string name="color_picker">منتقي الألوان</string>
     <string name="preview">معاينة</string>
     <string name="cancel">إلغاء</string>
+    <string name="select">اختر</string>
     <string name="add">إضافة</string>
     <string name="delete">حذف</string>
+    <string name="delete_theme">حذف السمة</string>
     <string name="please_enter_theme_name">يرجى إدخال اسم السمة</string>
     <string name="delete_theme_confirm">هل تريد حقًا حذف هذه السمة؟</string>
 

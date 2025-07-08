@@ -26,8 +26,10 @@
     <string name="color_picker">カラーピッカー</string>
     <string name="preview">プレビュー</string>
     <string name="cancel">キャンセル</string>
+    <string name="select">選択</string>
     <string name="add">追加</string>
     <string name="delete">削除</string>
+    <string name="delete_theme">テーマを削除</string>
     <string name="please_enter_theme_name">テーマ名を入力してください</string>
     <string name="delete_theme_confirm">本当にこのテーマを削除しますか？</string>
 

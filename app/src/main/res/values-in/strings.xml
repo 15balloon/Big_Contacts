@@ -26,8 +26,10 @@
     <string name="color_picker">Pemilih Warna</string>
     <string name="preview">Pratinjau</string>
     <string name="cancel">Batal</string>
+    <string name="select">Pilih</string>
     <string name="add">Tambah</string>
     <string name="delete">Hapus</string>
+    <string name="delete_theme">Hapus tema</string>
     <string name="please_enter_theme_name">Silakan masukkan nama tema</string>
     <string name="delete_theme_confirm">Apakah Anda yakin ingin menghapus tema ini?</string>
 

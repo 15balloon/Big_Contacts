@@ -26,8 +26,10 @@
     <string name="color_picker">Bộ chọn màu</string>
     <string name="preview">Xem trước</string>
     <string name="cancel">Hủy</string>
+    <string name="select">Chọn</string>
     <string name="add">Thêm</string>
     <string name="delete">Xóa</string>
+    <string name="delete_theme">Xóa chủ đề</string>
     <string name="please_enter_theme_name">Vui lòng nhập tên chủ đề</string>
     <string name="delete_theme_confirm">Bạn có chắc chắn muốn xóa chủ đề này không?</string>
 

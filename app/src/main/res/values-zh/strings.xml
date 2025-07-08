@@ -26,8 +26,10 @@
     <string name="color_picker">颜色选择器</string>
     <string name="preview">预览</string>
     <string name="cancel">取消</string>
+    <string name="select">选择</string>
     <string name="add">添加</string>
     <string name="delete">删除</string>
+    <string name="delete_theme">删除主题</string>
     <string name="please_enter_theme_name">请输入主题名称</string>
     <string name="delete_theme_confirm">您确定要删除此主题吗？</string>
 

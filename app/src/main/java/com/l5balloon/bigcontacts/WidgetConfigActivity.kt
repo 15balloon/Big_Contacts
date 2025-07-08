@@ -219,7 +219,7 @@ fun ColorPickerDialog(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "색상 선택",
+                    stringResource(R.string.color_picker),
                     modifier = Modifier.align(Alignment.Start),
                     style = MaterialTheme.typography.titleLarge
                 )
@@ -248,11 +248,11 @@ fun ColorPickerDialog(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     TextButton(onClick = onDismiss) {
-                        Text("취소")
+                        Text(stringResource(R.string.cancel))
                     }
                     Spacer(Modifier.width(8.dp))
                     Button(onClick = { onColorSelected(pickedColor) }) {
-                        Text("선택")
+                        Text(stringResource(R.string.select))
                     }
                 }
             }
@@ -278,7 +278,7 @@ fun ThemePreview(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "미리보기",
+                text = stringResource(R.string.preview),
                 style = TextStyle(
                     fontSize = dpToSp(36.dp),
                     fontWeight = Bold
@@ -321,7 +321,7 @@ fun AddThemeDialog(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "테마 추가",
+                    stringResource(R.string.add_theme),
                     modifier = Modifier.align(Alignment.Start),
                     style = MaterialTheme.typography.titleLarge
                 )
@@ -330,7 +330,7 @@ fun AddThemeDialog(
                 OutlinedTextField(
                     value = themeName,
                     onValueChange = { themeName = it },
-                    label = { Text("테마명") },
+                    label = { Text(stringResource(R.string.theme_name)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -338,7 +338,7 @@ fun AddThemeDialog(
 
                 // 배경색 선택
                 Text(
-                    "배경색 선택",
+                    stringResource(R.string.select_background_color),
                     modifier = Modifier.align(Alignment.Start)
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -365,7 +365,7 @@ fun AddThemeDialog(
 
                 // 글자색 선택
                 Text(
-                    "글자색 선택",
+                    stringResource(R.string.select_text_color),
                     modifier = Modifier.align(Alignment.Start)
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -401,7 +401,7 @@ fun AddThemeDialog(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     TextButton(onClick = onDismiss) {
-                        Text("취소")
+                        Text(stringResource(R.string.cancel))
                     }
                     Spacer(Modifier.width(8.dp))
                     Button(onClick = {
@@ -418,7 +418,7 @@ fun AddThemeDialog(
                         } else {
                             Toast.makeText(context, context.getString(R.string.please_enter_theme_name), Toast.LENGTH_SHORT).show()
                         }
-                    }) { Text("추가") }
+                    }) { Text(stringResource(R.string.add)) }
                 }
             }
         }
@@ -802,8 +802,8 @@ fun WidgetConfigScreen(
     if (showDeleteDialog != null) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = null },
-            title = { Text("테마 삭제") },
-            text = { Text("정말 이 테마를 삭제하시겠습니까?") },
+            title = { Text(stringResource(R.string.delete_theme)) },
+            text = { Text(stringResource(R.string.delete_theme_confirm)) },
             confirmButton = {
                 TextButton(onClick = {
                     val themeToDelete = showDeleteDialog
@@ -819,10 +819,10 @@ fun WidgetConfigScreen(
                         }
                     }
                     showDeleteDialog = null
-                }) { Text("삭제", color = Color.Red) }
+                }) { Text(stringResource(R.string.delete), color = Color.Red) }
             },
             dismissButton = {
-                TextButton(onClick = { showDeleteDialog = null }) { Text("취소") }
+                TextButton(onClick = { showDeleteDialog = null }) { Text(stringResource(R.string.cancel)) }
             }
         )
     }

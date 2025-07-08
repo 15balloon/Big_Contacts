@@ -26,8 +26,10 @@
     <string name="color_picker">Sélecteur de couleur</string>
     <string name="preview">Aperçu</string>
     <string name="cancel">Annuler</string>
+    <string name="select">Sélectionner</string>
     <string name="add">Ajouter</string>
     <string name="delete">Supprimer</string>
+    <string name="delete_theme">Supprimer le thème</string>
     <string name="please_enter_theme_name">Veuillez saisir un nom de thème</string>
     <string name="delete_theme_confirm">Voulez-vous vraiment supprimer ce thème ?</string>
 

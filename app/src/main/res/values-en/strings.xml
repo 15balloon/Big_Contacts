@@ -26,8 +26,10 @@
     <string name="color_picker">Color Picker</string>
     <string name="preview">Preview</string>
     <string name="cancel">Cancel</string>
+    <string name="select">Select</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
+    <string name="delete_theme">Delete theme</string>
     <string name="please_enter_theme_name">Please enter a theme name</string>
     <string name="delete_theme_confirm">Are you sure you want to delete this theme?</string>
 

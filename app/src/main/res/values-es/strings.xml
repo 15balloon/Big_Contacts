@@ -26,8 +26,10 @@
     <string name="color_picker">Selector de color</string>
     <string name="preview">Vista previa</string>
     <string name="cancel">Cancelar</string>
+    <string name="select">Seleccionar</string>
     <string name="add">Agregar</string>
     <string name="delete">Eliminar</string>
+    <string name="delete_theme">Eliminar tema</string>
     <string name="please_enter_theme_name">Por favor, ingrese el nombre del tema</string>
     <string name="delete_theme_confirm">¿Seguro que deseas eliminar este tema?</string>
 
