@@ -2,7 +2,7 @@
 <resources>
 
     <!-- App Name -->
-    <string name="app_name">글자가 큰 연락처</string>
+    <string name="app_name">큰 연락처 위젯</string>
     
     <!-- Main Screen -->
     <string name="add_widget">연락처 위젯 추가</string>

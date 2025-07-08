@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Grandi Contatti</string>
+    <string name="app_name">Widget Contatti Grandi</string>
     
     <!-- Main Screen -->
     <string name="add_widget">Aggiungi widget contatto</string>

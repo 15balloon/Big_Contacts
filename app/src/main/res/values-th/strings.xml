@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">รายชื่อผู้ติดต่อขนาดใหญ่</string>
+    <string name="app_name">วิดเจ็ตรายชื่อผู้ติดต่อขนาดใหญ่</string>
     
     <!-- Main Screen -->
     <string name="add_widget">เพิ่มวิดเจ็ตรายชื่อผู้ติดต่อ</string>

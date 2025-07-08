@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">बड़े संपर्क</string>
+    <string name="app_name">बड़ा संपर्क विजेट</string>
     
     <!-- Main Screen -->
     <string name="add_widget">संपर्क विजेट जोड़ें</string>

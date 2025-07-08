@@ -1,7 +1,7 @@
-# Big Contacts
+# Big Contacts Widget
 
 > A personal Android App Project   
-> Big Contacts is a customizable widget app that lets you quickly access your contacts from the home screen
+> Big Contacts Widget is a customizable widget app that lets you quickly access your contacts from the home screen
 
 ## App Market Link
 

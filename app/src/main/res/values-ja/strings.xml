@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">ビッグ連絡先</string>
+    <string name="app_name">大きい連絡先ウィジェット</string>
     
     <!-- Main Screen -->
     <string name="add_widget">連絡先ウィジェットを追加</string>
