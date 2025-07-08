@@ -6,8 +6,8 @@ import com.l5balloon.bigcontacts.R
 
 data class WidgetTheme(
     val key: String,
-    @StringRes val nameResId: Int?, // 기본 테마만
-    val name: String?, // 커스텀 테마만
+    @StringRes val nameResId: Int?, // Only default themes
+    val name: String?, // Only custom themes
     val backgroundColor: Color,
     val textColor: Color
 ) {

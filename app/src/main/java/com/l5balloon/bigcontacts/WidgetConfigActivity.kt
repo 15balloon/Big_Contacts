@@ -73,7 +73,7 @@ import com.l5balloon.composecolorpicker.ColorPicker
 
 data class Contact(val id: Long, val lookupKey: String, val name: String)
 
-// WidgetTheme 안전 직렬화용 DTO 및 변환 함수
+// WidgetTheme DTO and conversion functions for safe serialization
 data class WidgetThemeDto(
     val key: String,
     val nameResId: Int?,
@@ -326,7 +326,7 @@ fun AddThemeDialog(
                     style = MaterialTheme.typography.titleLarge
                 )
 
-                // 테마명 입력
+                // Theme name input
                 OutlinedTextField(
                     value = themeName,
                     onValueChange = { themeName = it },
@@ -336,13 +336,13 @@ fun AddThemeDialog(
                 )
                 Spacer(Modifier.height(8.dp))
 
-                // 배경색 선택
+                // Background color selection
                 Text(
                     stringResource(R.string.select_background_color),
                     modifier = Modifier.align(Alignment.Start)
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    // 색상 미리보기
+                    // Color preview
                     Box(
                         modifier = Modifier
                             .size(width = 120.dp, height = 56.dp)
@@ -351,7 +351,7 @@ fun AddThemeDialog(
                             .border(1.dp, Color.Gray, RoundedCornerShape(16.dp))
                     )
                     Spacer(Modifier.width(12.dp))
-                    // 컬러휠 아이콘 (클릭 시 picker)
+                    // Color wheel icon (opens picker on click)
                     Icon(
                         painter = painterResource(id = R.drawable.ic_color_wheel),
                         contentDescription = stringResource(R.string.color_picker),
@@ -363,13 +363,13 @@ fun AddThemeDialog(
                 }
                 Spacer(Modifier.height(8.dp))
 
-                // 글자색 선택
+                // Text color selection
                 Text(
                     stringResource(R.string.select_text_color),
                     modifier = Modifier.align(Alignment.Start)
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    // 색상 미리보기
+                    // Color preview
                     Box(
                         modifier = Modifier
                             .size(width = 120.dp, height = 56.dp)
@@ -389,7 +389,7 @@ fun AddThemeDialog(
                 }
                 Spacer(Modifier.height(16.dp))
 
-                // 예시 미리보기
+                // Example preview
                 ThemePreview(
                     backgroundColor = backgroundColor,
                     textColor = textColor,
@@ -424,7 +424,7 @@ fun AddThemeDialog(
         }
     }
 
-    // 배경색 컬러 피커 다이얼로그
+    // Background color color picker dialog
     if (showBackgroundColorPicker) {
         key(backgroundColor) {
             ColorPickerDialog(
@@ -440,7 +440,7 @@ fun AddThemeDialog(
             )
         }
     }
-    // 글자색 컬러 피커 다이얼로그
+    // Text color color picker dialog
     if (showTextColorPicker) {
         key(textColor) {
             ColorPickerDialog(
@@ -513,7 +513,7 @@ fun WidgetConfigScreen(
         }
     }
 
-    // 테마 추가 다이얼로그 상태
+    // Add theme dialog state
     var showAddThemeDialog by remember { mutableStateOf(false) }
 
     Column(
@@ -617,7 +617,7 @@ fun WidgetConfigScreen(
             lineHeight = 26.sp
         )
 
-        // 테마 목록 + 테마 추가 버튼
+        // Theme list + add theme button
         val allThemes = WidgetTheme.THEMES + customThemes
         val themeListState = rememberLazyListState()
         val themeScope = rememberCoroutineScope()
@@ -662,7 +662,7 @@ fun WidgetConfigScreen(
                             )
                         }
 
-                        // 삭제 아이콘: 커스텀 테마에만 노출
+                        // Delete icon: only shown for custom themes
                         if (theme.nameResId == null) {
                             IconButton(onClick = {
                                 showDeleteDialog = theme
@@ -676,7 +676,7 @@ fun WidgetConfigScreen(
                         }
                     }
                 }
-                // 사용자 테마 추가 버튼
+                // Add user theme button
                 item {
                     Button(
                         onClick = { showAddThemeDialog = true },
@@ -783,7 +783,7 @@ fun WidgetConfigScreen(
         }
     }
 
-    // 테마 추가 다이얼로그
+    // Add theme dialog
     if (showAddThemeDialog) {
         AddThemeDialog(
             onAdd = { theme ->
@@ -798,7 +798,7 @@ fun WidgetConfigScreen(
         )
     }
 
-    // 삭제 확인 다이얼로그
+    // Delete confirmation dialog
     if (showDeleteDialog != null) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = null },
@@ -810,9 +810,9 @@ fun WidgetConfigScreen(
                     if (themeToDelete != null) {
                         coroutineScope.launch {
                             deleteCustomTheme(context, themeToDelete.key)
-                            // 상태 갱신
+                            // State update
                             customThemes = loadCustomThemes(context)
-                            // 선택된 테마가 삭제된 경우 기본 테마로 변경
+                            // Change to default theme if selected theme is deleted
                             if (selectedTheme.key == themeToDelete.key) {
                                 selectedTheme = WidgetTheme.THEMES.first()
                             }
