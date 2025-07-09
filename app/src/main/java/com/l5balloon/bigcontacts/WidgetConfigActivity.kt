@@ -66,31 +66,12 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import androidx.compose.material.icons.filled.Delete
+import com.l5balloon.bigcontacts.widget.Contact
+import com.l5balloon.bigcontacts.widget.loadContacts
+import com.l5balloon.bigcontacts.widget.toJson
+import com.l5balloon.bigcontacts.widget.toThemeList
 import com.l5balloon.composecolorpicker.ColorPicker
-
-data class Contact(val id: Long, val lookupKey: String, val name: String)
-
-// WidgetTheme DTO and conversion functions for safe serialization
-data class WidgetThemeDto(
-    val key: String,
-    val nameResId: Int?,
-    val name: String?,
-    val backgroundColor: Int,
-    val textColor: Int
-)
-
-fun WidgetTheme.toDto() = WidgetThemeDto(key, nameResId, name, backgroundColor.toArgb(), textColor.toArgb())
-fun WidgetThemeDto.toTheme() = WidgetTheme(key, nameResId, name, Color(backgroundColor), Color(textColor))
-
-fun List<WidgetTheme>.toJson(): String = Gson().toJson(this.map { it.toDto() })
-fun String.toThemeList(): List<WidgetTheme> =
-    runCatching {
-        Gson().fromJson<List<WidgetThemeDto>>(this, object : TypeToken<List<WidgetThemeDto>>(){}.type)
-            .map { it.toTheme() }
-    }.getOrDefault(emptyList())
 
 private val Context.dataStore by preferencesDataStore(name = "settings")
 private val CUSTOM_THEMES_KEY = stringPreferencesKey("custom_themes")
@@ -153,34 +134,6 @@ class WidgetConfigActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    fun loadContacts(context: Context): List<Contact> {
-        val contacts = mutableListOf<Contact>()
-        val projection = arrayOf(
-            ContactsContract.Contacts._ID,
-            ContactsContract.Contacts.LOOKUP_KEY,
-            ContactsContract.Contacts.DISPLAY_NAME_PRIMARY
-        )
-        val cursor = context.contentResolver.query(
-            ContactsContract.Contacts.CONTENT_URI,
-            projection,
-            null,
-            null,
-            ContactsContract.Contacts.DISPLAY_NAME_PRIMARY + " ASC"
-        )
-        cursor?.use {
-            val idColumn = it.getColumnIndex(ContactsContract.Contacts._ID)
-            val lookupKeyColumn = it.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY)
-            val nameColumn = it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
-            while (it.moveToNext()) {
-                val id = it.getLong(idColumn)
-                val lookupKey = it.getString(lookupKeyColumn)
-                val name = it.getString(nameColumn)
-                contacts.add(Contact(id, lookupKey, name))
-            }
-        }
-        return contacts
     }
 }
 
@@ -507,7 +460,7 @@ fun WidgetConfigScreen(
 
     LaunchedEffect(hasPermission) {
         if (hasPermission) {
-            val loadedContacts = (context as WidgetConfigActivity).loadContacts(context)
+            val loadedContacts = loadContacts(context)
             contacts.clear()
             contacts.addAll(loadedContacts)
         }

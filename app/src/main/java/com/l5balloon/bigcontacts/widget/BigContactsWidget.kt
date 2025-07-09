@@ -3,8 +3,6 @@ package com.l5balloon.bigcontacts.widget
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.provider.ContactsContract
 import android.widget.RemoteViews
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.toArgb
@@ -120,17 +118,6 @@ class BigContactsWidget : GlanceAppWidget() {
                 action = action
             )
         }
-    }
-
-    private fun queryContactName(context: Context, lookupUriString: String): String? {
-        val uri: Uri = lookupUriString.toUri()
-        val projection = arrayOf(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
-        context.contentResolver.query(uri, projection, null, null, null)?.use { cursor ->
-            if (cursor.moveToFirst()) {
-                return cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY))
-            }
-        }
-        return null
     }
 
     companion object {

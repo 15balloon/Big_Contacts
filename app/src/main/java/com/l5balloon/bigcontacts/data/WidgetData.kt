@@ -11,8 +11,4 @@ data class WidgetData(
     val is4x1: Boolean = false,
     val backgroundColor: Int = 0,
     val textColor: Int = 0
-) : Parcelable {
-    fun isValid(): Boolean {
-        return contactName.isNotBlank() && contactLookupUri.isNotBlank()
-    }
-} 
+) : Parcelable
