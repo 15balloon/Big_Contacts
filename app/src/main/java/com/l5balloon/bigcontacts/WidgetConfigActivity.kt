@@ -209,7 +209,9 @@ fun ColorPickerDialog(
                 ) {
                     ColorPicker(
                         initialColor = initialColor,
-                        onColorChanged = { pickedColor = it }
+                        onColorChanged = { pickedColor = it },
+                        useAlpha = true,
+                        showAlphaSlider = true,
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                 }
