@@ -13,6 +13,7 @@
     <string name="widget_config_title">إعدادات أداة جهة الاتصال</string>
     <string name="permission_rationale">لعرض جهات الاتصال في الأداة، يلزم إذن قراءة جهات الاتصال. يرجى الانتقال إلى الإعدادات لمنح الإذن.</string>
     <string name="go_to_settings">الانتقال إلى الإعدادات</string>
+    <string name="loading_contacts">جاري تحميل جهات الاتصال</string>
     <string name="select_contact">اختر جهة اتصال</string>
     <string name="widget_config_theme_title">اختيار السمة</string>
     <string name="config_complete">تم</string>

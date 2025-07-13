@@ -13,6 +13,7 @@
     <string name="widget_config_title">संपर्क विजेट सेटिंग्स</string>
     <string name="permission_rationale">विजेट में संपर्क दिखाने के लिए संपर्क पढ़ने की अनुमति आवश्यक है। कृपया अनुमति देने के लिए सेटिंग्स पर जाएं।</string>
     <string name="go_to_settings">सेटिंग्स पर जाएं</string>
+    <string name="loading_contacts">संपर्क लोड हो रहे हैं</string>
     <string name="select_contact">संपर्क चुनें</string>
     <string name="widget_config_theme_title">थीम चयन</string>
     <string name="config_complete">पूर्ण</string>

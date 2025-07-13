@@ -72,6 +72,9 @@ import com.l5balloon.bigcontacts.widget.loadContacts
 import com.l5balloon.bigcontacts.widget.toJson
 import com.l5balloon.bigcontacts.widget.toThemeList
 import com.l5balloon.composecolorpicker.ColorPicker
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 private val Context.dataStore by preferencesDataStore(name = "settings")
 private val CUSTOM_THEMES_KEY = stringPreferencesKey("custom_themes")
@@ -134,6 +137,26 @@ class WidgetConfigActivity : ComponentActivity() {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun LoadingContactsUI() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.loading_contacts),
+            fontSize = dpToSp(24.dp),
+            color = MaterialTheme.colorScheme.onSurface
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        CircularProgressIndicator(
+            modifier = Modifier.size(48.dp),
+            color = MaterialTheme.colorScheme.primary
+        )
     }
 }
 
@@ -430,6 +453,7 @@ fun WidgetConfigScreen(
 
     var hasPermission by remember { mutableStateOf(false) }
     val contacts = remember { mutableStateListOf<Contact>() }
+    var isLoadingContacts by remember { mutableStateOf(false) }
 
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
@@ -460,9 +484,15 @@ fun WidgetConfigScreen(
 
     LaunchedEffect(hasPermission) {
         if (hasPermission) {
-            val loadedContacts = loadContacts(context)
-            contacts.clear()
-            contacts.addAll(loadedContacts)
+            isLoadingContacts = true
+            withContext(Dispatchers.IO) {
+                val loadedContacts = loadContacts(context)
+                contacts.clear()
+                contacts.addAll(loadedContacts)
+
+                delay(1000L)
+            }
+            isLoadingContacts = false
         }
     }
 
@@ -486,49 +516,53 @@ fun WidgetConfigScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         if (hasPermission) {
-            Text(
-                stringResource(id = R.string.select_contact),
-                style = MaterialTheme.typography.titleMedium,
-                fontSize = 24.sp,
-                lineHeight = 26.sp
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(contacts) { contact ->
-                    val isSelected = selectedContact?.id == contact.id
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .defaultMinSize(minHeight = 72.dp)
-                            .background(
-                                color = MaterialTheme.colorScheme.primaryContainer,
-                                shape = RoundedCornerShape(16.dp)
-                            )
-                            .clickable { selectedContact = contact }
-                            .then(
-                                if (isSelected) Modifier.border(
-                                    2.dp,
-                                    MaterialTheme.colorScheme.primary,
-                                    RoundedCornerShape(16.dp)
+            if (isLoadingContacts) {
+                LoadingContactsUI()
+            } else {
+                Text(
+                    stringResource(id = R.string.select_contact),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontSize = 24.sp,
+                    lineHeight = 26.sp
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                LazyColumn(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(contacts) { contact ->
+                        val isSelected = selectedContact?.id == contact.id
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .defaultMinSize(minHeight = 72.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.primaryContainer,
+                                    shape = RoundedCornerShape(16.dp)
                                 )
-                                else Modifier
-                            )
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(16.dp)
+                                .clickable { selectedContact = contact }
+                                .then(
+                                    if (isSelected) Modifier.border(
+                                        2.dp,
+                                        MaterialTheme.colorScheme.primary,
+                                        RoundedCornerShape(16.dp)
+                                    )
+                                    else Modifier
+                                )
                         ) {
-                            Text(
-                                text = contact.name,
-                                fontSize = 24.sp,
-                                lineHeight = 26.sp,
-                                maxLines = 2,
-                                overflow = TextOverflow.Clip,
-                                color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
-                            )
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(16.dp)
+                            ) {
+                                Text(
+                                    text = contact.name,
+                                    fontSize = 24.sp,
+                                    lineHeight = 26.sp,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Clip,
+                                    color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
+                                )
+                            }
                         }
                     }
                 }

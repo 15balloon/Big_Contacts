@@ -13,6 +13,7 @@
     <string name="widget_config_title">Paramètres du widget de contact</string>
     <string name="permission_rationale">Pour afficher les contacts dans le widget, l\'autorisation de lire les contacts est requise. Veuillez aller dans les paramètres pour accorder l\'autorisation.</string>
     <string name="go_to_settings">Aller aux paramètres</string>
+    <string name="loading_contacts">Chargement des contacts</string>
     <string name="select_contact">Sélectionner un contact</string>
     <string name="widget_config_theme_title">Sélection du thème</string>
     <string name="config_complete">Terminé</string>

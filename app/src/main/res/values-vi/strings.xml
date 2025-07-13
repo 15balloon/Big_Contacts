@@ -13,6 +13,7 @@
     <string name="widget_config_title">Cài đặt tiện ích liên hệ</string>
     <string name="permission_rationale">Để hiển thị danh bạ trong tiện ích, cần có quyền Đọc danh bạ. Vui lòng vào Cài đặt để cấp quyền.</string>
     <string name="go_to_settings">Đi tới Cài đặt</string>
+    <string name="loading_contacts">Đang tải danh bạ</string>
     <string name="select_contact">Chọn liên hệ</string>
     <string name="widget_config_theme_title">Chọn chủ đề</string>
     <string name="config_complete">Hoàn tất</string>
