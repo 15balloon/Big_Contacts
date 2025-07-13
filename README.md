@@ -5,7 +5,7 @@
 
 ## App Market Link
 
-<>
+Google Play: <https://play.google.com/store/apps/details?id=com.l5balloon.bigcontacts>
 
 ## 📆 Development Period
 
@@ -27,7 +27,7 @@ Solves the inconvenience of the default contact widgets, which display name too 
 - Add big contact widgets to your home screen
 - Call contacts with a single tap
 - Customize widgets with various themes (background and text color)
-- Intuitive color picker (color wheel, HEX/RGB input supported)
+- Intuitive color picker (color wheel, Brightness/Alpha/HEX/RGB input supported)
 - Instantly preview widget styles in real time
 - Multilingual support (15 languages)
 
@@ -47,7 +47,7 @@ Solves the inconvenience of the default contact widgets, which display name too 
 
 ## 앱 마켓 링크
 
-<>
+Google Play: <https://play.google.com/store/apps/details?id=com.l5balloon.bigcontacts>
 
 ## 📆 개발 기간
 
@@ -69,7 +69,7 @@ Solves the inconvenience of the default contact widgets, which display name too 
 - 홈 화면에 큰 글자 연락처 위젯 추가
 - 한 번의 터치로 바로 연락처 이동
 - 다양한 테마(배경색, 글자색)로 위젯 커스터마이즈
-- 직관적인 컬러 피커(색상 휠, HEX/RGB 입력 지원)
+- 직관적인 색상 선택 화면(색상 휠, Brightness/Alpha/HEX/RGB 입력 지원)
 - 실시간 미리보기로 위젯 스타일 확인
 - 다국어 지원(15개 언어)
 
