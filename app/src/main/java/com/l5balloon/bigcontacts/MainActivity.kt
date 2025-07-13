@@ -187,7 +187,7 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                         Text(
                             text = stringResource(R.string.widget_preview_name_short),
                             style = TextStyle(
-                                fontSize = dpToSp(36.dp),
+                                fontSize = dpToSp(30.dp),
                                 fontWeight = Bold
                             ),
                             color = MaterialTheme.colorScheme.onSurface
@@ -245,7 +245,7 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                         Text(
                             text = stringResource(R.string.widget_preview_name_long),
                             style = TextStyle(
-                                fontSize = dpToSp(36.dp),
+                                fontSize = dpToSp(30.dp),
                                 fontWeight = Bold
                             ),
                             color = MaterialTheme.colorScheme.onSurface
