@@ -19,7 +19,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
@@ -32,6 +31,8 @@ import com.l5balloon.bigcontacts.widget.BigContactsWidgetReceiver4x1
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
@@ -108,26 +109,22 @@ fun dpToSp(dp: Dp) = with(LocalDensity.current) { dp.toSp() }
 @Composable
 fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
     val context = LocalContext.current
-    val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp.dp
 
-    val availableWidth = screenWidth - 16.dp
+    val widget2x1Width = 184.dp
+    val widget2x1Height = 88.dp
 
-    val widget2x1Width = (availableWidth / 2) - 8.dp
-    val widget2x1Height = widget2x1Width * (50f / 110f)
-
-    val widget4x1Width = availableWidth - 8.dp
-    val widget4x1Height = widget4x1Width * (50f / 220f)
+    val widget4x1Width = 376.dp
+    val widget4x1Height = 88.dp
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(WindowInsets.systemBars.asPaddingValues())
-
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -254,7 +251,8 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                 }
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.weight(1f, fill = true))
 
             Row(
                 modifier = Modifier
