@@ -609,6 +609,7 @@ fun WidgetConfigScreen(
         val themeListState = rememberLazyListState()
         val themeScope = rememberCoroutineScope()
         val rowHeight = 60.dp
+        val maxRowHeight = rowHeight + 20.dp
 
         Box(modifier = Modifier.fillMaxWidth()) {
             LazyRow(
@@ -688,7 +689,7 @@ fun WidgetConfigScreen(
                 Modifier
                     .align(Alignment.CenterStart)
                     .width(32.dp)
-                    .defaultMinSize(minHeight = rowHeight)
+                    .height(maxRowHeight)
                     .background(
                         Brush.horizontalGradient(
                             listOf(MaterialTheme.colorScheme.background, Color.Transparent)
@@ -699,7 +700,7 @@ fun WidgetConfigScreen(
                 Modifier
                     .align(Alignment.CenterEnd)
                     .width(32.dp)
-                    .defaultMinSize(minHeight = rowHeight)
+                    .height(maxRowHeight)
                     .background(
                         Brush.horizontalGradient(
                             listOf(Color.Transparent, MaterialTheme.colorScheme.background)
@@ -713,7 +714,7 @@ fun WidgetConfigScreen(
                     .align(Alignment.CenterStart)
                     .padding(start = 4.dp)
                     .size(32.dp)
-                    .defaultMinSize(minHeight = rowHeight)
+                    .height(maxRowHeight)
                     .clickable {
                         themeScope.launch {
                             themeListState.animateScrollBy(-600f)
@@ -728,7 +729,7 @@ fun WidgetConfigScreen(
                     .align(Alignment.CenterEnd)
                     .padding(end = 4.dp)
                     .size(32.dp)
-                    .defaultMinSize(minHeight = rowHeight)
+                    .height(maxRowHeight)
                     .clickable {
                         themeScope.launch {
                             themeListState.animateScrollBy(600f)
