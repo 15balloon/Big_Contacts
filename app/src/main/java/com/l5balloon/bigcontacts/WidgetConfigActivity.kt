@@ -607,7 +607,7 @@ fun WidgetConfigScreen(
         val allThemes = WidgetTheme.THEMES + customThemes
         val themeListState = rememberLazyListState()
         val themeScope = rememberCoroutineScope()
-        val rowHeight = 80.dp
+        val rowHeight = 60.dp
 
         Box(modifier = Modifier.fillMaxWidth()) {
             LazyRow(
@@ -615,7 +615,7 @@ fun WidgetConfigScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .defaultMinSize(minHeight = rowHeight),
-                contentPadding = PaddingValues(horizontal = 32.dp),
+                contentPadding = PaddingValues(vertical = 10.dp, horizontal = 32.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -626,9 +626,11 @@ fun WidgetConfigScreen(
                         Button(
                             onClick = { selectedTheme = theme },
                             modifier = if (selectedTheme == theme) {
-                                Modifier.border(4.dp, MaterialTheme.colorScheme.primary, CircleShape)
-                            } else {
                                 Modifier
+                                    .border(4.dp, MaterialTheme.colorScheme.primary, CircleShape)
+                                    .defaultMinSize(minHeight = rowHeight)
+                            } else {
+                                Modifier.defaultMinSize(minHeight = rowHeight)
                             },
                             shape = CircleShape,
                             colors = ButtonDefaults.buttonColors(
