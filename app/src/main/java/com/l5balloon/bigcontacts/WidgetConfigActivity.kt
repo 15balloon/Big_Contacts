@@ -492,7 +492,7 @@ fun WidgetConfigScreen(
                 contacts.clear()
                 contacts.addAll(loadedContacts)
 
-                delay(1000L)
+                delay(200L)
             }
             isLoadingContacts = false
         }
