@@ -56,6 +56,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Text
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
@@ -672,9 +673,14 @@ fun WidgetConfigScreen(
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.surfaceVariant,
                             contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                        ),
+                        contentPadding = PaddingValues(0.dp)
                     ) {
-                        Text("+", fontSize = 32.sp)
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = stringResource(R.string.add),
+                            modifier = Modifier.size(32.dp)
+                        )
                     }
                 }
             }
