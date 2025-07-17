@@ -551,20 +551,17 @@ fun WidgetConfigScreen(
                                     )
                                     else Modifier
                                 )
+                                .padding(16.dp),
+                            contentAlignment = Alignment.CenterStart
                         ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(16.dp)
-                            ) {
-                                Text(
-                                    text = contact.name,
-                                    fontSize = 24.sp,
-                                    lineHeight = 26.sp,
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Clip,
-                                    color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
-                                )
-                            }
+                            Text(
+                                text = contact.name,
+                                fontSize = 24.sp,
+                                lineHeight = 26.sp,
+                                maxLines = 2,
+                                overflow = TextOverflow.Clip,
+                                color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
+                            )
                         }
                     }
                 }
@@ -626,7 +623,6 @@ fun WidgetConfigScreen(
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-
                         Button(
                             onClick = { selectedTheme = theme },
                             modifier = if (selectedTheme == theme) {
