@@ -13,7 +13,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="26dp"
         android:textStyle="bold" />
 
     <ImageView
