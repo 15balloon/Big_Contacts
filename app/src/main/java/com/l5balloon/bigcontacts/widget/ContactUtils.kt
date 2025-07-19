@@ -43,10 +43,20 @@ fun loadContacts(context: Context): List<Contact> {
         val idColumn = it.getColumnIndex(ContactsContract.Contacts._ID)
         val lookupKeyColumn = it.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY)
         val nameColumn = it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY)
+
+        if (idColumn == -1 || lookupKeyColumn == -1 || nameColumn == -1) {
+            return emptyList()
+        }
+
         while (it.moveToNext()) {
             val id = it.getLong(idColumn)
             val lookupKey = it.getString(lookupKeyColumn)
             val name = it.getString(nameColumn)
+
+            if (name.isNullOrBlank()) {
+                continue
+            }
+
             contacts.add(Contact(id, lookupKey, name))
         }
     }
