@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">ตั้งค่าผู้ติดต่อ</string>
     <string name="call">โทร</string>
-    
+    <string name="error">ข้อผิดพลาด</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">น้ำเงิน</string>
     <string name="theme_green">เขียว</string>

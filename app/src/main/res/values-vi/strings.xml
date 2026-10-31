@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">Đặt liên hệ</string>
     <string name="call">Gọi</string>
-    
+    <string name="error">Lỗi</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">Xanh dương</string>
     <string name="theme_green">Xanh lá</string>

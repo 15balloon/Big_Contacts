@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">連絡先設定</string>
     <string name="call">通話</string>
-    
+    <string name="error">エラー</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">青</string>
     <string name="theme_green">緑</string>

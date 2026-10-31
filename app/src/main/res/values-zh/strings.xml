@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">设置联系人</string>
     <string name="call">通话</string>
-    
+    <string name="error">错误</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">蓝色</string>
     <string name="theme_green">绿色</string>

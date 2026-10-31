@@ -41,6 +41,7 @@
     <!-- Widget -->
     <string name="tap_to_configure">Set contact</string>
     <string name="call">Call</string>
+    <string name="error">Error</string>
     
     <!-- Theme Names -->
     <string name="theme_blue">Blue</string>

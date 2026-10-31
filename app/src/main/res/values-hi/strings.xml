@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">संपर्क सेट करें</string>
     <string name="call">कॉल</string>
-    
+    <string name="error">त्रुटि</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">नीला</string>
     <string name="theme_green">हरा</string>

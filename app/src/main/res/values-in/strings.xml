@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">Atur kontak</string>
     <string name="call">Panggil</string>
-    
+    <string name="error">Kesalahan</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">Biru</string>
     <string name="theme_green">Hijau</string>

@@ -129,6 +129,23 @@ class BigContactsWidget : GlanceAppWidget() {
         }
     }
 
+    override fun onCompositionError(
+        context: Context,
+        glanceId: GlanceId,
+        appWidgetId: Int,
+        throwable: Throwable
+    ) {
+        super.onCompositionError(context, glanceId, appWidgetId, throwable)
+
+        val remoteViews = RemoteViews(
+            context.packageName,
+            R.layout.widget_layout_error
+        )
+
+        AppWidgetManager.getInstance(context)
+            .updateAppWidget(appWidgetId, remoteViews)
+    }
+
     companion object {
         fun updateWidget(context: Context, appWidgetId: Int, widgetData: WidgetData) {
             CoroutineScope(Dispatchers.IO).launch {

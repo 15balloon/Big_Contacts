@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">تعيين جهة اتصال</string>
     <string name="call">اتصال</string>
-    
+    <string name="error">خطأ</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">أزرق</string>
     <string name="theme_green">أخضر</string>

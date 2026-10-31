@@ -41,7 +41,8 @@
     <!-- Widget -->
     <string name="tap_to_configure">Установить контакт</string>
     <string name="call">Вызов</string>
-    
+    <string name="error">Ошибка</string>
+
     <!-- Theme Names -->
     <string name="theme_blue">Синий</string>
     <string name="theme_green">Зелёный</string>
