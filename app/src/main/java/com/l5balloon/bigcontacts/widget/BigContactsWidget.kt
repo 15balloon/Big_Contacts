@@ -6,6 +6,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.toArgb
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.datastore.preferences.core.Preferences
 import androidx.glance.GlanceComposable
@@ -78,7 +79,15 @@ class BigContactsWidget : GlanceAppWidget() {
             val prefs = currentState<Preferences>()
             val contactLookupUri = prefs[WidgetKeys.ContactLookupUri]
             val contactName = contactLookupUri?.let { lookupUri ->
-                queryContactName(context, lookupUri)
+                if (ContextCompat.checkSelfPermission(
+                        context,
+                        android.Manifest.permission.READ_CONTACTS
+                    ) == android.content.pm.PackageManager.PERMISSION_GRANTED
+                ) {
+                    queryContactName(context, lookupUri)
+                } else {
+                    null
+                }
             }
 
             val action: Action = if (contactLookupUri != null) {
