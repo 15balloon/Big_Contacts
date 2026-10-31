@@ -6,6 +6,7 @@
     <!-- Main Screen -->
     <string name="add_widget">เพิ่มวิดเจ็ตรายชื่อผู้ติดต่อ</string>
     <string name="add_widget_2x1">เพิ่มวิดเจ็ต 2x1</string>
+    <string name="add_widget_3x1">เพิ่มวิดเจ็ต 3x1</string>
     <string name="add_widget_4x1">เพิ่มวิดเจ็ต 4x1</string>
     <string name="example_label">ตัวอย่าง:</string>
     

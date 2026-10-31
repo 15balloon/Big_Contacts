@@ -6,6 +6,7 @@
     <!-- Main Screen -->
     <string name="add_widget">Add contact widget</string>
     <string name="add_widget_2x1">Add 2x1 Widget</string>
+    <string name="add_widget_3x1">Add 3x1 Widget</string>
     <string name="add_widget_4x1">Add 4x1 Widget</string>
     <string name="example_label">Example:</string>
     

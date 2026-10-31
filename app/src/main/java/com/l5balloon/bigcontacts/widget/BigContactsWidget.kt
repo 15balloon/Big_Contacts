@@ -201,6 +201,10 @@ class BigContactsWidgetReceiver2x1 : GlanceAppWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = BigContactsWidget()
 }
 
+class BigContactsWidgetReceiver3x1 : GlanceAppWidgetReceiver() {
+    override val glanceAppWidget: GlanceAppWidget = BigContactsWidget()
+}
+
 class BigContactsWidgetReceiver4x1 : GlanceAppWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget = BigContactsWidget()
 }

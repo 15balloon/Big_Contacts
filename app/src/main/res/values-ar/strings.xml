@@ -6,6 +6,7 @@
     <!-- Main Screen -->
     <string name="add_widget">إضافة أداة جهة الاتصال</string>
     <string name="add_widget_2x1">إضافة أداة 2x1</string>
+    <string name="add_widget_3x1">إضافة أداة 3x1</string>
     <string name="add_widget_4x1">إضافة أداة 4x1</string>
     <string name="example_label">مثال:</string>
     

@@ -26,8 +26,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.l5balloon.bigcontacts.ui.theme.BigContactsTheme
 import android.widget.Toast
-import android.content.Context.RECEIVER_EXPORTED
 import com.l5balloon.bigcontacts.widget.BigContactsWidgetReceiver2x1
+import com.l5balloon.bigcontacts.widget.BigContactsWidgetReceiver3x1
 import com.l5balloon.bigcontacts.widget.BigContactsWidgetReceiver4x1
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import androidx.compose.foundation.layout.Row
@@ -115,6 +115,9 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
     val widget2x1Width = 184.dp
     val widget2x1Height = 88.dp
 
+    val widget3x1Width = 281.dp
+    val widget3x1Height = 88.dp
+
     val widget4x1Width = 376.dp
     val widget4x1Height = 88.dp
 
@@ -171,6 +174,64 @@ fun MainScreen(onAddWidget: (ComponentName) -> Unit) {
                         modifier = Modifier
                             .width(widget2x1Width)
                             .height(widget2x1Height)
+                            .background(
+                                color = MaterialTheme.colorScheme.surface,
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                            .border(
+                                width = 1.dp,
+                                color = MaterialTheme.colorScheme.outline,
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                            .align(Alignment.CenterHorizontally),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = stringResource(R.string.widget_preview_name_short),
+                            style = TextStyle(
+                                fontSize = dpToSp(30.dp),
+                                fontWeight = Bold
+                            ),
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                }
+            }
+
+            Button(
+                onClick = {
+                    onAddWidget(ComponentName(context, BigContactsWidgetReceiver3x1::class.java))
+                },
+                modifier = Modifier
+                    .wrapContentHeight(),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.add_widget_3x1),
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        style = TextStyle(
+                            fontSize = dpToSp(32.dp),
+                        ),
+                    )
+
+                    Text(
+                        text = stringResource(R.string.example_label),
+                        modifier = Modifier.align(Alignment.Start),
+                        style = TextStyle(
+                            fontSize = dpToSp(24.dp),
+                        ),
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .width(widget3x1Width)
+                            .height(widget3x1Height)
                             .background(
                                 color = MaterialTheme.colorScheme.surface,
                                 shape = RoundedCornerShape(8.dp)

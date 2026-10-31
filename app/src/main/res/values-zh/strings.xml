@@ -6,6 +6,7 @@
     <!-- Main Screen -->
     <string name="add_widget">添加联系人小部件</string>
     <string name="add_widget_2x1">添加2x1小部件</string>
+    <string name="add_widget_3x1">添加3x1小部件</string>
     <string name="add_widget_4x1">添加4x1小部件</string>
     <string name="example_label">示例：</string>
     

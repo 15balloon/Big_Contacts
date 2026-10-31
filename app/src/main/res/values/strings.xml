@@ -7,6 +7,7 @@
     <!-- Main Screen -->
     <string name="add_widget">연락처 위젯 추가</string>
     <string name="add_widget_2x1">2x1 위젯 추가</string>
+    <string name="add_widget_3x1">3x1 위젯 추가</string>
     <string name="add_widget_4x1">4x1 위젯 추가</string>
     <string name="example_label">예시)</string>
     
