@@ -3,6 +3,7 @@ package com.l5balloon.bigcontacts
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -16,6 +17,7 @@ import com.l5balloon.bigcontacts.ui.theme.BigContactsTheme
 class LicenseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             BigContactsTheme {
                 Surface(
@@ -42,7 +44,6 @@ fun LicenseScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(WindowInsets.systemBars.asPaddingValues())
                 .padding(padding)
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState())
