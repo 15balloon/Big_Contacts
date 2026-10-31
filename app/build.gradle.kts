@@ -16,12 +16,12 @@ if (localPropertiesFile.exists()) {
 
 android {
     namespace = "com.l5balloon.bigcontacts"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.l5balloon.bigcontacts"
         minSdk = 28
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 9
         versionName = "1.1.7"
 
